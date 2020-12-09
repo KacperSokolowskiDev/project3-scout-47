@@ -1,0 +1,22 @@
+{
+  "name": "web-server",
+  "version": "1.0.0",
+  "description": "Project 3",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "node",
+    "database"
+  ],
+  "author": "Greg, Kacper, Yanis",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6"
+  }
+}
