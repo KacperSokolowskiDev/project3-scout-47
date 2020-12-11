@@ -1,18 +1,38 @@
 import React from "react";
-import { Button, Text, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
+
+import Screen from "../components/Screen";
+import AppButton from "../components/AppButton";
+import AppTextInput from "../components/AppTextInput";
 
 function LoginScreen({ navigation }) {
   return (
-    <View>
-      <Text style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        Login screen
-      </Text>
-      <Button
-        title="Go to list of player"
+    <Screen style={styles.container}>
+      <Image
+        style={styles.logo}
+        source={require("../assets/icon_cercle.png")}
+      />
+      <View>
+        <AppTextInput icon="account" placeholder="Username" />
+        <AppTextInput icon="lock" placeholder="Password" />
+      </View>
+
+      <AppButton
+        title="Login"
         onPress={() => navigation.navigate("List Player")}
       />
-    </View>
+    </Screen>
   );
 }
 
+const styles = StyleSheet.create({
+  container: {},
+  logo: {
+    width: 120,
+    height: 120,
+    alignSelf: "center",
+    marginTop: 50,
+    marginBottom: 50,
+  },
+});
 export default LoginScreen;
