@@ -10,7 +10,7 @@ function LoginScreen({ navigation }) {
     <Screen style={styles.container}>
       <Image
         style={styles.logo}
-        source={require("../assets/icon_cercle.png")}
+        source={require("../assets/scout47Logo.png")}
       />
       <View>
         <AppTextInput icon="account" placeholder="Username" />
