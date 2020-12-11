@@ -12,14 +12,14 @@ const players = [
     prenom: "Smith",
     photo: require("../assets/portrait.jpg"),
     club: "FC BXL",
-    logo: require("../assets/icon_cercle.png"),
+    logo: require("../assets/scout47Logo.png"),
   },
   {
     id: 2,
     nom: "King",
     prenom: "Smith",
     photo: require("../assets/portrait.jpg"),
-    club: "FC BXL",
+    club: "FC Roma",
     logo: require("../assets/icon_cercle.png"),
   },
   {
@@ -28,14 +28,14 @@ const players = [
     prenom: "Smith",
     photo: require("../assets/portrait.jpg"),
     club: "FC BXL",
-    logo: require("../assets/icon_cercle.png"),
+    logo: require("../assets/scout47Logo.png"),
   },
   {
     id: 4,
     nom: "Jester",
     prenom: "Smith",
     photo: require("../assets/portrait.jpg"),
-    club: "FC BXL",
+    club: "FC Namur",
     logo: require("../assets/icon_cercle.png"),
   },
   {
@@ -43,7 +43,7 @@ const players = [
     nom: "Harold",
     prenom: "Smith",
     photo: require("../assets/portrait.jpg"),
-    club: "FC BXL",
+    club: "FC London",
     logo: require("../assets/icon_cercle.png"),
   },
 ];
@@ -54,7 +54,7 @@ function ListPlayerScreen({ navigation }) {
       <AppText
         style={{ backgroundColor: "lightblue", color: "white", fontSize: 25 }}
       >
-        Filter to add{" "}
+        Année : 2009{" "}
       </AppText>
 
       <FlatList
