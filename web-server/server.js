@@ -3,6 +3,7 @@ const port = 4000;
 const app = express();
 const connection = require("./config");
 const routes = require("./routes");
+const cors = require("cors");
 
 connection.connect(function (err) {
   if (err) {
@@ -14,7 +15,7 @@ connection.connect(function (err) {
 });
 
 app.use(express.json());
-
+app.use(cors());
 app.use("/menu", routes);
 
 app.get("/", (req, res) => {

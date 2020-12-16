@@ -7,7 +7,6 @@ function AddPlayerPage() {
   const [club, setClub] = useState();
   const [strongFoot, setStrongFoot] = useState();
 
-  const [player, setPlayer] = useState({});
   const handleFirstname = (e) => {
     setFirstname(e.target.value);
   };
@@ -24,28 +23,60 @@ function AddPlayerPage() {
     setStrongFoot(e.target.value);
   };
 
-  useEffect(() => {
-    let player = {
+  //   useEffect(() => {
+  //     let player = {
+  //       firstname: firstname,
+  //       lastname: lastname,
+  //       club: club,
+  //       strongFoot: strongFoot,
+  //     };
+
+  //     try {
+  //       const response = axios.post("http://192.168.0.103:4000/menu/players", {
+  //         player,
+  //       });
+  //       console.log("👉 Returned data:", response);
+  //     } catch (e) {
+  //       console.log(`😱 Axios request failed: ${e}`);
+  //     }
+  //   });
+
+  const getPlayers = () => {
+    const url = `http://192.168.0.103:4000/menu/players`;
+
+    axios
+      .get(url)
+      .then((res) => {
+        let result = res.data;
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log("Error !!");
+        console.log(error);
+      });
+  };
+
+  async function submitPlayer(e) {
+    e.preventDefault();
+
+    let params = {
       firstname: firstname,
       lastname: lastname,
       club: club,
       strongFoot: strongFoot,
     };
 
-    try {
-      const response = axios.post("http://192.168.0.103:4000/menu/players", {
-        player,
-      });
-      console.log("👉 Returned data:", response);
-    } catch (e) {
-      console.log(`😱 Axios request failed: ${e}`);
-    }
-  });
+    console.log(params);
 
-  const submitPlayer = (e) => {
-    e.preventDefault();
-    console.log("submit");
-  };
+    axios
+      .post("http://192.168.0.103:4000/menu/players", params)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log("ERROR §§§§! : ", error);
+      });
+  }
 
   return (
     <div>
@@ -85,6 +116,8 @@ function AddPlayerPage() {
       <p>{lastname}</p>
       <p>{club}</p>
       <p>{strongFoot}</p>
+
+      <button onClick={getPlayers}>Get data</button>
     </div>
   );
 }
