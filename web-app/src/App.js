@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Profil from './Profil';
+import Rapport from './Rapport';
+import Critères from './Critères';
+import Agenda from './Agenda';
+import Navigation from './Navigation';
+import {BrowserRouter as Router,Route} from 'react-router-dom';
+
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Navigation/>
+
+        <Route path="/" exact component={Profil}/>
+        <Route path="/Rapport" exact component={Rapport}/>
+        <Route path="/Critères" exact component={Critères}/>
+        <Route path="/Agenda" exact component={Agenda}/>
+
+      </Router>
     </div>
   );
 }
