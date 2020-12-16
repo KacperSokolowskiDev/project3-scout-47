@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Profil from "./components/Profil";
+import Rapport from "./components/Rapport";
+import Criteria from "./components/Criteria";
+import Agenda from "./components/Agenda";
+import Navigation from "./components/Navigation";
+import AddPlayerPage from "./components/AddPlayerPage";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Navigation />
+
+        <Route path="/" exact component={Profil} />
+        <Route path="/Rapport" exact component={Rapport} />
+        <Route path="/Criteria" exact component={Criteria} />
+        <Route path="/Agenda" exact component={Agenda} />
+        <Route path="/Addplayer" exact component={AddPlayerPage} />
+      </Router>
     </div>
   );
 }

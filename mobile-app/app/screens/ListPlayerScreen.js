@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, FlatList, StyleSheet } from "react-native";
 import AppText from "../components/AppText";
+const axios = require("axios");
 
 import Card from "../components/Card";
 import Screen from "../components/Screen";
@@ -49,6 +50,22 @@ const players = [
 ];
 
 function ListPlayerScreen({ navigation }) {
+  const fetchData = () => {
+    const url = `http://192.168.0.103:4000/menu/players`;
+
+    axios
+      .get(url)
+      .then((res) => {
+        let result = res.data;
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {}, []);
+
   return (
     <Screen>
       <AppText
@@ -71,10 +88,11 @@ function ListPlayerScreen({ navigation }) {
         )}
       ></FlatList>
 
-      <Button
-        title="Go to Login Screen"
-        onPress={() => navigation.navigate("Login")}
-      />
+      <Button title="fetch data" onPress={() => fetchData()} />
+      {/* <Button
+        title="Add a player"
+        onPress={() => navigation.navigate("Add Player")}
+      /> */}
     </Screen>
   );
 }
