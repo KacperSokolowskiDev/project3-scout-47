@@ -16,7 +16,7 @@ connection.connect(function (err) {
 
 app.use(express.json());
 app.use(cors());
-app.use("/menu", routes);
+app.use("/api", routes);
 
 app.get("/", (req, res) => {
   res.json("Welcome to Scout47!");

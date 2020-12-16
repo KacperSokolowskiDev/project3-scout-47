@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+require("dotenv").config();
 
 function AddPlayerPage() {
   const [firstname, setFirstname] = useState();
@@ -23,29 +24,9 @@ function AddPlayerPage() {
     setStrongFoot(e.target.value);
   };
 
-  //   useEffect(() => {
-  //     let player = {
-  //       firstname: firstname,
-  //       lastname: lastname,
-  //       club: club,
-  //       strongFoot: strongFoot,
-  //     };
-
-  //     try {
-  //       const response = axios.post("http://192.168.0.103:4000/menu/players", {
-  //         player,
-  //       });
-  //       console.log("👉 Returned data:", response);
-  //     } catch (e) {
-  //       console.log(`😱 Axios request failed: ${e}`);
-  //     }
-  //   });
-
   const getPlayers = () => {
-    const url = `http://192.168.0.103:4000/menu/players`;
-
     axios
-      .get(url)
+      .get(process.env.REACT_APP_BASE_URL)
       .then((res) => {
         let result = res.data;
         console.log(result);
@@ -66,10 +47,8 @@ function AddPlayerPage() {
       strongFoot: strongFoot,
     };
 
-    console.log(params);
-
     axios
-      .post("http://192.168.0.103:4000/menu/players", params)
+      .post(`${process.env.REACT_APP_BASE_URL}`, params)
       .then((res) => {
         console.log(res.data);
       })
