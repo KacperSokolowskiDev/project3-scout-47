@@ -51,10 +51,9 @@ const players = [
 
 function ListPlayerScreen({ navigation }) {
   const fetchData = () => {
-    const url = `http://192.168.0.103:4000/menu/players`;
-
+    console.log("in fetchdata");
     axios
-      .get(url)
+      .get(`d`)
       .then((res) => {
         let result = res.data;
         console.log(result);
