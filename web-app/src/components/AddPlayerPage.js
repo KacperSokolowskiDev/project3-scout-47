@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./AddPlayer.css";
 require("dotenv").config();
 
 function AddPlayerPage() {
@@ -7,6 +8,8 @@ function AddPlayerPage() {
   const [lastname, setLastname] = useState();
   const [club, setClub] = useState();
   const [strongFoot, setStrongFoot] = useState();
+  const [listPlayers, setListPlayers] = useState([]);
+  const [download, setDownload] = useState(false);
 
   const handleFirstname = (e) => {
     setFirstname(e.target.value);
@@ -21,6 +24,7 @@ function AddPlayerPage() {
   };
 
   const handleStrongFoot = (e) => {
+    console.log(e.target.value);
     setStrongFoot(e.target.value);
   };
 
@@ -29,7 +33,10 @@ function AddPlayerPage() {
       .get(process.env.REACT_APP_BASE_URL)
       .then((res) => {
         let result = res.data;
+        setListPlayers(result);
+        setDownload(true);
         console.log(result);
+        console.log(download);
       })
       .catch((error) => {
         console.log("Error !!");
@@ -57,46 +64,80 @@ function AddPlayerPage() {
       });
   }
 
+  function showPlayer() {
+    console.log("dans le showPlayer");
+
+    listPlayers.map((player) => {
+      return (
+        <div>
+          <p>{player.firstname}</p>
+        </div>
+      );
+    });
+  }
+
   return (
-    <div>
+    <div className="form_container">
       <form onSubmit={submitPlayer}>
-        <label>
+        <div className="input_wrapper">
+          <label>Firstname</label>
           <input
             placeholder="firstname"
             value={firstname}
             onChange={(e) => handleFirstname(e)}
           />
-        </label>
-        <label>
+        </div>
+        <div className="input_wrapper">
+          <label>Lastname</label>
           <input
-            placeholder="lasttname"
+            placeholder="lastname"
             value={lastname}
             onChange={(e) => handleLastname(e)}
           />
-        </label>
-        <label>
+        </div>
+        <div className="input_wrapper">
+          <label>Club</label>
           <input
             placeholder="club"
             value={club}
             onChange={(e) => handleClub(e)}
           />
-        </label>
-        <label>
-          <input
-            placeholder="Foot"
+        </div>
+        <div className="input_wrapper">
+          <label>Strong Foot</label>
+          <select
+            placeholder="Strong Foot"
             value={strongFoot}
             onChange={(e) => handleStrongFoot(e)}
-          />
-        </label>
-        <button type="submit">Submit</button>
+          >
+            <option selected value="">
+              Choix
+            </option>
+            <option value="gauche">gauche</option>
+            <option value="droit">droit</option>
+            <option value="ambidextre">Ambidextre</option>
+          </select>
+        </div>
+        <button className="btn_submit" type="submit">
+          Submit
+        </button>
       </form>
 
-      <p>{firstname}</p>
-      <p>{lastname}</p>
-      <p>{club}</p>
-      <p>{strongFoot}</p>
-
-      <button onClick={getPlayers}>Get data</button>
+      <button className="btn_data" onClick={getPlayers}>
+        Get data
+      </button>
+      <div>
+        {" "}
+        {download
+          ? listPlayers.map((player) => {
+              return (
+                <div>
+                  {`${player.firstname} ${player.lastname}, ${player.club}, ${player.strongFoot}`}
+                </div>
+              );
+            })
+          : "no player loaded"}
+      </div>
     </div>
   );
 }
