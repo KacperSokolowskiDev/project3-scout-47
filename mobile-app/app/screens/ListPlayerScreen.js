@@ -1,54 +1,32 @@
-import React from "react";
-import { Button, FlatList, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Button, FlatList, StyleSheet, View } from "react-native";
 import AppText from "../components/AppText";
+const axios = require("axios");
 
 import Card from "../components/Card";
 import Screen from "../components/Screen";
 
-const players = [
-  {
-    id: 1,
-    nom: "John",
-    prenom: "Smith",
-    photo: require("../assets/portrait.jpg"),
-    club: "FC BXL",
-    logo: require("../assets/scout47Logo.png"),
-  },
-  {
-    id: 2,
-    nom: "King",
-    prenom: "Smith",
-    photo: require("../assets/portrait.jpg"),
-    club: "FC Roma",
-    logo: require("../assets/icon_cercle.png"),
-  },
-  {
-    id: 3,
-    nom: "Queen",
-    prenom: "Smith",
-    photo: require("../assets/portrait.jpg"),
-    club: "FC BXL",
-    logo: require("../assets/scout47Logo.png"),
-  },
-  {
-    id: 4,
-    nom: "Jester",
-    prenom: "Smith",
-    photo: require("../assets/portrait.jpg"),
-    club: "FC Namur",
-    logo: require("../assets/icon_cercle.png"),
-  },
-  {
-    id: 5,
-    nom: "Harold",
-    prenom: "Smith",
-    photo: require("../assets/portrait.jpg"),
-    club: "FC London",
-    logo: require("../assets/icon_cercle.png"),
-  },
-];
-
 function ListPlayerScreen({ navigation }) {
+  const [player, setPlayer] = useState([]);
+  const [download, setDownload] = useState(false);
+
+  const fetchData = () => {
+    console.log("in fetchdata");
+    axios
+      .get("http://localhost:4000/api/players")
+      .then((res) => {
+        let result = res.data;
+        console.log("dans le fetchData: ", result);
+        setPlayer(result);
+        setDownload(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {}, []);
+
   return (
     <Screen>
       <AppText
@@ -57,24 +35,33 @@ function ListPlayerScreen({ navigation }) {
         Année : 2009{" "}
       </AppText>
 
-      <FlatList
-        data={players}
-        keyExtractor={(player) => player.id.toString()}
-        renderItem={({ item }) => (
-          <Card
-            nom={item.nom}
-            prenom={item.prenom}
-            photo={item.photo}
-            club={item.club}
-            logo={item.logo}
-          />
-        )}
-      ></FlatList>
+      {download ? (
+        <FlatList
+          data={player}
+          keyExtractor={(player) => player.id.toString()}
+          renderItem={({ item }) => (
+            <Card
+              lastname={item.lastname}
+              firstname={item.firstname}
+              photo={require("../assets/portrait.jpg")}
+              club={item.club}
+              logo={require("../assets/scout47Logo.png")}
+            />
+          )}
+        ></FlatList>
+      ) : (
+        <AppText
+          style={{ backgroundColor: "lightblue", color: "white", fontSize: 25 }}
+        >
+          No player Loaded
+        </AppText>
+      )}
 
-      <Button
-        title="Go to Login Screen"
-        onPress={() => navigation.navigate("Login")}
-      />
+      <Button title="fetch data" onPress={() => fetchData()} />
+      {/* <Button
+        title="Add a player"
+        onPress={() => navigation.navigate("Add Player")}
+      /> */}
     </Screen>
   );
 }

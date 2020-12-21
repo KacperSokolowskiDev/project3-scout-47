@@ -10,18 +10,18 @@ import {
 import AppText from "./AppText";
 import defaultStyles from "../config/styles";
 
-function Card({ nom, prenom, photo, club, logo }) {
+function Card({ firstname, lastname, photo, club, logo }) {
   return (
     <>
       <TouchableOpacity
         style={styles.container}
-        onPress={() => console.log(`Player ${nom} selected`)}
+        onPress={() => console.log(`Player ${firstname} selected`)}
       >
         <Image style={styles.image} source={photo} />
         <View style={styles.player}>
           <View style={styles.infoNames}>
-            <AppText style={styles.text}>{nom}</AppText>
-            <AppText style={styles.text}>{prenom}</AppText>
+            <AppText style={styles.text}>{lastname}</AppText>
+            <AppText style={styles.text}>{firstname}</AppText>
           </View>
           <View style={styles.infoClub}>
             <Image style={styles.logo} source={logo} />
