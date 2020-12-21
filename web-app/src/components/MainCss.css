@@ -1,0 +1,39 @@
+.navigation {
+  text-decoration: none;
+  outline: none;
+  color: inherit;
+}
+.link_Wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+.list {
+  margin-top: -75px;
+  margin-left: 50%;
+  width: 50%;
+}
+.list_item {
+  margin-left: 10px;
+  list-style: none;
+}
+
+.logo {
+  width: 30%;
+  margin-left: 25px;
+  margin-top: 10px;
+}
+
+.logoScout47 {
+  height: 75px;
+  width: 75px;
+}
+
+.Navbar {
+  display: flex;
+  flex-direction: row;
+}
+
+.pageTitle {
+  margin-top: 50px;
+}
