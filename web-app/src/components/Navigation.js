@@ -12,19 +12,7 @@ function Navigation() {
       <div className="list">
         <ul className="link_Wrapper">
           <Link className="navigation" to="/">
-            <li className="list_item"> Profil |</li>
-          </Link>
-
-          <Link className="navigation" to="/Rapport">
-            <li className="list_item"> Rapport |</li>
-          </Link>
-
-          <Link className="navigation" to="/Criteria">
-            <li className="list_item"> Criteria |</li>
-          </Link>
-
-          <Link className="navigation" to="/Agenda">
-            <li className="list_item"> Agenda |</li>
+            <li className="list_item"> Dashboard |</li>
           </Link>
 
           <Link className="navigation" to="/AddPlayer">
