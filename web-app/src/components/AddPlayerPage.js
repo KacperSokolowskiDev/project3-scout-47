@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./AddPlayer.css";
+import styled from "styled-components";
+
+import "./AddPlayer.scss";
 require("dotenv").config();
 
 function AddPlayerPage() {
