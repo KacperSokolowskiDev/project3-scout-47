@@ -1,65 +1,59 @@
-const connection = require("../config");
+const sequelize = require("../config");
+const { DataTypes } = require("sequelize");
 
-const save = async (data) => {
-  let sql = "INSERT INTO players SET ?";
-  try {
-    let [results, fields] = await connection
-      .promise()
-      .query(sql, [{ ...data }]);
-    return results;
-  } catch (error) {
-    throw new Error(error);
+const Player = sequelize.define(
+  "players",
+  {
+    firstname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    birthdate: {
+      type: DataTypes.DATEONLY,
+      allowNull: true,
+    },
+    age: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    position: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    height: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    weight: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    strongFoot: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    picture: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+  },
+  {
+    //to ignore createdAt & updatedAt
+    timestamps: false,
   }
-};
+);
 
-const findById = async (id) => {
-  let sql = "SELECT * FROM players WHERE id = ?";
+//sync module
+(async () => {
   try {
-    let [results, fields] = await connection.promise().query(sql, { id });
-    return results[0];
+    await Player.sync({ alter: true });
+    console.log("The table players was updated");
   } catch (error) {
-    throw new Error(error);
+    console.error("Unable to sync users:", error);
   }
-};
-
-const findAll = async () => {
-  let sql = "SELECT * FROM players";
-  try {
-    let [results, fields] = await connection.promise().query(sql);
-    return results;
-  } catch (error) {
-    throw new Error(error);
-  }
-};
-
-const updateById = async (id, data) => {
-  let sql = `UPDATE players SET ? WHERE ?`;
-  try {
-    let [results, fields] = await connection
-      .promise()
-      .query(sql, [{ ...data }, { id }]);
-    return results;
-  } catch (error) {
-    throw new Error(error);
-  }
-};
-
-// WHERE ID = ?  ----> [id]  // WHERE ? ----> { id }
-
-const deleteById = async (id) => {
-  let sql = `DELETE FROM players WHERE ID =?`;
-  try {
-    let [results, fields] = await connection.promise().query(sql, [id]);
-    return results;
-  } catch (error) {
-    throw new Error(error);
-  }
-};
-
-module.exports = {
-  save,
-  findById,
-  findAll,
-  updateById,
-  deleteById,
-};
+})();
+module.exports = Player;
