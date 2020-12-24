@@ -1,6 +1,5 @@
 const sequelize = require("../config");
 const { DataTypes } = require("sequelize");
-const Club = require("./Clubs");
 
 const Criteria = sequelize.define(
   "criterias",
@@ -21,8 +20,8 @@ const Criteria = sequelize.define(
 
 (async () => {
   try {
-    await Club.sync({ alter: true });
-    console.log("The table clubs was updated");
+    await Criteria.sync({ alter: true });
+    console.log("The table Criterias was updated");
   } catch (error) {
     console.error("Unable to sync users:", error);
   }

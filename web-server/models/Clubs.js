@@ -18,13 +18,13 @@ const Club = sequelize.define(
   }
 );
 
-(async => {
-    try {
-        await Club.sync({alter: true})
-        console.log("The table clubs was updated");
-    } catch (error) {
-        console.error("Unable to sync users:", error);
-    }
+(async () => {
+  try {
+    await Club.sync({ alter: true });
+    console.log("The table clubs was updated");
+  } catch (error) {
+    console.error("Unable to sync users:", error);
+  }
 })();
 
 module.exports = Club;
