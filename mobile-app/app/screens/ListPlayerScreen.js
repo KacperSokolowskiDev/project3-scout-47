@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, FlatList, StyleSheet, View } from "react-native";
+import { Button, FlatList, Modal, StyleSheet, View } from "react-native";
+import { TouchableOpacity as TouchableWithoutFeedback } from "react-native-gesture-handler";
 import AppText from "../components/AppText";
 const axios = require("axios");
 
@@ -7,8 +8,9 @@ import Card from "../components/Card";
 import Screen from "../components/Screen";
 
 function ListPlayerScreen({ navigation }) {
-  const [player, setPlayer] = useState([]);
+  const [listPlayer, setListPlayer] = useState([]);
   const [download, setDownload] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const fetchData = () => {
     console.log("in fetchdata");
@@ -17,7 +19,7 @@ function ListPlayerScreen({ navigation }) {
       .then((res) => {
         let result = res.data;
         console.log("dans le fetchData: ", result);
-        setPlayer(result);
+        setListPlayer(result);
         setDownload(true);
       })
       .catch((error) => {
@@ -29,15 +31,23 @@ function ListPlayerScreen({ navigation }) {
 
   return (
     <Screen>
-      <AppText
-        style={{ backgroundColor: "lightblue", color: "white", fontSize: 25 }}
-      >
-        Année : 2009{" "}
-      </AppText>
+      <View style={styles.filterContainer}>
+        <AppText style={styles.year}>Année: </AppText>
+
+        <TouchableWithoutFeedback
+          style={styles.btnAjout}
+          onPress={() => setModalVisible(true)}
+        >
+          <AppText>Ajouter Player</AppText>
+        </TouchableWithoutFeedback>
+        <Modal visible={modalVisible} animationType="slide">
+          <Button title="Close" onPress={() => setModalVisible(false)} />
+        </Modal>
+      </View>
 
       {download ? (
         <FlatList
-          data={player}
+          data={listPlayer}
           keyExtractor={(player) => player.id.toString()}
           renderItem={({ item }) => (
             <Card
@@ -51,7 +61,12 @@ function ListPlayerScreen({ navigation }) {
         ></FlatList>
       ) : (
         <AppText
-          style={{ backgroundColor: "lightblue", color: "white", fontSize: 25 }}
+          style={{
+            backgroundColor: "lightblue",
+            color: "white",
+            fontSize: 25,
+            width: "60%",
+          }}
         >
           No player Loaded
         </AppText>
@@ -66,5 +81,24 @@ function ListPlayerScreen({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  btnAjout: {
+    backgroundColor: "red",
+    margin: 5,
+    height: 50,
+  },
+
+  filterContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+
+  year: {
+    backgroundColor: "blue",
+    color: "white",
+    fontSize: 25,
+    margin: 5,
+    height: 50,
+  },
+});
 export default ListPlayerScreen;
