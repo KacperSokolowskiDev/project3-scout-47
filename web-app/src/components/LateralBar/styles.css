@@ -19,8 +19,20 @@
   background-size: contain;
   height: 10vh;
   width: 10vh;
-  margin-top: 39px;
+  margin-top: 30px;
   border: 1px white;
   border-style: solid;
   border-radius: 45px;
+}
+
+.btn-logout {
+  background-image: url("../../assets/btn-power-green.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 6vh;
+  width: 6vh;
+  margin-bottom: 30px;
+  border: 1px white;
+  border-style: solid;
+  border-radius: 25px;
 }

@@ -5,7 +5,7 @@ function Index() {
   return (
     <div className="container">
       <div className="logo"></div>
-      <div className="btn-logout">c</div>
+      <div className="btn-logout"></div>
     </div>
   );
 }

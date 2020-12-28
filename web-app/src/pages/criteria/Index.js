@@ -1,10 +1,12 @@
 import React from "react";
 import Navbar from "../../components/navbar/index";
+import LateralBar from "../../components/LateralBar/Index";
+import "./styles.css";
 
 function Index() {
   return (
-    <div>
-      Criteria
+    <div className="page-container">
+      <LateralBar />
       <Navbar />
     </div>
   );
