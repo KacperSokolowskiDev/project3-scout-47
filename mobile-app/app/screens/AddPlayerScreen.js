@@ -2,7 +2,6 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 
 import Screen from "../components/Screen";
-import AppButton from "../components/AppButton";
 import AppText from "../components/AppText";
 import AppTextInput from "../components/AppTextInput";
 

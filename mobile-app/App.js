@@ -20,7 +20,6 @@ function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="List Player" component={ListPlayerScreen} />
         <Stack.Screen name="Player Profile" component={PlayerProfileScreen} />
-        <Stack.Screen name="Add Player" component={AddPlayerScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
