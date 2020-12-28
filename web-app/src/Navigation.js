@@ -1,30 +1,30 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./MainCss.css";
+import logoScout47 from "../assets/logo_scout47.png";
 
+function Navigation() {
+  return (
+    <div className="NavBar">
+      <div className="logo">
+        <img className="logoScout47" src={logoScout47} alt="y en a marre" />
+      </div>
+      <div className="list">
+        <ul className="link_Wrapper">
+          <Link className="navigation" to="/">
+            <li className="list_item"> Dashboard |</li>
+          </Link>
+          <Link className="navigation" to="/staff">
+            <li className="list_item"> staff |</li>
+          </Link>
 
-function Navigation(){
-
-
-        return(
-            <ul style={{display: 'flex'}}>
-                <Link to="/">
-                    <li style={{marginLeft: 10, listStyle:'none'}}>Profil</li>
-                </Link>
-                
-                <Link to="/Rapport">
-                    <li style={{marginLeft: 10, listStyle:'none'}}>Rapport</li>
-                </Link>
-                
-                <Link to="/Critères">
-                    <li style={{marginLeft: 10, listStyle:'none'}}>Critères</li>
-                </Link>
-                
-                <Link to="/Agenda">
-                    <li style={{marginLeft: 10, listStyle:'none'}}>Agenda</li>
-                </Link>
-
-            </ul>
-        )
+          <Link className="navigation" to="/AddPlayer">
+            <li className="list_item"> AddPLayer |</li>
+          </Link>
+        </ul>
+      </div>
+    </div>
+  );
 }
 
 export default Navigation;
