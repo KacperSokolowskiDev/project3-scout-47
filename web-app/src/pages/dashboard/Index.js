@@ -1,10 +1,11 @@
 import React from "react";
 import Navbar from "../../components/navbar/index";
+import LateralBar from "../../components/LateralBar/Index";
 
 function Index() {
   return (
     <div>
-      Dashboard
+      <LateralBar />
       <Navbar />
     </div>
   );
