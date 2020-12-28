@@ -1,24 +1,24 @@
-import React from 'react';
-import Profil from './Profil';
-import Rapport from './Rapport';
-import Critères from './Critères';
-import Agenda from './Agenda';
-import Navigation from './Navigation';
-import {BrowserRouter as Router,Route} from 'react-router-dom';
+import React from "react";
 
-
+import Dashboard from "./pages/dashboard/Index";
+import Staff from "./pages/staff/index";
+import Player from "./pages/players/index";
+import Criteria from "./pages/criteria/Index";
+import Agenda from "./pages/agenda/Index";
+import AddPlayerPage from "./components/AddPlayerPage";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Navigation/>
+        <Route path="/" exact component={Dashboard} />
+        <Route path="/staff" exact component={Staff} />
+        <Route path="/criteria" exact component={Criteria} />
+        <Route path="/player" exact component={Player} />
+        <Route path="/agenda" exact component={Agenda} />
 
-        <Route path="/" exact component={Profil}/>
-        <Route path="/Rapport" exact component={Rapport}/>
-        <Route path="/Critères" exact component={Critères}/>
-        <Route path="/Agenda" exact component={Agenda}/>
-
+        <Route path="/Addplayer" exact component={AddPlayerPage} />
       </Router>
     </div>
   );
