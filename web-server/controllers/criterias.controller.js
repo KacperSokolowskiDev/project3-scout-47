@@ -31,7 +31,7 @@ const index = async (req, res, next) => {
     res.status(200).json(listCriteria);
   } catch (error) {
     let message = "Criterias can't be shown";
-    res.status(200).json(message);
+    res.status(500).json(message);
     console.error("Unable to fetch:", error);
   }
 };

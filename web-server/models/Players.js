@@ -1,13 +1,14 @@
 const sequelize = require("../config");
 const { DataTypes } = require("sequelize");
 
+const Client = require("./Clients");
+const Club = require("./Clubs");
+const Criteria = require("./Criterias");
+const Scout = require("./Scouts");
+
 const Player = sequelize.define(
   "players",
   {
-    firstname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     lastname: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -46,6 +47,11 @@ const Player = sequelize.define(
     timestamps: false,
   }
 );
+
+Player.belongsTo(Client, { foreignKey: "client_id", targetKey: "id" });
+Player.belongsTo(Club, { foreignKey: "club_id", targetKey: "id" });
+Player.belongsTo(Criteria, { foreignKey: "criteria_id", targetKey: "id" });
+Player.belongsTo(Scout, { foreignKey: "scout_id", targetKey: "id" });
 
 //sync module
 (async () => {
