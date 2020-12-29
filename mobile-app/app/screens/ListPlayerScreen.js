@@ -29,7 +29,7 @@ function ListPlayerScreen({ navigation }) {
   const fetchData = () => {
     console.log("fetch data");
     axios
-      .get("http://192.168.50.74:5000/api/players")
+      .get("http://b:5000/api/players")
       .then((res) => {
         let result = res.data;
         console.log(result);
@@ -49,7 +49,7 @@ function ListPlayerScreen({ navigation }) {
       birthdate: date,
     };
     axios
-      .post("http://192.168.50.74:5000/api/players", player)
+      .post("http://b:5000/api/players", player)
       .then((res) => {
         console.log(res.data);
       })
