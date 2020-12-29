@@ -1,0 +1,34 @@
+
+    <Screen>
+      <View style={styles.filterContainer}>
+        <AppText style={styles.year}>Année: </AppText>
+
+        <TouchableWithoutFeedback
+          style={styles.btnAjout}
+          onPress={() => setModalVisible(true)}
+        >
+          <AppText style={{ backgroundColor: "red", color: "white" }}>
+            Ajouter Player
+          </AppText>
+        </TouchableWithoutFeedback>
+        <Modal visible={modalVisible} animationType="slide">
+          <View style={styles.modal}>
+            <Button title="Close" onPress={() => setModalVisible(false)} />
+            <AppText style={styles.titre}>Ajouter un player :</AppText>
+            <View>
+              <AppText style={styles.text}>Firstname :</AppText>
+              <AppTextInput placeholder="Firstname" />
+            </View>
+            <View>
+              <AppText style={styles.text}>Lastname :</AppText>
+              <AppTextInput placeholder="Lastname" />
+            </View>
+            <View>
+              <AppText style={styles.text}>Club</AppText>
+              <AppTextInput placeholder="Club" />
+            </View>
+          </View>
+        </Modal>
+      </View>
+
+    
