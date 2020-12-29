@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+import Dashboard from "./pages/dashboard/Index";
+import Staff from "./pages/staff/index";
+import Player from "./pages/players/index";
+import Criteria from "./pages/criteria/Index";
+import Agenda from "./pages/agenda/Index";
+import AddPlayerPage from "./components/AddPlayerPage";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Route path="/" exact component={Dashboard} />
+        <Route path="/staff" exact component={Staff} />
+        <Route path="/criteria" exact component={Criteria} />
+        <Route path="/player" exact component={Player} />
+        <Route path="/agenda" exact component={Agenda} />
+
+        <Route path="/Addplayer" exact component={AddPlayerPage} />
+      </Router>
     </div>
   );
 }
