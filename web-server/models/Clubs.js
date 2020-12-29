@@ -1,6 +1,8 @@
 const sequelize = require("../config");
 const { DataTypes } = require("sequelize");
 
+const Client = require("./Clients");
+
 const Club = sequelize.define(
   "clubs",
   {
@@ -17,6 +19,8 @@ const Club = sequelize.define(
     timestamps: false,
   }
 );
+
+Club.belongsTo(Client, { foreignKey: "client_id", targetKey: "id" });
 
 (async () => {
   try {

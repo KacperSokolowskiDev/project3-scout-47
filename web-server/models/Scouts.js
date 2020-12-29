@@ -1,6 +1,8 @@
 const sequelize = require("../config");
 const { DataTypes } = require("sequelize");
 
+const Client = require("./Clients");
+
 const Scout = sequelize.define(
   "scouts",
   {
@@ -26,6 +28,8 @@ const Scout = sequelize.define(
     timestamps: false,
   }
 );
+
+Scout.belongsTo(Client, { foreignKey: "client_id", targetKey: "id" });
 
 (async () => {
   try {

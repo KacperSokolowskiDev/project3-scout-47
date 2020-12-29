@@ -1,6 +1,8 @@
 const sequelize = require("../config");
 const { DataTypes } = require("sequelize");
 
+const Client = require("./Clients");
+
 const Criteria = sequelize.define(
   "criterias",
   {
@@ -12,11 +14,17 @@ const Criteria = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: true,
     },
+    groupe: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     timestamps: false,
   }
 );
+
+Criteria.belongsTo(Client, { foreignKey: "client_id", targetKey: "id" });
 
 (async () => {
   try {

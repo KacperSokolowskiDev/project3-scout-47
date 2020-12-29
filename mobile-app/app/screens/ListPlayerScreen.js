@@ -10,6 +10,7 @@ import {
 import Constant from "expo-constants";
 const axios = require("axios");
 
+import AppButton from "../components/AppButton";
 import AppTextInput from "../components/AppTextInput";
 import AppText from "../components/AppText";
 import ButtonModal from "../components/ButtonModal";
@@ -26,10 +27,12 @@ function ListPlayerScreen({ navigation }) {
   const [date, setDate] = useState("");
 
   const fetchData = () => {
+    console.log("fetch data");
     axios
-      .get("http://192.168.0.103:5000/api/players")
+      .get("http://192.168.50.74:5000/api/players")
       .then((res) => {
         let result = res.data;
+        console.log(result);
         setListPlayer(result);
         setDownload(true);
       })
@@ -46,7 +49,7 @@ function ListPlayerScreen({ navigation }) {
       birthdate: date,
     };
     axios
-      .post(`http://192.168.0.103:5000/api/players`, player)
+      .post("http://192.168.50.74:5000/api/players", player)
       .then((res) => {
         console.log(res.data);
       })
@@ -126,6 +129,7 @@ function ListPlayerScreen({ navigation }) {
           No player Loaded
         </AppText>
       )}
+      <AppButton onPress={() => fetchData()}>Fetch data</AppButton>
     </Screen>
   );
 }
