@@ -1,9 +1,10 @@
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 
-import Screen from "../components/Screen";
 import AppButton from "../components/AppButton";
 import AppTextInput from "../components/AppTextInput";
+import routes from "../navigation/routes";
+import Screen from "../components/Screen";
 
 function LoginScreen({ navigation }) {
   return (
@@ -19,7 +20,7 @@ function LoginScreen({ navigation }) {
 
       <AppButton
         title="Login"
-        onPress={() => navigation.navigate("List Player")}
+        onPress={() => navigation.navigate(routes.PLAYERSLISTSCREEN)}
       />
     </Screen>
   );
