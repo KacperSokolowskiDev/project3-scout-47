@@ -1,23 +1,14 @@
 import React from "react";
-import {
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  TouchableHighlight,
-  View,
-} from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import AppText from "./AppText";
 import defaultStyles from "../config/styles";
 
-function Card({ firstname, lastname, photo, club, logo }) {
+function Card({ firstname, lastname, picture, club, logo, onPress }) {
   return (
     <>
-      <TouchableOpacity
-        style={styles.container}
-        onPress={() => console.log(`Player ${firstname} selected`)}
-      >
-        <Image style={styles.image} source={photo} />
+      <TouchableOpacity style={styles.container} onPress={onPress}>
+        <Image style={styles.image} source={picture} />
         <View style={styles.player}>
           <View style={styles.infoNames}>
             <AppText style={styles.text}>{lastname}</AppText>
@@ -62,7 +53,7 @@ const styles = StyleSheet.create({
   infoNames: {
     alignItems: "center",
     flex: 1,
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-evenly",
     width: "100%",
   },
