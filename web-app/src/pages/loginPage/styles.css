@@ -1,0 +1,14 @@
+* {
+    margin: 0px;
+    padding: 0px;
+  }
+
+.loginPage-container {
+    background-color: black;
+    height: 100vh;
+    padding-top: 60px;
+  }
+
+.title {
+    color: white;
+}
