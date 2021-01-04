@@ -8,3 +8,4 @@ export { default as ListPlayerScreen } from "./ListPlayerScreen";
 export { default as PlayerEvaluationScreen } from "./PlayerEvaluationScreen";
 export { default as PlayerProfileScreen } from "./PlayerProfileScreen";
 export { default as PlayerSchoolScreen } from "./PlayerSchoolScreen";
+export { default as PlayerAgendaScreen } from "./PlayerAgendaScreen";
