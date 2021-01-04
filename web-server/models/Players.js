@@ -9,6 +9,10 @@ const Scout = require("./Scouts");
 const Player = sequelize.define(
   "players",
   {
+    firstname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     lastname: {
       type: DataTypes.STRING,
       allowNull: false,

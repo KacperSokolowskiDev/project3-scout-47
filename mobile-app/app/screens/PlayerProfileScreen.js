@@ -1,20 +1,29 @@
 import React from "react";
-import { Button, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
-function PlayerProfileScreen({ navigation }) {
+import PlayerProfileCard from "../components/PlayerProfileCard";
+import Screen from "../components/Screen";
+
+function PlayerProfileScreen({ playerInfo }) {
   return (
-    <View>
-      <Text style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        Player profile Screen
-      </Text>
-      <Button title="Go Login page" onPress={() => navigation.popToTop()} />
-      <Button
-        title="Go List Page"
-        onPress={() => navigation.navigate("Login")}
-      />
-      <Button title="Go Previous Page" onPress={() => navigation.goBack()} />
-    </View>
+    <Screen>
+      <View>
+        <PlayerProfileCard
+          firstname={playerInfo.firstname}
+          lastname={playerInfo.lastname}
+          picture={playerInfo.picture}
+        />
+      </View>
+    </Screen>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {},
+  image: { height: 100, width: 100 },
+  text: {
+    color: "white",
+  },
+});
 
 export default PlayerProfileScreen;
