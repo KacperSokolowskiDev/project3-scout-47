@@ -25,16 +25,16 @@ function AddPlayerScreen({ navigation }) {
   const [club, setClub] = useState("");
   const [date, setDate] = useState("");
 
-  const postPlayer = () => {
-    let player = {
-      firstname: firstname,
-      lastname: lastname,
-      club: club,
-      birthdate: date,
-    };
+  const postPlayer = (values) => {
+    // let player = {
+    //   firstname: firstname,
+    //   lastname: lastname,
+    //   club: club,
+    //   birthdate: date,
+    // };
 
     axios
-      .post("http://192.168.0.103:5000/api/players", player)
+      .post("http://localhost:5000/api/players", values)
       .then((res) => {
         console.log(res.data);
       })
@@ -54,7 +54,7 @@ function AddPlayerScreen({ navigation }) {
           date: "",
           club: "",
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => postPlayer(values)}
         validationSchema={validationSchema}
       >
         <>
@@ -66,48 +66,9 @@ function AddPlayerScreen({ navigation }) {
             title="Nouveau club ?"
             onPress={() => navigation.navigate(routes.ADDCLUBSCREEN)}
           />
-
           <SubmitButton title="Submit" />
         </>
       </AppForm>
-
-      <View>
-        <AppText style={styles.text}>Prénom :</AppText>
-        <AppTextInput
-          placeholder="Prénom"
-          value={firstname}
-          onChangeText={(value) => setFirstname(value)}
-        />
-      </View>
-      <View>
-        <AppText style={styles.text}>Nom de famille :</AppText>
-        <AppTextInput
-          placeholder="Nom de famille"
-          value={lastname}
-          onChangeText={(value) => setLastname(value)}
-        />
-      </View>
-      <View>
-        <AppText style={styles.text}>Date de naissance:</AppText>
-        <AppTextInput
-          placeholder="Date de naissance AAAA-MM-JJ"
-          value={date}
-          onChangeText={(value) => setDate(value)}
-        />
-      </View>
-      <View>
-        <AppText style={styles.text}>Club</AppText>
-        <AppTextInput
-          placeholder="Club"
-          onChangeText={(value) => setClub(value)}
-        />
-      </View>
-      <Button
-        title="Nouveau club ?"
-        onPress={() => navigation.navigate(routes.ADDCLUBSCREEN)}
-      />
-
-      <Button title="Ajouter joueur" onPress={() => postPlayer()} />
     </Screen>
   );
 }

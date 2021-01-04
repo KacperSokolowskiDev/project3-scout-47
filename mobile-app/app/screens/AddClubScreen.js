@@ -15,7 +15,7 @@ function AddClubScreen(props) {
       name: club,
     };
     axios
-      .post("http://192.168.0.103:5000/api/clubs", newClub)
+      .post("http://localhost:5000/api/clubs", newClub)
       .then((res) => {
         console.log(res.data);
       })

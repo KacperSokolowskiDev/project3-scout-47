@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, FlatList, StyleSheet, View } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import Constant from "expo-constants";
 const axios = require("axios");
 
@@ -13,18 +14,22 @@ function ListPlayerScreen({ navigation }) {
   const [download, setDownload] = useState(false);
   const [listPlayer, setListPlayer] = useState([]);
 
-  const fetchListPlayer = () => {
+  const fetchListPlayer = async () => {
     console.log("fetch data");
-    axios
-      .get("http://192.168.0.103:5000/api/players")
-      .then((res) => {
-        let result = res.data;
-        setListPlayer(result);
-        setDownload(true);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      axios
+        .get("http://localhost:5000/api/players")
+        .then((res) => {
+          let result = res.data;
+          setListPlayer(result);
+          setDownload(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -34,7 +39,7 @@ function ListPlayerScreen({ navigation }) {
   return (
     <Screen>
       <View style={styles.filterContainer}>
-        <AppText style={styles.year}>Category </AppText>
+        <AppText style={styles.year}>Category</AppText>
         <Button
           title="Ajouter player"
           onPress={() => navigation.navigate(routes.ADDPLAYERSCREEN)}
@@ -52,7 +57,9 @@ function ListPlayerScreen({ navigation }) {
               picture={require("../assets/portrait.jpg")}
               club={item.club}
               logo={require("../assets/scout47Logo.png")}
-              onPress={() => navigation.navigate(routes.PLAYERNAVIGATOR)}
+              onPress={() =>
+                navigation.navigate(routes.PLAYERNAVIGATOR, { item })
+              }
             />
           )}
         ></FlatList>
