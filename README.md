@@ -12,7 +12,7 @@ Installations + preparations inside each of the folders
 - Web-server : 
   + Create a .env file with your database informations (name, localhost, DataBase Name,...)
   + npm install (installing all packages in package JSON)
-  + npm/nodemon start (starting the project, nodemon only if you added "start": "nodemon <file name>" in package JSON) 
+  + npm/nodemon start (starting the project, nodemon only if you added "start": "nodemon + file name" in package JSON) 
   
 - Web-app : 
   + npm install (installing all packages in package JSON)
