@@ -1,0 +1,17 @@
+* {
+    margin: 0px;
+    padding: 0px;
+  }
+
+.player-page{
+    background-color: black;
+}
+
+.player-page-elements {
+    display: flex;
+    flex-direction: row;
+}
+
+.players-info {
+    margin-left: 10%;
+}
