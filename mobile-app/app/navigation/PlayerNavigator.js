@@ -14,7 +14,9 @@ import defaultColor from "../config/color";
 
 const Tab = createBottomTabNavigator();
 
-function PlayerNavigator() {
+function PlayerNavigator({ route }) {
+  const { item } = route.params;
+
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -26,7 +28,7 @@ function PlayerNavigator() {
     >
       <Tab.Screen
         name="Profile"
-        component={PlayerProfileScreen}
+        children={() => <PlayerProfileScreen playerInfo={item} />}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="account" color={color} size={size} />
@@ -35,7 +37,7 @@ function PlayerNavigator() {
       />
       <Tab.Screen
         name="Evaluation"
-        component={PlayerEvaluationScreen}
+        children={() => <PlayerEvaluationScreen playerInfo={item} />}
         options={{
           tabBarIcon: ({ color, size }) => (
             <EvilIcons name="chart" color={color} size={size} />
@@ -44,7 +46,7 @@ function PlayerNavigator() {
       />
       <Tab.Screen
         name="School"
-        component={PlayerSchoolScreen}
+        children={() => <PlayerSchoolScreen playerInfo={item} />}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="school" color={color} size={size} />
@@ -53,7 +55,7 @@ function PlayerNavigator() {
       />
       <Tab.Screen
         name="Agenda"
-        component={PlayerEvaluationScreen}
+        children={() => <PlayerEvaluationScreen playerInfo={item} />}
         options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="calendar" color={color} size={size} />

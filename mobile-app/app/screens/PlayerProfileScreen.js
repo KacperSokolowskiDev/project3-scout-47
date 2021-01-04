@@ -1,15 +1,18 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { StyleSheet, View } from "react-native";
 
-import AppText from "../components/AppText";
+import PlayerProfileCard from "../components/PlayerProfileCard";
 import Screen from "../components/Screen";
 
-function PlayerProfileScreen() {
+function PlayerProfileScreen({ playerInfo }) {
   return (
     <Screen>
       <View>
-        <AppText style={styles.text}>Profile</AppText>
+        <PlayerProfileCard
+          firstname={playerInfo.firstname}
+          lastname={playerInfo.lastname}
+          picture={playerInfo.picture}
+        />
       </View>
     </Screen>
   );
@@ -17,7 +20,7 @@ function PlayerProfileScreen() {
 
 const styles = StyleSheet.create({
   container: {},
-  image: {},
+  image: { height: 100, width: 100 },
   text: {
     color: "white",
   },
