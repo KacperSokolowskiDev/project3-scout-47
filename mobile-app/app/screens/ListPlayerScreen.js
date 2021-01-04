@@ -33,6 +33,7 @@ function ListPlayerScreen({ navigation }) {
   };
 
   useEffect(() => {
+    console.log("in useEffect");
     fetchListPlayer();
   }, []);
 
