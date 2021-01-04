@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.logo-container {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+
+}
+
+.logoScout {
+    height: 200px;
+    width: 200px;
+    border: 1px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnLogin {
+    text-decoration: none;
+}
