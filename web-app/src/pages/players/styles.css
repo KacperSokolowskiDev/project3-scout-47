@@ -7,11 +7,15 @@
     background-color: black;
 }
 
+.player-title {
+    color: white;
+}
+
 .player-page-elements {
     display: flex;
     flex-direction: row;
 }
 
 .players-info {
-    margin-left: 10%;
+    margin: 30px 0 0 50px; /*margin top 30px, margin left 10%*/
 }
