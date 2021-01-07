@@ -10,13 +10,17 @@ const Criteria = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    groupe: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     score: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    groupe: {
+    description: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {
@@ -24,7 +28,7 @@ const Criteria = sequelize.define(
   }
 );
 
-Criteria.belongsTo(Client, { foreignKey: "client_id", targetKey: "id" });
+Client.hasMany(Criteria, { foreignKey: "client_id" });
 
 (async () => {
   try {

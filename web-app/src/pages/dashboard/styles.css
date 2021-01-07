@@ -3,6 +3,23 @@
   padding: 0px;
 }
 
-.page-container {
+.dashboard-page {
   background-color: black;
+}
+
+.dashboard-page-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboard-page-content {
+  display: flex;
+  flex-direction: column;
+  width: 94%;
+}
+
+.dashboard-title {
+  color: white;
+  font-size: 3em;
+  margin: 3%;
 }

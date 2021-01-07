@@ -20,21 +20,9 @@ const validationSchema = Yup.object().shape({
 });
 
 function AddPlayerScreen({ navigation }) {
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [club, setClub] = useState("");
-  const [date, setDate] = useState("");
-
-  const postPlayer = (values) => {
-    // let player = {
-    //   firstname: firstname,
-    //   lastname: lastname,
-    //   club: club,
-    //   birthdate: date,
-    // };
-
-    axios
-      .post("http://localhost:5000/api/players", values)
+  const postPlayer = async (values) => {
+    await axios
+      .post("http://192.168.50.74:5000/api/players", values)
       .then((res) => {
         console.log(res.data);
       })

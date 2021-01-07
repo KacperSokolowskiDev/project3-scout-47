@@ -1,6 +1,8 @@
+const { Sequelize } = require("../config");
+const Club = require("../models/Clubs");
 const Player = require("../models/Players");
 
-//Post player in database
+// Post player in database
 const create = async (req, res, next) => {
   console.log(req.body);
   const data = { ...req.body };
@@ -13,7 +15,7 @@ const create = async (req, res, next) => {
   }
 };
 
-//Get player by id from database
+// Get player by id from database
 const show = async (req, res, next) => {
   const { id } = req.params;
   try {
@@ -28,11 +30,44 @@ const show = async (req, res, next) => {
 // Get players from Database
 const index = async (req, res, next) => {
   try {
-    const listPlayer = await Player.findAll();
+    const listPlayer = await Player.findAll({
+      limit: 5,
+    });
     res.status(200).json(listPlayer);
   } catch (error) {
     let message = "Players can't be shown";
     res.status(200).json(message);
+  }
+};
+
+// Get players from a specific data
+const searchSpecificPlayer = async (req, res, next) => {
+  try {
+    const player = await Player.findAll({
+      limit: 3,
+      where: Sequelize.or(
+        { firstname: req.body.firstname },
+        { lastname: req.body.lastname }
+      ),
+    });
+    res.status(200).json(player);
+  } catch (error) {
+    let message = "Player can't be shown";
+    res.status(500).json(message);
+  }
+};
+
+const searchOneSpecificPlayer = async (req, res, next) => {
+  try {
+    const player = await Player.findOne({
+      where: { firstname: req.body.firstname },
+    });
+    const clubC = await player.getClub();
+    console.log("Firstname", player.firstname);
+    console.log("Club name", clubC.name);
+  } catch (error) {
+    let message = "Player one search can't be shown";
+    res.status(500).json(message);
   }
 };
 
@@ -64,6 +99,8 @@ const destroy = async (req, res, next) => {
 module.exports = {
   create,
   show,
+  searchSpecificPlayer,
+  searchOneSpecificPlayer,
   index,
   update,
   destroy,

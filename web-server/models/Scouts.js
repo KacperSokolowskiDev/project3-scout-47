@@ -22,6 +22,10 @@ const Scout = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    picture: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     //to ignore createdat & updatedat
@@ -29,7 +33,7 @@ const Scout = sequelize.define(
   }
 );
 
-Scout.belongsTo(Client, { foreignKey: "client_id", targetKey: "id" });
+Client.hasMany(Scout, { foreignKey: "client_id" });
 
 (async () => {
   try {
