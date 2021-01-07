@@ -3,8 +3,8 @@ const { DataTypes } = require("sequelize");
 
 const Client = require("./Clients");
 const Criteria = require("./Criterias");
-const Player = require("./Players");
 const Scout = require("./Scouts");
+const Player = require("./Players");
 
 const Evaluation = sequelize.define(
   "evaluations",
@@ -19,11 +19,12 @@ const Evaluation = sequelize.define(
   }
 );
 
-Evaluation.belongsTo(Client, { foreignKey: "client_id", targetKey: "id" });
-Evaluation.belongsTo(Criteria, { foreignKey: "criteria_id", targetKey: "id" });
-Evaluation.belongsTo(Scout, { foreignKey: "scout_id", targetKey: "id" });
-Evaluation.belongsTo(Player, { foreignKey: "player_id", targetKey: "id" });
+Client.hasMany(Evaluation, { foreignKey: "client_id" });
+Scout.hasMany(Evaluation, { foreignKey: "scout_id" });
+Player.hasMany(Evaluation, { foreignKey: "player_id" });
+Criteria.hasMany(Evaluation, { foreignKey: "criteria_id" });
 
+//sync module
 (async () => {
   try {
     await Evaluation.sync({ alter: true });

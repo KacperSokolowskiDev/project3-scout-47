@@ -1,6 +1,6 @@
 import React from "react";
 import Dashboard from "./pages/dashboard/Index";
-import Staff from "./pages/staff/index";
+import Staff from "./pages/staff/Index";
 import Player from "./pages/players/Index";
 import Criteria from "./pages/criteria/Index";
 import Agenda from "./pages/agenda/Index";

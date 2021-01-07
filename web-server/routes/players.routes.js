@@ -8,6 +8,10 @@ router.get("/", playersController.index);
 // Get player by id
 router.get("/:id", playersController.show);
 
+// Get player by name from body
+router.get("/search/player", playersController.searchSpecificPlayer);
+
+router.get("/test/p", playersController.searchOneSpecificPlayer);
 // Post player
 router.post("/", playersController.create);
 

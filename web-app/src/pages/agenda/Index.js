@@ -5,9 +5,14 @@ import "./styles.css";
 
 function Index() {
   return (
-    <div className="page-container">
-      <LateralBar />
+    <div className="agenda-page">
       <Navbar />
+      <div className="agenda-page-container">
+        <LateralBar />
+        <div className="agenda-page-content">
+          <h1 className="agenda-title">AGENDA</h1>
+        </div>
+      </div>
     </div>
   );
 }
