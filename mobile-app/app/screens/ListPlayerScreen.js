@@ -18,7 +18,7 @@ function ListPlayerScreen({ navigation }) {
     console.log("fetch data");
     try {
       axios
-        .get("http://localhost:5000/api/players")
+        .get("http://192.168.50.242:5000/api/players")
         .then((res) => {
           let result = res.data;
           setListPlayer(result);

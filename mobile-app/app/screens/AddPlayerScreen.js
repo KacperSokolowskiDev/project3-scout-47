@@ -34,7 +34,7 @@ function AddPlayerScreen({ navigation }) {
     // };
 
     axios
-      .post("http://localhost:5000/api/players", values)
+      .post("http://192.168.50.242:5000/api/players", values)
       .then((res) => {
         console.log(res.data);
       })

@@ -9,6 +9,7 @@ import {
   PlayerEvaluationScreen,
   PlayerProfileScreen,
   PlayerSchoolScreen,
+  PlayerAgendaScreen,
 } from "../screens/index";
 import defaultColor from "../config/color";
 
@@ -55,7 +56,7 @@ function PlayerNavigator({ route }) {
       />
       <Tab.Screen
         name="Agenda"
-        children={() => <PlayerEvaluationScreen playerInfo={item} />}
+        children={() => <PlayerAgendaScreen playerInfo={item} />}
         options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="calendar" color={color} size={size} />
