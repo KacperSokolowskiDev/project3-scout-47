@@ -10,12 +10,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       picture: DataTypes.STRING,
-      client_id: {
-        type: DataTypes.INTEGER,
-        references: { model: { tableName: "clients" }, key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
     },
     {
       sequelize,

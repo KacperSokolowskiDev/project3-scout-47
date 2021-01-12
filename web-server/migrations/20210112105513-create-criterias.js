@@ -17,6 +17,16 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: new Date(),
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: new Date(),
+      },
       client_id: {
         type: Sequelize.DataTypes.INTEGER,
         references: { model: { tableName: "clients" }, key: "id" },

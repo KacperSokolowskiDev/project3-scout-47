@@ -3,7 +3,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Scout extends Model {
     static associate(models) {
-      models.Client.hasMany(Scout, { foreignkey: "client_id" });
+      models.Client.hasMany(Scout, { foreignKey: "client_id" });
     }
   }
   Scout.init(
@@ -13,12 +13,6 @@ module.exports = (sequelize, DataTypes) => {
       email: DataTypes.STRING,
       telephone: DataTypes.INTEGER,
       picture: DataTypes.STRING,
-      client_id: {
-        type: DataTypes.INTEGER,
-        references: { model: { tableName: "clients" }, key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
     },
     {
       sequelize,

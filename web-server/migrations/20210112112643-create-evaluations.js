@@ -9,9 +9,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: new Date(),
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
+      },
       evaluationDate: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
       client_id: {
         type: Sequelize.DataTypes.INTEGER,

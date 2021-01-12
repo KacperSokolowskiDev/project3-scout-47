@@ -18,29 +18,12 @@ module.exports = (sequelize, DataTypes) => {
       weight: DataTypes.INTEGER,
       strongFoot: DataTypes.STRING,
       picture: DataTypes.STRING,
-      client_id: {
-        type: DataTypes.INTEGER,
-        references: { model: { tableName: "clients" }, key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
-      scout_id: {
-        type: DataTypes.INTEGER,
-        references: { model: { tableName: "scouts" }, key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
-      club_id: {
-        type: DataTypes.INTEGER,
-        references: { model: { tableName: "clubs" }, key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
     },
     {
       sequelize,
       modelName: "Player",
     }
   );
+
   return Player;
 };
