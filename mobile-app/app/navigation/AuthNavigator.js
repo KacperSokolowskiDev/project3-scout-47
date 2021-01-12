@@ -6,6 +6,7 @@ import {
   ListPlayerScreen,
   LoginScreen,
   PlayerAgendaScreen,
+  PlayerSchoolScreen,
 } from "../screens";
 import PlayerNavigator from "../navigation/PlayerNavigator";
 

@@ -29,7 +29,9 @@ const show = async (req, res, next) => {
 // Get all players from Database
 const index = async (req, res, next) => {
   try {
-    const listPlayer = await Player.findAll();
+    const listPlayer = await Player.findAll({
+      limit: 5,
+    });
     res.status(200).json(listPlayer);
   } catch (error) {
     let message = "Players can't be shown";

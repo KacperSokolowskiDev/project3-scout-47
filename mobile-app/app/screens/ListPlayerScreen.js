@@ -1,20 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  FlatList,
-  Picker,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import Constant from "expo-constants";
-
 import { AntDesign } from "@expo/vector-icons";
 const axios = require("axios");
 
 import AppText from "../components/AppText";
-import AppTextInput from "../components/AppTextInput";
-import ButtonModal from "../components/ButtonModal";
 import Card from "../components/Card";
 import defaultStyles from "../config/styles";
 import routes from "../navigation/routes";
@@ -30,7 +20,6 @@ function ListPlayerScreen({ navigation }) {
       await axios
         .get("http://192.168.0.103:5000/api/players")
         .then((res) => {
-          console.log(res.data);
           let result = res.data;
           setListPlayer(result);
           setDownload(true);
@@ -50,13 +39,10 @@ function ListPlayerScreen({ navigation }) {
 
   return (
     <Screen>
-      <View style={styles.filterContainer}>
-        <ButtonModal title={"Filtre :"} style={styles.modal}>
-          <AppText style={styles.filtreCategory}>Categories :</AppText>
-
-          <AppText style={styles.filtreNom}>Nom - Prenom :</AppText>
-          <AppTextInput palceholder={"Hello"}></AppTextInput>
-        </ButtonModal>
+      <View style={styles.titleContainer}>
+        <AppText style={{ color: "white", fontSize: 30, fontWeight: "bold" }}>
+          Vos joueurs suivis :
+        </AppText>
       </View>
 
       {download ? (
@@ -92,6 +78,18 @@ function ListPlayerScreen({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.bottomBtn}
+          onPress={() => {
+            console.log("GO search");
+          }}
+        >
+          <AntDesign
+            name="search1"
+            color={defaultStyles.colors.black}
+            size={50}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.bottomBtn}
           onPress={() => navigation.navigate(routes.AGENDAPAGE)}
         >
           <AntDesign
@@ -100,13 +98,6 @@ function ListPlayerScreen({ navigation }) {
             size={50}
           />
         </TouchableOpacity>
-        <View>
-          <AntDesign
-            name="calendar"
-            color={defaultStyles.colors.black}
-            size={50}
-          />
-        </View>
       </View>
     </Screen>
   );
@@ -115,6 +106,7 @@ function ListPlayerScreen({ navigation }) {
 const styles = StyleSheet.create({
   bottomBar: {
     backgroundColor: defaultStyles.colors.light,
+    bottom: 0,
     height: "10%",
     display: "flex",
     flexDirection: "row",
@@ -146,9 +138,12 @@ const styles = StyleSheet.create({
     margin: 5,
     width: "50%",
   },
-  filterContainer: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
+  title: {
+    color: "red",
+    fontSize: 50,
+  },
+  titleContainer: {
+    height: "5%",
   },
   modal: {
     backgroundColor: defaultStyles.colors.black,
@@ -158,6 +153,9 @@ const styles = StyleSheet.create({
   modalClub: {},
   text: {
     color: defaultStyles.colors.white,
+  },
+  pickerSelect: {
+    fontSize: 50,
   },
   title: {
     color: defaultStyles.colors.white,
