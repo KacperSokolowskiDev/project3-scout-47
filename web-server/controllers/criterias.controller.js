@@ -1,4 +1,4 @@
-const Criteria = require("../models/Criterias");
+const { Criteria } = require("../models");
 
 //Post criteria in database
 const create = async (req, res, next) => {

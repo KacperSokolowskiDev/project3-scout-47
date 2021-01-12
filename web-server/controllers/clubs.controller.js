@@ -1,4 +1,4 @@
-const Club = require("../models/Clubs");
+const { Club } = require("../models");
 
 //Post club in database
 const create = async (req, res, next) => {

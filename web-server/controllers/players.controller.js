@@ -1,6 +1,5 @@
 const { Sequelize } = require("../config");
-const Club = require("../models/Clubs");
-const Player = require("../models/Players");
+const { Player } = require("../models");
 
 // Post player in database
 const create = async (req, res, next) => {
@@ -27,16 +26,16 @@ const show = async (req, res, next) => {
   }
 };
 
-// Get players from Database
+// Get all players from Database
 const index = async (req, res, next) => {
   try {
-    const listPlayer = await Player.findAll({
-      limit: 5,
-    });
+    const listPlayer = await Player.findAll();
+    console.log(listPlayer);
     res.status(200).json(listPlayer);
   } catch (error) {
     let message = "Players can't be shown";
     res.status(200).json(message);
+    console.log(error);
   }
 };
 

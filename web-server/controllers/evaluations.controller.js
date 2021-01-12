@@ -1,4 +1,4 @@
-const Evaluation = require("../models/Evaluations");
+const { Evaluation } = require("../models");
 
 const create = async (req, res, next) => {
   const data = { ...req.body };
