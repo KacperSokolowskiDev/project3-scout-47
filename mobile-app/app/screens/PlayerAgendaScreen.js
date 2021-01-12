@@ -1,129 +1,99 @@
-import React, { Component } from "react";
-import { Alert, StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import {
-  Agenda,
-  Calendar,
-  ClaendarList,
-  LocaleConfig,
-} from "react-native-calendars";
+import { addDays, format } from "date-fns";
+import React, { useEffect, useState } from "react";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Agenda } from "react-native-calendars";
 
-const PREFIX = "native.calendar";
-const currentDate = Date().toString();
+// type Item = {
+//   name: string;
+//   cookies: boolean;
+// };
 
-const testID = {
-  CHANGE_MONTH_LEFT_ARROW: `${PREFIX}.CHANGE_MONTH_LEFT_ARROW`,
-  CHANGE_MONTH_RIGHT_ARROW: `${PREFIX}.CHANGE_MONTH_RIGHT_ARROW`,
-  SELECT_DATE_SLOT: `${PREFIX}.SELECT_DATE_SLOT`,
-  CALENDAR_KNOB: `${PREFIX}.CALENDAR_KNOB`,
-  STATIC_HEADER: "STATIC_HEADER",
-  AGENDA_CALENDAR_KNOB: `${PREFIX}.AGENDA_CALENDAR_KNOB`,
-  HEADER_MONTH_NAME: "HEADER_MONTH_NAME",
-  RESERVATION_DATE: `${PREFIX}.RESERVATION_DATE`,
-  HEADER_DAY_NAMES: `${PREFIX}.DAY_NAMES`,
-  WEEK_NUMBER: `${PREFIX}.WEEK_NUMBER`,
-  HEADER_LOADING_INDICATOR: `${PREFIX}.HEADER_LOADING_INDICATOR`,
-  agenda: {
-    CONTAINER: "agenda",
-    ITEM: "item",
-  },
-};
+// type Post = {
+//   id: number;
+//   title: string;
+//   body: string;
+//   userId: number;
+// };
 
-const agendaTest = {
-  CONTAINER: "agenda",
-  ITEM: "item",
-};
+const PlayerAgendaScreen = () => {
+  const [items, setItems] = useState({});
 
-export default class PlayerAgendaScreen extends Component {
-  constructor(props) {
-    super(props);
+  useEffect(() => {
+    // run once
+    console.log(items);
+    const getData = async () => {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/posts"
+      );
+      const data = await response.json();
+      console.log("format reçu");
+      console.log(data);
+      const mappedData = data.map((post, index) => {
+        const date = addDays(new Date(), index);
 
-    this.state = {
-      items: {},
+        return {
+          ...post,
+          date: format(date, "yyyy-MM-dd"),
+        };
+      });
+      console.log(mappedData);
+      const reduced = mappedData.reduce((acc: {}, currentItem) => {
+        const { date, ...coolItem } = currentItem;
+
+        acc[date] = [coolItem];
+
+        return acc;
+      }, {});
+      console.log("bon format");
+      console.log(reduced);
+      setItems(reduced);
     };
-  }
 
-  render() {
+    getData();
+  }, []);
+
+  const renderItem = (item) => {
     return (
-      <Agenda
-        testID={agendaTest.CONTAINER}
-        items={this.state.items}
-        loadItemsForMonth={this.loadItems.bind(this)}
-        selected={currentDate}
-        renderItem={this.renderItem.bind(this)}
-        renderEmptyDate={this.renderEmptyDate.bind(this)}
-        rowHasChanged={this.rowHasChanged.bind(this)}
-      />
-    );
-  }
-
-  loadItems(day) {
-    setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
-        const time = day.timestamp + i * 24 * 60 * 60 * 1000;
-        const strTime = this.timeToString(time);
-        if (!this.state.items[strTime]) {
-          this.state.items[strTime] = [];
-          const numItems = Math.floor(Math.random() * 3 + 1);
-          for (let j = 0; j < numItems; j++) {
-            this.state.items[strTime].push({
-              name: "Item for " + strTime + " #" + j,
-              height: Math.max(50, Math.floor(Math.random() * 150)),
-            });
-          }
-        }
-      }
-      const newItems = {};
-      Object.keys(this.state.items).forEach((key) => {
-        newItems[key] = this.state.items[key];
-      });
-      this.setState({
-        items: newItems,
-      });
-    }, 1000);
-  }
-
-  renderItem(item) {
-    return (
-      <TouchableOpacity
-        testID={agendaTest.ITEM}
-        style={[styles.item, { height: item.height }]}
-        onPress={() => Alert.alert(item.name)}
-      >
+      <View style={styles.itemContainer}>
         <Text>{item.name}</Text>
-      </TouchableOpacity>
-    );
-  }
-
-  renderEmptyDate() {
-    return (
-      <View style={styles.emptyDate}>
-        <Text>This is empty date!</Text>
+        <Text>{item.cookies ? `🍪` : `😋`}</Text>
       </View>
     );
-  }
+  };
+  const markedDates = {
+    "2021-01-04": { startingDay: true, color: "green", selected: true },
+    "2021-01-05": {
+      selected: true,
+      endingDay: true,
+      color: "green",
+      textColor: "gray",
+    },
+  };
 
-  rowHasChanged(r1, r2) {
-    return r1.name !== r2.name;
-  }
-
-  timeToString(time) {
-    const date = new Date(time);
-    return date.toISOString().split("T")[0];
-  }
-}
+  return (
+    <SafeAreaView style={styles.safe}>
+      <Agenda
+        items={items}
+        markedDates={markedDates}
+        renderItem={renderItem}
+        markingType={"period"}
+      />
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
-  item: {
-    backgroundColor: "white",
+  safe: {
     flex: 1,
-    borderRadius: 5,
-    padding: 10,
-    marginRight: 10,
-    marginTop: 17,
   },
-  emptyDate: {
-    height: 15,
+  itemContainer: {
+    backgroundColor: "white",
+    margin: 5,
+    borderRadius: 15,
+    justifyContent: "center",
+    alignItems: "center",
     flex: 1,
-    paddingTop: 30,
   },
 });
+
+export default PlayerAgendaScreen;
