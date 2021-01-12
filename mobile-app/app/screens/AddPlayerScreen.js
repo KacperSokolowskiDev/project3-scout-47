@@ -6,7 +6,6 @@ import * as Yup from "yup";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 
 import AppText from "../components/AppText";
-import AppTextInput from "../components/AppTextInput";
 import Screen from "../components/Screen";
 import routes from "../navigation/routes";
 
@@ -29,6 +28,7 @@ function AddPlayerScreen({ navigation }) {
       .catch((error) => {
         console.log(error);
       });
+    navigation.navigate(routes.PLAYERSLISTSCREEN);
   };
 
   return (

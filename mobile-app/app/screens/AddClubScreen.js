@@ -4,17 +4,17 @@ const axios = require("axios");
 
 import AppText from "../components/AppText";
 import AppTextInput from "../components/AppTextInput";
+import routes from "../navigation/routes";
 import Screen from "../components/Screen";
 
-function AddClubScreen(props) {
+function AddClubScreen({ navigation }) {
   const [club, setClub] = useState("");
 
-  const postClub = () => {
-    console.log("Yo");
+  const postClub = async () => {
     let newClub = {
       name: club,
     };
-    axios
+    await axios
       .post("http://192.168.0.103:5000/api/clubs", newClub)
       .then((res) => {
         console.log(res.data);
@@ -22,6 +22,7 @@ function AddClubScreen(props) {
       .catch((error) => {
         console.log(error);
       });
+    navigation.navigate(routes.ADDPLAYERSCREEN);
   };
 
   return (
