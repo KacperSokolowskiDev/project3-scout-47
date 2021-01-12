@@ -1,14 +1,17 @@
 ("use strict");
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Club extends Model {
+  class Scout extends Model {
     static associate(models) {
-      models.Client.hasMany(Club, { foreignKey: "client_id" });
+      models.Client.hasMany(Scout, { foreignkey: "client_id" });
     }
   }
-  Club.init(
+  Scout.init(
     {
-      name: DataTypes.STRING,
+      firstname: DataTypes.STRING,
+      lastname: DataTypes.STRING,
+      email: DataTypes.STRING,
+      telephone: DataTypes.INTEGER,
       picture: DataTypes.STRING,
       client_id: {
         type: DataTypes.INTEGER,
@@ -19,8 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Club",
+      modelName: "Scout",
     }
   );
-  return Club;
+  return Scout;
 };
