@@ -6,8 +6,8 @@ module.exports = {
       "Players",
       [
         {
-          firstname: "Michel",
-          lastname: "Schwartzy",
+          firstname: "Lionel",
+          lastname: "Messi",
           birthdate: "2005-01-01",
           position: "attaquant",
           height: 180,
@@ -16,8 +16,8 @@ module.exports = {
           picture: "https://source.unsplash.com/random",
         },
         {
-          firstname: "Benjamin",
-          lastname: "Alios",
+          firstname: "Cristiano",
+          lastname: "Ronaldo",
           birthdate: "2005-02-02",
           position: "defenseur",
           height: 170,
@@ -26,8 +26,8 @@ module.exports = {
           picture: "https://source.unsplash.com/random",
         },
         {
-          firstname: "Tupac",
-          lastname: "Sharkur",
+          firstname: "Kylian",
+          lastname: "Mbappé",
           birthdate: "2005-03-03",
           position: "attaquant",
           height: 175,
@@ -36,8 +36,8 @@ module.exports = {
           picture: "https://source.unsplash.com/random",
         },
         {
-          firstname: "Uriel",
-          lastname: "Kilik",
+          firstname: "Dries",
+          lastname: "Mertens",
           birthdate: "2005-04-04",
           position: "attaquant",
           height: 182,
@@ -46,8 +46,8 @@ module.exports = {
           picture: "https://source.unsplash.com/random",
         },
         {
-          firstname: "Christian",
-          lastname: "Dior",
+          firstname: "Antoine",
+          lastname: "Griezmann",
           birthdate: "2004-01-01",
           position: "attaquant",
           height: 165,
@@ -56,8 +56,8 @@ module.exports = {
           picture: "https://source.unsplash.com/random",
         },
         {
-          firstname: "Lionel",
-          lastname: "Messi",
+          firstname: "Eden",
+          lastname: "Hazard",
           birthdate: "2004-02-02",
           position: "attaquant",
           height: 165,
@@ -66,8 +66,8 @@ module.exports = {
           picture: "https://source.unsplash.com/random",
         },
         {
-          firstname: "Fransceco",
-          lastname: "Totti",
+          firstname: "Romelu",
+          lastname: "Lukaku",
           birthdate: "2004-03-03",
           position: "attaquant",
           height: 165,
@@ -86,8 +86,8 @@ module.exports = {
           picture: "https://source.unsplash.com/random",
         },
         {
-          firstname: "Cristiano",
-          lastname: "Ronaldo",
+          firstname: "Kevin",
+          lastname: "De Bryune",
           birthdate: "2006-01-01",
           position: "attaquant",
           height: 165,
@@ -96,8 +96,8 @@ module.exports = {
           picture: "https://source.unsplash.com/random",
         },
         {
-          firstname: "Sebastien",
-          lastname: "De bryune",
+          firstname: "Thibaut",
+          lastname: "Courtois",
           birthdate: "2007-01-01",
           position: "attaquant",
           height: 165,

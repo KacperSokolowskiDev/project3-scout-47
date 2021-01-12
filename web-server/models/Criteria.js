@@ -1,20 +1,20 @@
 ("use strict");
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Criteria extends Model {
+  class Criterias extends Model {
     static associate(models) {
-      models.Client.hasMany(Criteria, { foreignKey: " client_id" });
+      models.Client.hasMany(Criterias, { foreignKey: "client_id" });
     }
   }
-  Criteria.init(
+  Criterias.init(
     {
       name: DataTypes.STRING,
       groupe: DataTypes.STRING,
     },
     {
       sequelize,
-      modelName: "Criteria",
+      modelName: "Criterias",
     }
   );
-  return Criteria;
+  return Criterias;
 };

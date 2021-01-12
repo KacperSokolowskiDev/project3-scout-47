@@ -6,4 +6,5 @@ export default Object.freeze({
   PLAYERSLISTSCREEN: "PlayersListScreen",
   PLAYERNAVIGATOR: "PlayerPage",
   PLAYERPROFILESCREEN: "PlayerProfile",
+  AGENDAPAGE: "AgendaPage",
 });

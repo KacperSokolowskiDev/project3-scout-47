@@ -30,7 +30,6 @@ const show = async (req, res, next) => {
 const index = async (req, res, next) => {
   try {
     const listPlayer = await Player.findAll();
-    console.log(listPlayer);
     res.status(200).json(listPlayer);
   } catch (error) {
     let message = "Players can't be shown";
