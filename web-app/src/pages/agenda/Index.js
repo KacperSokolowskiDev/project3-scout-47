@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
-import EventCalendar from "../../components/EventCalendar/Index";
 import "./styles.css";
 
 function Index() {

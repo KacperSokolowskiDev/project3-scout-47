@@ -42,3 +42,7 @@
     height: 65%;
     overflow: auto;
   }
+
+  .link-profile {
+    text-decoration: none;
+  }
