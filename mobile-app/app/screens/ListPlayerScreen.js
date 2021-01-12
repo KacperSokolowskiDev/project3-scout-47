@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Button, FlatList, StyleSheet, View } from "react-native";
-import { useFocusEffect } from "@react-navigation/native";
+import {
+  Button,
+  FlatList,
+  Picker,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Constant from "expo-constants";
+
+import { AntDesign } from "@expo/vector-icons";
 const axios = require("axios");
 
 import AppText from "../components/AppText";
+import AppTextInput from "../components/AppTextInput";
+import ButtonModal from "../components/ButtonModal";
 import Card from "../components/Card";
 import defaultStyles from "../config/styles";
 import routes from "../navigation/routes";
@@ -17,9 +27,10 @@ function ListPlayerScreen({ navigation }) {
   const fetchListPlayer = async () => {
     console.log("fetch data");
     try {
-      axios
-        .get("http://192.168.50.74:5000/api/players")
+      await axios
+        .get("http://192.168.0.103:5000/api/players")
         .then((res) => {
+          console.log(res.data);
           let result = res.data;
           setListPlayer(result);
           setDownload(true);
@@ -40,11 +51,12 @@ function ListPlayerScreen({ navigation }) {
   return (
     <Screen>
       <View style={styles.filterContainer}>
-        <AppText style={styles.year}>Category</AppText>
-        <Button
-          title="Ajouter player"
-          onPress={() => navigation.navigate(routes.ADDPLAYERSCREEN)}
-        />
+        <ButtonModal title={"Filtre :"} style={styles.modal}>
+          <AppText style={styles.filtreCategory}>Categories :</AppText>
+
+          <AppText style={styles.filtreNom}>Nom - Prenom :</AppText>
+          <AppTextInput palceholder={"Hello"}></AppTextInput>
+        </ButtonModal>
       </View>
 
       {download ? (
@@ -67,13 +79,49 @@ function ListPlayerScreen({ navigation }) {
       ) : (
         <AppText style={styles.text}>No player Loaded</AppText>
       )}
+      <View style={styles.bottomBar}>
+        <TouchableOpacity
+          style={styles.bottomBtn}
+          onPress={() => navigation.navigate(routes.ADDPLAYERSCREEN)}
+        >
+          <AntDesign
+            name="adduser"
+            color={defaultStyles.colors.black}
+            size={50}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.bottomBtn}
+          onPress={() => navigation.navigate(routes.AGENDAPAGE)}
+        >
+          <AntDesign
+            name="calendar"
+            color={defaultStyles.colors.black}
+            size={50}
+          />
+        </TouchableOpacity>
+        <View>
+          <AntDesign
+            name="calendar"
+            color={defaultStyles.colors.black}
+            size={50}
+          />
+        </View>
+      </View>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
+  bottomBar: {
+    backgroundColor: defaultStyles.colors.light,
+    height: "10%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
+  bottomBtn: {},
   btnAjout: {
-    backgroundColor: "red",
     margin: 5,
     height: 50,
   },
@@ -82,9 +130,25 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
     width: "35%",
   },
+  filtreCategory: {
+    backgroundColor: defaultStyles.colors.primary,
+    color: "white",
+    fontSize: 25,
+    height: 35,
+    margin: 5,
+    width: "40%",
+  },
+  filtreNom: {
+    backgroundColor: defaultStyles.colors.primary,
+    color: "white",
+    fontSize: 25,
+    height: 35,
+    margin: 5,
+    width: "50%",
+  },
   filterContainer: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "flex-start",
   },
   modal: {
     backgroundColor: defaultStyles.colors.black,
@@ -97,13 +161,6 @@ const styles = StyleSheet.create({
   },
   title: {
     color: defaultStyles.colors.white,
-  },
-  year: {
-    backgroundColor: defaultStyles.colors.primary,
-    color: "white",
-    fontSize: 25,
-    height: 35,
-    margin: 5,
   },
 });
 export default ListPlayerScreen;
