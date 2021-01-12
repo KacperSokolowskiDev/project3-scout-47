@@ -1,9 +1,9 @@
 import React from "react";
-import Navbar from "../../components/navbar/index";
+import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
 import "./styles.css";
 
-function index() {
+function Index() {
   return (
     <div className="page-container">
       <LateralBar />
@@ -12,4 +12,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;

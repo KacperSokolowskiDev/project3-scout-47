@@ -52,10 +52,9 @@ const Player = sequelize.define(
   }
 );
 
-Player.belongsTo(Client, { foreignKey: "client_id", targetKey: "id" });
-Player.belongsTo(Club, { foreignKey: "club_id", targetKey: "id" });
-Player.belongsTo(Criteria, { foreignKey: "criteria_id", targetKey: "id" });
-Player.belongsTo(Scout, { foreignKey: "scout_id", targetKey: "id" });
+Client.hasMany(Player, { foreignKey: "client_id" });
+Club.hasMany(Player, { foreignKey: "club_id" });
+Scout.hasMany(Player, { foreignKey: "scout_id" });
 
 //sync module
 (async () => {
