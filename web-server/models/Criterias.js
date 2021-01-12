@@ -18,10 +18,6 @@ const Criteria = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
   },
   {
     timestamps: false,
