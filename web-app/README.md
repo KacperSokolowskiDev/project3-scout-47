@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# Projet Scout47
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h2>Table Of Contents</h2>
+<ol>
+  <li><a href="#about"></a>About</li>
+  <li><a href="#setup"></a>Setup</li>
+  <ul>
+    <li><a href="#webApp"></a>Web-App</li>
+    <li><a href="#mobileApp"></a>Mobile-App</li>
+    <li><a href="webServer"></a>Web-Server</li>
+  </ul>
+</ol>
 
-## Available Scripts
+<p id="about">It's a 3 man first "real" client project for Scout47.</p>
+<p>This project is made using :<p>
+<ul>
+  <li>React JS</li>
+  <li>Javascript</li>
+  <li>React Native</li>
+  <li>Express JS</li>
+  <li>MYSQL/Sequelize</li>
+</ul>
+<h2 id="setup">Setup</h2>
 
-In the project directory, you can run:
+`git clone <url>`<br>
+`cd <directory>`<br>
 
-### `npm start`
+<p>After the setup you will see 3 folders named Web-Server, Web-App and Mobile-App.</p>
+<p>Each of the folders needs a setup on it's own which will be explained in the sections below.</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h2 id="webApp">Setup Web-Application</h2>
+<h3>Installation:</h3>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+`cd web-app`<br>
+`npm install`<br>
 
-### `npm test`
+<h3>Main Dependencies used:</h3>
+<ul>
+    <li>Material UI</li>
+    <li>Axios</li>
+    <li>React Router Dom</li>
+</ul>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+// src/pages/players/Index.js
 
-### `npm run build`
+await axios
+      .get("http://localhost:5000/api/players")
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The URL
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Web-mobile :
+  - Need to install Expo CLI to run the project
+  - npm start (starting the project)
+- Web-server :
+  - Create a .env file with your database informations (name, localhost, DataBase Name,...)
+  - npm install (installing all packages in package JSON)
+  - npm/nodemon start (starting the project, nodemon only if you added "start": "nodemon <file name>" in package JSON)
+- Web-app :
+  - npm install (installing all packages in package JSON)
+  - npm start (starting the project)
 
-### `npm run eject`
+The project is still in development.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Team Scout47.

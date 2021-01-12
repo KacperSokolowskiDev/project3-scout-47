@@ -1,0 +1,19 @@
+.profil-page {
+    background-color: black;
+}
+.profil-title {
+    color: white;
+    font-size: 3em;
+    margin: 3%;
+}
+
+.profil-page-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.profil-page-content {
+    display: flex;
+    flex-direction: column;
+    width: 94%;
+}

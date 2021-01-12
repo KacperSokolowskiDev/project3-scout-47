@@ -87,15 +87,17 @@ function Index() {
               </Fab>
             </Tooltip>
           </div>
-          <div className="player-page-list">
-            {download ? (
-              listPlayer.map((data) => {
-                return <PlayerCard playerInfo={data} />;
-              })
-            ) : (
-              <div>No player in database</div>
-            )}
-          </div>
+          <Link className="link-profile" to="/players/profile">
+            <div className="player-page-list">
+              {download ? (
+                listPlayer.map((data) => {
+                  return <PlayerCard playerInfo={data} />;
+                })
+              ) : (
+                <div>No player in database</div>
+              )}
+            </div>
+          </Link>
         </div>
       </div>
     </div>
