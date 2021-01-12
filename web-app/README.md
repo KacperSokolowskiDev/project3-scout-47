@@ -29,10 +29,11 @@
 <p>Each of the folders needs a setup on it's own which will be explained in the sections below.</p>
 
 <h2 id="webApp">Setup Web-Application</h2>
-<h3>Installation:</h3>
+<h3>Installation + start :</h3>
 
 `cd web-app`<br>
 `npm install`<br>
+`npm start`
 
 <h3>Main Dependencies used:</h3>
 <ul>
@@ -47,9 +48,10 @@
 await axios
       .get("http://localhost:5000/api/players")
 
-The URL
-
+If localhost isn't working you might need to use the IP address BUT you cannot change the port 5000 or the request won't work !!!
 ```
+
+<h2 id="mobileApp">Mobile-App</h2>
 
 - Web-mobile :
   - Need to install Expo CLI to run the project
