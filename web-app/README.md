@@ -2,12 +2,12 @@
 
 <h2>Table Of Contents</h2>
 <ol>
-  <li><a href="#about"></a>About</li>
-  <li><a href="#setup"></a>Setup</li>
+  <li><a href="#about">About</a></li>
+  <li><a href="#setup">Setup</a></li>
   <ul>
-    <li><a href="#webApp"></a>Web-App</li>
-    <li><a href="#mobileApp"></a>Mobile-App</li>
-    <li><a href="webServer"></a>Web-Server</li>
+    <li><a href="#webApp">Web-App</a></li>
+    <li><a href="#mobileApp">Mobile-App</a></li>
+    <li><a href="webServer">Web-Server</a></li>
   </ul>
 </ol>
 
