@@ -52,7 +52,8 @@
 await axios
       .get("http://localhost:5000/api/players")
 
--> If localhost isn't working you might need to use the IP address BUT you cannot change the port 5000 because the request won't work !!! (port 5000 is used in our web-server).
+-> If localhost isn't working you might need to use the IP address BUT you cannot change the port 5000
+    because the request won't work !!! (port 5000 is used in our web-server).
 ```
 
 <h2 id="mobileApp">Setup Mobile-App</h2>
@@ -97,7 +98,8 @@ await axios
 await axios
       .post("http://localhost:5000/api/clubs")
 
--> Same as in Web-App, if the localhost isn't working you need to use your IP address but remember to keep the port 5000 ! The requests won't work without it !
+-> Same as in Web-App, if the localhost isn't working you need to use your IP address but remember
+    to keep the port 5000 ! The requests won't work without it !
 ```
 
 <h2 id="webServer">Setup Web-Server</h2>
