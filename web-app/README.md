@@ -48,10 +48,27 @@
 await axios
       .get("http://localhost:5000/api/players")
 
-If localhost isn't working you might need to use the IP address BUT you cannot change the port 5000 or the request won't work !!!
+If localhost isn't working you might need to use the IP address BUT you cannot change the port 5000 because the request won't work !!! (port 5000 is used in our web-server)
 ```
 
-<h2 id="mobileApp">Mobile-App</h2>
+<h2 id="mobileApp">Setup Mobile-App</h2>
+<h3>Installation + start :</h3>
+
+<p>To use the Mobile App part, you need to install Expo CLI. If you did instal the Expo CLI you can proceed to the next step.</p><br>
+<p>Step 1 :</p>
+
+`cd ~`<br>
+`npm install --global expo-cli`
+<br>
+
+<p>Step 2 :</p>
+
+`cd mobile-app`<br>
+`npm install`<br>
+`npm start`<br>
+
+<h3>Main Dependencies used :</h3>
+<ul>
 
 - Web-mobile :
   - Need to install Expo CLI to run the project
