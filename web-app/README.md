@@ -7,7 +7,7 @@
   <ul>
     <li><a href="#webApp">Web-App</a></li>
     <li><a href="#mobileApp">Mobile-App</a></li>
-    <li><a href="webServer">Web-Server</a></li>
+    <li><a href="#webServer">Web-Server</a></li>
   </ul>
 </ol>
 
@@ -42,13 +42,15 @@
     <li>React Router Dom</li>
 </ul>
 
+<h3>Warning !</h3>
+
 ```
 // src/pages/players/Index.js
 
 await axios
       .get("http://localhost:5000/api/players")
 
-If localhost isn't working you might need to use the IP address BUT you cannot change the port 5000 because the request won't work !!! (port 5000 is used in our web-server)
+-> If localhost isn't working you might need to use the IP address BUT you cannot change the port 5000 because the request won't work !!! (port 5000 is used in our web-server).
 ```
 
 <h2 id="mobileApp">Setup Mobile-App</h2>
@@ -69,17 +71,34 @@ If localhost isn't working you might need to use the IP address BUT you cannot c
 
 <h3>Main Dependencies used :</h3>
 <ul>
+  <li>@react-navigation</li>
+  <li>Expo</li>
+  <li>formik</li>
+  <li>yup</li>
+</ul>
 
-- Web-mobile :
-  - Need to install Expo CLI to run the project
-  - npm start (starting the project)
-- Web-server :
-  - Create a .env file with your database informations (name, localhost, DataBase Name,...)
-  - npm install (installing all packages in package JSON)
-  - npm/nodemon start (starting the project, nodemon only if you added "start": "nodemon <file name>" in package JSON)
-- Web-app :
-  - npm install (installing all packages in package JSON)
-  - npm start (starting the project)
+<h3>Warning !</h3>
+
+```
+// app\screens\ListPlayerScreen.js
+
+await axios
+      .get("http://localhost:5000/api/players")
+
+// app\screens\AddPlayerScreen.js
+
+await axios
+      .post("http://localhost:5000/api/players")
+
+// app\screens\AddClubScreen.js
+
+await axios
+      .post("http://localhost:5000/api/clubs")
+
+-> Same as in Web-App, if the localhost isn't working you need to use your IP address but remember to keep the port 5000 ! The requests won't work without it !
+```
+
+<h2 id="webServer">Setup Web-Server</h2>
 
 The project is still in development.
 
