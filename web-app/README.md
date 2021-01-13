@@ -19,6 +19,8 @@
   <li>React Native</li>
   <li>Express JS</li>
   <li>MYSQL/Sequelize</li>
+  <li>CSS 3</li>
+  <li>Material UI</li>
 </ul>
 <h2 id="setup">Setup</h2>
 
