@@ -12,28 +12,31 @@ import Screen from "../components/Screen";
 
 function ListPlayerScreen({ navigation }) {
   const [download, setDownload] = useState(false);
-  const [listPlayer, setListPlayer] = useState([]);
+  const [shouldFetch, setShouldFetch] = useState(true);
+  const [listPlayers, setListPlayers] = useState([]);
+  const [offset, SetOffset] = useState(0);
+
+  const [onEndListReached, setOnEndListReached] = useState(true);
 
   const fetchListPlayer = async () => {
-    console.log("fetch data");
+    const value = { offset: offset };
+    url = `http://localhost:5000/api/players/infinite?offset=${offset}`;
     try {
-      await axios
-        .get("http://192.168.0.103:5000/api/players")
-        .then((res) => {
-          let result = res.data;
-          setListPlayer(result);
-          setDownload(true);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      const response = await axios.get(url, { params: { value } });
+      const listPlayersUpdated = response.data;
+      setShouldFetch(false);
+      setListPlayers((listPlayers) => [...listPlayers, ...listPlayersUpdated]);
+      SetOffset(offset + 5);
+      setDownload(true);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    console.log("in useEffect");
+    if (!shouldFetch) {
+      return;
+    }
     fetchListPlayer();
   }, []);
 
@@ -47,7 +50,17 @@ function ListPlayerScreen({ navigation }) {
 
       {download ? (
         <FlatList
-          data={listPlayer}
+          onScrollBeginDrag={() => {}}
+          onScrollEndDrag={() => setOnEndListReached(false)}
+          onEndReachedThreshold={0}
+          onMomentumScrollBegin={() => {
+            setOnEndListReached(false);
+          }}
+          // Allow to detect the end of the flat list
+          onEndReached={({ distanceFromEnd }) => {
+            fetchListPlayer();
+          }}
+          data={listPlayers}
           keyExtractor={(player) => player.id.toString()}
           renderItem={({ item }) => (
             <Card
@@ -111,6 +124,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-evenly",
+    position: "absolute",
+    width: "100%",
   },
   bottomBtn: {},
   btnAjout: {

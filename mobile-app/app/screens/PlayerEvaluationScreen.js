@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  Button,
   FlatList,
   StyleSheet,
   Text,
@@ -23,10 +24,9 @@ function PlayerEvaluationScreen({ playerInfo }) {
 
     try {
       await axios
-        .get("http://192.168.0.103:5000/api/criterias")
+        .get("http://192.168.50.74:5000/api/criterias")
         .then((res) => {
           let result = res.data;
-          console.log(result);
           setListCriteria(result);
           setDownload(true);
         })
@@ -53,10 +53,10 @@ function PlayerEvaluationScreen({ playerInfo }) {
             data={listCriterias}
             keyExtractor={(criteria) => criteria.id.toString()}
             renderItem={({ item }) => {
-              console.log("item name", item.name);
-              <TouchableOpacity style={styles.btnCriteria}>
-                <Text style={styles.textCriteria}>{item.name}</Text>
-              </TouchableOpacity>;
+              console.log("in flatlist", item.name, item.groupe);
+              <View>
+                <Text style={styles.btnCriteria}>{item.name}</Text>;
+              </View>;
             }}
           ></FlatList>
         ) : (
@@ -66,7 +66,7 @@ function PlayerEvaluationScreen({ playerInfo }) {
         <AppButton title="Psychologique"></AppButton>
         <AppButton title="Technique"></AppButton>
         <TouchableOpacity
-          style={styles.btnCriteria}
+          style={styles.btnInfoCriteria}
           onPress={() => console.log("Press on a critere")}
         >
           <Entypo name="info" size={30} color={defaultStyles.colors.primary} />
@@ -77,7 +77,15 @@ function PlayerEvaluationScreen({ playerInfo }) {
 }
 
 const styles = StyleSheet.create({
-  btnCriteria: {},
+  btnCriteria: {
+    color: "white",
+    backgroundColor: "red",
+    height: 25,
+    width: 50,
+  },
+  btnInfoCriteria: {
+    width: "100%",
+  },
   container: {
     marginTop: 30,
     height: "100%",

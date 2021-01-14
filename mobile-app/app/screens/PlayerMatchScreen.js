@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "stretch",
     transform: [{ rotate: "90deg" }],
+    height: "100%",
   },
   statGrid: {
     zIndex: 2,
