@@ -6,9 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ButtonModal from "../components/ButtonModal";
 import defaultColor from "../config/color";
 import PlayerProfileCard from "../components/PlayerProfileCard";
-import PlayerSchoolScreen from "../screens";
 import Screen from "../components/Screen";
-import AppText from "../components/AppText";
 
 function PlayerProfileScreen({ playerInfo, navigation }) {
   return (

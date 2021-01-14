@@ -29,12 +29,27 @@ const show = async (req, res, next) => {
 // Get all players from Database
 const index = async (req, res, next) => {
   try {
-    const listPlayer = await Player.findAll({
-      limit: 5,
-    });
+    const listPlayer = await Player.findAll();
     res.status(200).json(listPlayer);
   } catch (error) {
     let message = "Players can't be shown";
+    res.status(200).json(message);
+    console.log(error);
+  }
+};
+
+// Get all players from db with Infinite Scrool
+const indexInfinite = async (req, res, next) => {
+  console.log(req.query);
+
+  try {
+    const listPlayer = await Player.findAll({
+      limit: 5,
+      offset: parseInt(req.query.offset),
+    });
+    res.status(200).json(listPlayer);
+  } catch (error) {
+    let message = "Players (infinite) can't be shown";
     res.status(200).json(message);
     console.log(error);
   }
@@ -60,13 +75,12 @@ const searchSpecificPlayer = async (req, res, next) => {
 const searchOneSpecificPlayer = async (req, res, next) => {
   try {
     const player = await Player.findOne({
-      where: { firstname: req.body.firstname },
+      where: Sequelize.or({ firstname: req.body.firstname }),
     });
-    const clubC = await player.getClub();
     console.log("Firstname", player.firstname);
-    console.log("Club name", clubC.name);
+    res.status(200).json(player);
   } catch (error) {
-    let message = "Player one search can't be shown";
+    let message = "Player with that firstname can't be shown";
     res.status(500).json(message);
   }
 };
@@ -102,6 +116,7 @@ module.exports = {
   searchSpecificPlayer,
   searchOneSpecificPlayer,
   index,
+  indexInfinite,
   update,
   destroy,
 };
