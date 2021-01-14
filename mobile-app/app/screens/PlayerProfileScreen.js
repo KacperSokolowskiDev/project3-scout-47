@@ -7,6 +7,7 @@ import ButtonModal from "../components/ButtonModal";
 import defaultColor from "../config/color";
 import PlayerProfileCard from "../components/PlayerProfileCard";
 import Screen from "../components/Screen";
+import AppText from "../components/AppText";
 
 function PlayerProfileScreen({ playerInfo, navigation }) {
   return (
@@ -14,14 +15,6 @@ function PlayerProfileScreen({ playerInfo, navigation }) {
       <View>
         <PlayerProfileCard playerInfo={playerInfo} />
       </View>
-
-      <Button
-        style={{ color: "white", width: 10 }}
-        title="info"
-        onPress={() => {
-          console.log(playerInfo);
-        }}
-      />
 
       <ButtonModal
         style={{ backgroundColor: "black" }}
@@ -33,7 +26,9 @@ function PlayerProfileScreen({ playerInfo, navigation }) {
           />
         }
       >
-        <Button title={"Telecharger bulletin"}></Button>
+        <Button title={"Telecharger bulletin"} />
+        <AppText style={styles.text}>Import et export</AppText>
+        <AppText style={styles.text}>Photo et scan</AppText>
       </ButtonModal>
     </Screen>
   );

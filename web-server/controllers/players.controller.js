@@ -3,7 +3,6 @@ const { Player } = require("../models");
 
 // Post player in database
 const create = async (req, res, next) => {
-  console.log(req.body);
   const data = { ...req.body };
   try {
     const player = await Player.create(data);

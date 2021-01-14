@@ -115,6 +115,17 @@ module.exports = {
           picture:
             "https://cdn.pixabay.com/photo/2014/02/10/22/24/soccer-263716_960_720.jpg",
         },
+        {
+          firstname: "Mousa",
+          lastname: "Dembélé",
+          birthdate: "2007-02-02",
+          position: "attaquant",
+          height: 165,
+          weight: 70,
+          strongFoot: "droit",
+          picture:
+            "https://cdn.pixabay.com/photo/2014/02/10/22/24/soccer-263716_960_720.jpg",
+        },
       ],
       {}
     );

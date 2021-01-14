@@ -1,3 +1,4 @@
+const { Sequelize } = require("../config");
 const { Criterias } = require("../models");
 
 //Post criteria in database
@@ -12,7 +13,7 @@ const create = async (req, res, next) => {
   }
 };
 
-//Get criteria by id from database
+// Get criteria by id from database
 const show = async (req, res, next) => {
   const { id } = req.params;
   try {
@@ -20,6 +21,19 @@ const show = async (req, res, next) => {
     res.status(200).json(criteria);
   } catch (error) {
     let message = "criteria (by id) can't be shown";
+    res.status(500).json(message);
+  }
+};
+
+// Get criterias by group
+const showByGroup = async (req, res, next) => {
+  try {
+    const criterias = await Criterias.findAll({
+      where: Sequelize.or({ groupe: req.body.groupe }),
+    });
+    res.status(200).json(criterias);
+  } catch (error) {
+    let message = "Criterias by groupe can't be shown";
     res.status(500).json(message);
   }
 };
@@ -64,6 +78,7 @@ const destroy = async (req, res, next) => {
 module.exports = {
   create,
   show,
+  showByGroup,
   index,
   update,
   destroy,
