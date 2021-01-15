@@ -6,7 +6,6 @@ import * as Yup from "yup";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 
 import AppText from "../components/AppText";
-import AppTextInput from "../components/AppTextInput";
 import Screen from "../components/Screen";
 import routes from "../navigation/routes";
 
@@ -20,20 +19,8 @@ const validationSchema = Yup.object().shape({
 });
 
 function AddPlayerScreen({ navigation }) {
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [club, setClub] = useState("");
-  const [date, setDate] = useState("");
-
-  const postPlayer = (values) => {
-    // let player = {
-    //   firstname: firstname,
-    //   lastname: lastname,
-    //   club: club,
-    //   birthdate: date,
-    // };
-
-    axios
+  const postPlayer = async (values) => {
+    await axios
       .post("http://localhost:5000/api/players", values)
       .then((res) => {
         console.log(res.data);
@@ -41,6 +28,7 @@ function AddPlayerScreen({ navigation }) {
       .catch((error) => {
         console.log(error);
       });
+    navigation.navigate(routes.PLAYERSLISTSCREEN);
   };
 
   return (
