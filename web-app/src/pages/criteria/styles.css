@@ -1,0 +1,25 @@
+* {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  .criteria-page {
+    background-color: black;
+  }
+  
+  .criteria-page-container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .criteria-page-content {
+    display: flex;
+    flex-direction: column;
+    width: 94%;
+  }
+  
+  .criteria-title {
+    color: white;
+    font-size: 3em;
+    margin: 3%;
+  }

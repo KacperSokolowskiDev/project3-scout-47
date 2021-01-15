@@ -1,0 +1,39 @@
+* {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  .staff-card-container {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    margin: 1em;
+  }
+  
+  .staff-picture {
+    height: 200px;
+    width: 200px;
+    border: solid 5px #28df99;
+    border-radius: 100px;
+    position: relative;
+    right: -7px;
+    z-index: 10;
+  }
+  
+  .staff-card-info {
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    position: relative;
+    top: 20%;
+    left: -45px;
+    border-radius: 35px;
+    width: 300px;
+    z-index: 8;
+    justify-content: space-evenly;
+  }
+  
+  .staff-card-text {
+    margin-left: 20%;
+  }

@@ -5,9 +5,14 @@ import "./styles.css";
 
 function Index() {
   return (
-    <div className="page-container">
-      <LateralBar />
+    <div className="criteria-page">
       <Navbar />
+      <div className="criteria-page-container">
+        <LateralBar />
+        <div className="criteria-page-content">
+          <h1 className="criteria-title">CRITERES</h1>
+        </div>
+      </div>
     </div>
   );
 }

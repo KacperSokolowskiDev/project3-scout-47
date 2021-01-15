@@ -5,11 +5,15 @@ import "./styles.css";
 
 function Index() {
   return (
-    <div className="page-container">
-      <LateralBar />
+    <div className="dashboard-page">
       <Navbar />
+      <div className="dashboard-page-container">
+        <LateralBar />
+        <div className="dashboard-page-content">
+          <h1 className="dashboard-title">DASHBOARD</h1>
+        </div>
+      </div>
     </div>
   );
 }
-
 export default Index;
