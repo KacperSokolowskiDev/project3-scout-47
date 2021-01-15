@@ -1,4 +1,4 @@
-const Client = require("../models/Clients");
+const { Client } = require("../models");
 
 //Post client in database
 const create = async (req, res, next) => {

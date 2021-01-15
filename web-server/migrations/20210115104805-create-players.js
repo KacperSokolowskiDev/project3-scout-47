@@ -19,7 +19,7 @@ module.exports = {
       },
       birthdate: {
         allowNull: true,
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       position: {
         type: Sequelize.STRING,
