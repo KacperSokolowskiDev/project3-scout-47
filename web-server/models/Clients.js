@@ -1,27 +1,17 @@
-const sequelize = require("../config");
-const { DataTypes } = require("sequelize");
-
-const Client = sequelize.define(
-  "clients",
-  {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+("use strict");
+const { Model } = require("sequelize");
+module.exports = (sequelize, DataTypes) => {
+  class Client extends Model {
+    static associate(models) {}
+  }
+  Client.init(
+    {
+      name: DataTypes.STRING,
     },
-  },
-  {
-    //to ignore createdAt & updatedAt
-    timestamps: false,
-  }
-);
-
-(async () => {
-  try {
-    await Client.sync({ alter: true });
-    console.log("The table client was updated");
-  } catch (error) {
-    console.error("Unable to sync users:", error);
-  }
-})();
-
-module.exports = Client;
+    {
+      sequelize,
+      modelName: "Client",
+    }
+  );
+  return Client;
+};

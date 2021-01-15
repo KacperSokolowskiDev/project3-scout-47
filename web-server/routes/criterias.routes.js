@@ -8,6 +8,9 @@ router.get("/", criteriasController.index);
 // Get criteria by id
 router.get("/:id", criteriasController.show);
 
+// Get criteria by groupe
+router.get("/search/groupe", criteriasController.showByGroup);
+
 // Post criteria
 router.post("/", criteriasController.create);
 
