@@ -6,6 +6,7 @@ import Criteria from "./pages/criteria/Index";
 import Agenda from "./pages/agenda/Index";
 import AddPlayerPage from "./components/AddPlayerPage";
 import LoginPage from "./pages/loginPage/Index"; //New Element
+import ProfilPage from "./pages/profilPage/Index";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 //Colors for Material UI elements
@@ -26,6 +27,7 @@ function App() {
           <Route path="/player" exact component={Player} />
           <Route path="/agenda" exact component={Agenda} />
           <Route path="/Addplayer" exact component={AddPlayerPage} />
+          <Route path="/players/profile" exact component={ProfilPage} />
         </Router>
       </ThemeProvider>
     </div>

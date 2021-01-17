@@ -8,6 +8,7 @@ import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import AppText from "../components/AppText";
 import Screen from "../components/Screen";
 import routes from "../navigation/routes";
+import { set } from "react-native-reanimated";
 
 // Define the schema of the form, outside of the component,
 // to avoid the redefine it at each re-render
@@ -19,16 +20,23 @@ const validationSchema = Yup.object().shape({
 });
 
 function AddPlayerScreen({ navigation }) {
+  const [isPosted, setIsPosted] = useState(false);
+
   const postPlayer = async (values) => {
-    await axios
-      .post("http://192.168.0.103:5000/api/players", values)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    navigation.navigate(routes.PLAYERSLISTSCREEN);
+    if (isPosted == false) {
+      await axios
+        .post("http://192.168.50.226:5000/api/players", values)
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      setIsPosted(true);
+      navigation.navigate(routes.PLAYERSLISTSCREEN);
+    } else {
+      console.log("already uploaded");
+    }
   };
 
   return (
