@@ -20,13 +20,12 @@ function ListPlayerScreen({ navigation }) {
 
   const fetchListPlayer = async () => {
     const value = { offset: offset };
-    url = `http://192.168.0.103:5000/api/players/infinite?offset=${offset}`;
+    url = `http://192.168.50.226:5000/api/players/infinite?offset=${offset}`;
     try {
       const response = await axios.get(url, { params: { value } });
       const listPlayersUpdated = response.data;
       setShouldFetch(false);
       setListPlayers((listPlayers) => [...listPlayers, ...listPlayersUpdated]);
-
       SetOffset(offset + 5);
       setDownload(true);
     } catch (error) {

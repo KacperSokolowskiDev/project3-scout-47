@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from "react";
+import Navbar from "../../components/navbar/Index";
+import LateralBar from "../../components/LateralBar/Index";
+import PlayerCard from "../../components/PlayerCard/Index";
+
 import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 //Material UI
 import { makeStyles } from "@material-ui/core/styles";
+
 // import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
 import FilterListIcon from "@material-ui/icons/FilterList";
@@ -10,10 +16,6 @@ import TextField from "@material-ui/core/TextField";
 import Fab from "@material-ui/core/Fab";
 import Tooltip from "@material-ui/core/Tooltip";
 import Box from "@material-ui/core/Box"; //To use margin on buttons
-
-import Navbar from "../../components/navbar/index";
-import LateralBar from "../../components/LateralBar/Index";
-import PlayerCard from "../../components/PlayerCard/Index";
 
 //Style CSS
 import "./styles.css";
@@ -32,6 +34,22 @@ const useStyles = makeStyles((theme) => ({
   },
   elementMT: {
     marginTop: theme.spacing(4),
+  },
+}));
+
+const useStyles = makeStyles((theme) => ({
+  buttons: {
+    marginLeft: theme.spacing(2),
+    marginTop: theme.spacing(0),
+  },
+  elementMR: {
+    marginRight: theme.spacing(1),
+  },
+  elementML: {
+    marginLeft: theme.spacing(2),
+  },
+  elementMT: {
+    marginTop: theme.spacing(0),
   },
 }));
 
@@ -85,15 +103,17 @@ function Index() {
               </Fab>
             </Tooltip>
           </div>
-          <div className="player-page-list">
-            {download ? (
-              listPlayer.map((data) => {
-                return <PlayerCard playerInfo={data} />;
-              })
-            ) : (
-              <div>No player in database</div>
-            )}
-          </div>
+          <Link className="link-profile" to="/players/profile">
+            <div className="player-page-list">
+              {download ? (
+                listPlayer.map((data) => {
+                  return <PlayerCard playerInfo={data} />;
+                })
+              ) : (
+                <div>No player in database</div>
+              )}
+            </div>
+          </Link>
         </div>
       </div>
     </div>

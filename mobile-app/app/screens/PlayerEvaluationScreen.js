@@ -28,7 +28,7 @@ function PlayerEvaluationScreen({ playerInfo }) {
   const FetchCriteria = async () => {
     try {
       await axios
-        .get("http://192.168.0.103:5000/api/criterias")
+        .get("http://192.168.50.226:5000/api/criterias")
         .then((res) => {
           let result = res.data;
           setListCriteria(result);
@@ -51,7 +51,7 @@ function PlayerEvaluationScreen({ playerInfo }) {
 
   const showPhysics = async () => {
     const groupe = { groupe: "Physique" };
-    url = `http://localhost:5000/api/criterias/search/groupe`;
+    url = `http://192.168.50.226:5000/api/criterias/search/groupe`;
     try {
       //const response = await axios.get(url, groupe);
       const response = await axios({
