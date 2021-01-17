@@ -1,0 +1,25 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.agenda-page {
+  background-color: black;
+}
+
+.agenda-page-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.agenda-page-content {
+  display: flex;
+  flex-direction: column;
+  width: 94%;
+}
+
+.agenda-title {
+  color: white;
+  font-size: 3em;
+  margin: 3%;
+}

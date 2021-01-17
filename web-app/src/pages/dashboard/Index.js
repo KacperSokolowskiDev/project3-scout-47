@@ -1,15 +1,19 @@
 import React from "react";
-import Navbar from "../../components/navbar/index";
+import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
 import "./styles.css";
 
 function Index() {
   return (
-    <div className="page-container">
-      <LateralBar />
+    <div className="dashboard-page">
       <Navbar />
+      <div className="dashboard-page-container">
+        <LateralBar />
+        <div className="dashboard-page-content">
+          <h1 className="dashboard-title">DASHBOARD</h1>
+        </div>
+      </div>
     </div>
   );
 }
-
 export default Index;

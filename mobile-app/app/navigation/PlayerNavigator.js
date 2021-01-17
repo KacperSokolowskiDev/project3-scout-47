@@ -8,7 +8,8 @@ import { AntDesign } from "@expo/vector-icons";
 import {
   PlayerEvaluationScreen,
   PlayerProfileScreen,
-  PlayerSchoolScreen,
+  PlayerAgendaScreen,
+  PlayerMatchScreen,
 } from "../screens/index";
 import defaultColor from "../config/color";
 
@@ -36,7 +37,7 @@ function PlayerNavigator({ route }) {
         }}
       />
       <Tab.Screen
-        name="Evaluation"
+        name="Evaluations"
         children={() => <PlayerEvaluationScreen playerInfo={item} />}
         options={{
           tabBarIcon: ({ color, size }) => (
@@ -45,17 +46,21 @@ function PlayerNavigator({ route }) {
         }}
       />
       <Tab.Screen
-        name="School"
-        children={() => <PlayerSchoolScreen playerInfo={item} />}
+        name="Match"
+        children={() => <PlayerMatchScreen playerInfo={item} />}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="school" color={color} size={size} />
+            <MaterialCommunityIcons
+              name="soccer-field"
+              color={color}
+              size={size}
+            />
           ),
         }}
       />
       <Tab.Screen
         name="Agenda"
-        children={() => <PlayerEvaluationScreen playerInfo={item} />}
+        children={() => <PlayerAgendaScreen playerInfo={item} />}
         options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="calendar" color={color} size={size} />

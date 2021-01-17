@@ -6,9 +6,9 @@ import * as Yup from "yup";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 
 import AppText from "../components/AppText";
-import AppTextInput from "../components/AppTextInput";
 import Screen from "../components/Screen";
 import routes from "../navigation/routes";
+import { set } from "react-native-reanimated";
 
 // Define the schema of the form, outside of the component,
 // to avoid the redefine it at each re-render
@@ -20,27 +20,23 @@ const validationSchema = Yup.object().shape({
 });
 
 function AddPlayerScreen({ navigation }) {
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [club, setClub] = useState("");
-  const [date, setDate] = useState("");
+  const [isPosted, setIsPosted] = useState(false);
 
-  const postPlayer = (values) => {
-    // let player = {
-    //   firstname: firstname,
-    //   lastname: lastname,
-    //   club: club,
-    //   birthdate: date,
-    // };
-
-    axios
-      .post("http://localhost:5000/api/players", values)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const postPlayer = async (values) => {
+    if (isPosted == false) {
+      await axios
+        .post("http://192.168.50.226:5000/api/players", values)
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      setIsPosted(true);
+      navigation.navigate(routes.PLAYERSLISTSCREEN);
+    } else {
+      console.log("already uploaded");
+    }
   };
 
   return (
