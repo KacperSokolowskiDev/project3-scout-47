@@ -28,7 +28,7 @@ function PlayerEvaluationScreen({ playerInfo }) {
   const FetchCriteria = async () => {
     try {
       await axios
-        .get("http://192.168.50.226:5000/api/criterias")
+        .get("http://192.168.0.103:5000/api/criterias")
         .then((res) => {
           let result = res.data;
           setListCriteria(result);
