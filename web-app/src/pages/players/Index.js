@@ -24,22 +24,6 @@ require("dotenv").config();
 const useStyles = makeStyles((theme) => ({
   buttons: {
     marginLeft: theme.spacing(2),
-    marginTop: theme.spacing(4),
-  },
-  elementMR: {
-    marginRight: theme.spacing(1),
-  },
-  elementML: {
-    marginLeft: theme.spacing(2),
-  },
-  elementMT: {
-    marginTop: theme.spacing(4),
-  },
-}));
-
-const useStyles = makeStyles((theme) => ({
-  buttons: {
-    marginLeft: theme.spacing(2),
     marginTop: theme.spacing(0),
   },
   elementMR: {

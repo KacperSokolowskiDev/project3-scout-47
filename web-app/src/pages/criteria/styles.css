@@ -1,5 +1,4 @@
 * {
-<<<<<<< HEAD
   margin: 0px;
   padding: 0px;
 }
@@ -24,29 +23,3 @@
   font-size: 3em;
   margin: 3%;
 }
-=======
-    margin: 0px;
-    padding: 0px;
-  }
-  
-  .criteria-page {
-    background-color: black;
-  }
-  
-  .criteria-page-container {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .criteria-page-content {
-    display: flex;
-    flex-direction: column;
-    width: 94%;
-  }
-  
-  .criteria-title {
-    color: white;
-    font-size: 3em;
-    margin: 3%;
-  }
->>>>>>> 27e27346304ff9fab77592c11c9d6a305e8fc64b
