@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# Projet Scout47
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h2>Table Of Contents</h2>
+<ol>
+  <li><a href="#about">About</a></li>
+  <li><a href="#setup">Setup</a></li>
+  <ul>
+    <li><a href="#webApp">Web-App</a></li>
+    <li><a href="#mobileApp">Mobile-App</a></li>
+    <li><a href="#webServer">Web-Server</a></li>
+  </ul>
+</ol>
 
-## Available Scripts
+<p id="about">It's a 3 man first "real" client project for Scout47.</p>
+<p>This project is made using :<p>
+<ul>
+  <li>React JS</li>
+  <li>Javascript</li>
+  <li>React Native</li>
+  <li>Express JS</li>
+  <li>MYSQL/Sequelize</li>
+  <li>CSS 3</li>
+  <li>Material UI</li>
+</ul>
+<h2 id="setup">Setup</h2>
 
-In the project directory, you can run:
+`git clone <url>`<br>
+`cd <directory>`<br>
 
-### `npm start`
+<p>After the setup you will see 3 folders named Web-Server, Web-App and Mobile-App.</p>
+<p>Each of the folders needs a setup on it's own which will be explained in the sections below.</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h2 id="webApp">Setup Web-Application</h2>
+<h3>Installation + start :</h3>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+`cd web-app`<br>
+`npm install`<br>
+`npm start`
 
-### `npm test`
+<h3>Main Dependencies used:</h3>
+<ul>
+    <li>Material UI</li>
+    <li>Axios</li>
+    <li>React Router Dom</li>
+</ul>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<h3>Warning !</h3>
 
-### `npm run build`
+```
+// src/pages/players/Index.js
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+await axios
+      .get("http://localhost:5000/api/players")
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+-> If localhost isn't working you might need to use the IP address BUT you cannot change the port 5000 because the request won't work !!! (port 5000 is used in our web-server).
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<h2 id="mobileApp">Setup Mobile-App</h2>
+<h3>Installation + start :</h3>
 
-### `npm run eject`
+<p>To use the Mobile App part, you need to install Expo CLI. If you did instal the Expo CLI you can proceed to the next step.</p><br>
+<p>Step 1 :</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`cd ~`<br>
+`npm install --global expo-cli`
+<br>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<p>Step 2 :</p>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+`cd mobile-app`<br>
+`npm install`<br>
+`npm start`<br>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<h3>Main Dependencies used :</h3>
+<ul>
+  <li>@react-navigation</li>
+  <li>Expo</li>
+  <li>formik</li>
+  <li>yup</li>
+</ul>
 
-## Learn More
+<h3>Warning !</h3>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+// app\screens\ListPlayerScreen.js
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+await axios
+      .get("http://localhost:5000/api/players")
 
-### Code Splitting
+// app\screens\AddPlayerScreen.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+await axios
+      .post("http://localhost:5000/api/players")
 
-### Analyzing the Bundle Size
+// app\screens\AddClubScreen.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+await axios
+      .post("http://localhost:5000/api/clubs")
 
-### Making a Progressive Web App
+-> Same as in Web-App, if the localhost isn't working you need to use your IP address but remember to keep the port 5000 ! The requests won't work without it !
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<h2 id="webServer">Setup Web-Server</h2>
 
-### Advanced Configuration
+The project is still in development.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Team Scout47.

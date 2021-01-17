@@ -1,34 +1,20 @@
-const sequelize = require("../config");
-const { DataTypes } = require("sequelize");
-
-const Client = require("./Clients");
-
-const Club = sequelize.define(
-  "clubs",
-  {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    logo: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-  },
-  {
-    timestamps: false,
+("use strict");
+const { Model } = require("sequelize");
+module.exports = (sequelize, DataTypes) => {
+  class Club extends Model {
+    static associate(models) {
+      models.Client.hasMany(Club, { foreignKey: "client_id" });
+    }
   }
-);
-
-Club.belongsTo(Client, { foreignKey: "client_id", targetKey: "id" });
-
-(async () => {
-  try {
-    await Club.sync({ alter: true });
-    console.log("The table clubs was updated");
-  } catch (error) {
-    console.error("Unable to sync users:", error);
-  }
-})();
-
-module.exports = Club;
+  Club.init(
+    {
+      name: DataTypes.STRING,
+      picture: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "Club",
+    }
+  );
+  return Club;
+};

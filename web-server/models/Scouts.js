@@ -1,43 +1,23 @@
-const sequelize = require("../config");
-const { DataTypes } = require("sequelize");
-
-const Client = require("./Clients");
-
-const Scout = sequelize.define(
-  "scouts",
-  {
-    firstname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    lastname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    telephone: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-  },
-  {
-    //to ignore createdat & updatedat
-    timestamps: false,
+("use strict");
+const { Model } = require("sequelize");
+module.exports = (sequelize, DataTypes) => {
+  class Scout extends Model {
+    static associate(models) {
+      models.Client.hasMany(Scout, { foreignKey: "client_id" });
+    }
   }
-);
-
-Scout.belongsTo(Client, { foreignKey: "client_id", targetKey: "id" });
-
-(async () => {
-  try {
-    await Scout.sync({ alter: true });
-    console.log("The table clients was updated");
-  } catch (error) {
-    console.error("Unable to sync users:", error);
-  }
-})();
-
-module.exports = Scout;
+  Scout.init(
+    {
+      firstname: DataTypes.STRING,
+      lastname: DataTypes.STRING,
+      email: DataTypes.STRING,
+      telephone: DataTypes.INTEGER,
+      picture: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "Scout",
+    }
+  );
+  return Scout;
+};
