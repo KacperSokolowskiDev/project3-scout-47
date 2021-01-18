@@ -88,14 +88,15 @@ export default function FormDialog() {
       >
         <DialogTitle id="form-dialog-title">Ajout d'un critère : </DialogTitle>
         <DialogContent>
-          <DialogContentText>
+          <DialogContentText color="white">
             Veuillez ajouter le nom et le groupe du nouveau critère
           </DialogContentText>
           <TextField
             autoFocus
+            color="secondary"
             margin="dense"
             id="name"
-            label="nom"
+            label="Nom"
             type="text"
             fullWidth
             onChange={(e) =>
@@ -108,9 +109,10 @@ export default function FormDialog() {
           />
           <TextField
             autoFocus
+            color="secondary"
             margin="dense"
             id="groupe"
-            label="groupe"
+            label="Groupe"
             type="text"
             fullWidth
             onChange={(e) =>
