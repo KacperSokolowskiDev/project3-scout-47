@@ -17,13 +17,18 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      score: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        defaultValue: 1,
+      },
       createdAt: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
         defaultValue: new Date(),
       },
       updatedAt: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
         defaultValue: new Date(),
       },

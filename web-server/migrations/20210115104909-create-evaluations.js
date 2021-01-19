@@ -10,19 +10,24 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       createdAt: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
         defaultValue: new Date(),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         defaultValue: new Date(),
       },
       evaluationDate: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         defaultValue: new Date(),
+      },
+      value: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+        defaultValue: null,
       },
       client_id: {
         type: Sequelize.DataTypes.INTEGER,
@@ -42,6 +47,12 @@ module.exports = {
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
+      criteria_id: {
+        type: Sequelize.DataTypes.INTEGER,
+        references: { model: { tableName: "Criterias" }, key: "id" },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+      },
     });
   },
 
@@ -49,3 +60,12 @@ module.exports = {
     await queryInterface.dropTable("Evaluations");
   },
 };
+
+// {
+//   "id": 5,
+//   "criteria_id":5,
+//   "value":8,
+//   "createdAt": "2021-01-19",
+//   "updatedAt": "2021-01-19",
+//   "evaluationDate": "2021-01-19"
+// }

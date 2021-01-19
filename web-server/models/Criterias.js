@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       groupe: DataTypes.STRING,
+      score: DataTypes.INTEGER,
     },
     {
       sequelize,

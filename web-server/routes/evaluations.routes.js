@@ -11,6 +11,9 @@ router.get("/:id", evaluationsController.show);
 // Post evaluation
 router.post("/", evaluationsController.create);
 
+// Post evalutaion
+router.post("/all", evaluationsController.createMore);
+
 // Update evaluation by id
 router.put("/:id", evaluationsController.update);
 
