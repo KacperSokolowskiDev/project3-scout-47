@@ -3,8 +3,7 @@ import axios from "axios";
 
 import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
-import FormDialog from "../../components/FormDialogs/Index";
-
+import FormAddCritetia from "../../components/Form-dialogs/FormAddCriteria";
 //Material UI
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -73,7 +72,7 @@ function Index() {
               autoComplete="off"
               className={classes.elementMT}
             />
-            <FormDialog />
+            <FormAddCritetia />
             {/* <Tooltip title="Add" aria-label="add">
               <Fab color="secondary" className={classes.buttons}>
                 <AddIcon
