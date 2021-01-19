@@ -4,8 +4,9 @@ import Staff from "./pages/staff/Index";
 import Player from "./pages/players/Index";
 import Criteria from "./pages/criteria/Index";
 import Agenda from "./pages/agenda/Index";
-import LoginPage from "./pages/loginPage/Index"; //New Element
+import LoginPage from "./pages/loginPage/Index";
 import ProfilPage from "./pages/profilPage/Index";
+import StaffProfilePage from "./pages/staffProfilePage/Index";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import "./App.css";
@@ -28,6 +29,7 @@ function App() {
           <Route path="/player" exact component={Player} />
           <Route path="/agenda" exact component={Agenda} />
           <Route path="/players/profile" exact component={ProfilPage} />
+          <Route path="/staffs/profile" exact component={StaffProfilePage} />
         </Router>
       </ThemeProvider>
     </div>

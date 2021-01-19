@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 import { Fab, TextField, Tooltip } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -76,7 +75,7 @@ const Index = () => {
               </Fab>
             </Tooltip>
           </div>
-          <Link className="link-profile" to="/staff/profile">
+          <Link className="link-profile" to="/staffs/profile">
             <div className="staff-page-list">
               {download ? (
                 listStaff.map((data) => {

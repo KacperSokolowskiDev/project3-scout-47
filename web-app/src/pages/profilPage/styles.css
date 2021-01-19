@@ -38,14 +38,14 @@
 .profil-sub-title {
     color:white;
     font-size: 2em;
-    margin: 3% 0 0 3%   ;
+    margin: 3% 0 0 3%;
 }
 
 .stats-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 5rem 13rem 0 13rem;
+    margin: 5rem 5rem 0 5rem;
 }
 
 .player-stats {

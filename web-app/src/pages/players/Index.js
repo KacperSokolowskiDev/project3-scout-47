@@ -11,12 +11,10 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
 // import IconButton from "@material-ui/core/IconButton";
-import AddIcon from "@material-ui/icons/Add";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import TextField from "@material-ui/core/TextField";
 import Fab from "@material-ui/core/Fab";
-import Tooltip from "@material-ui/core/Tooltip";
-import Box from "@material-ui/core/Box"; //To use margin on buttons
+import Tooltip from "@material-ui/core/Tooltip"; //To use margin on buttons
 
 //Style CSS
 import "./styles.css";
