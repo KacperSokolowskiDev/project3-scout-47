@@ -4,6 +4,7 @@ import axios from "axios";
 import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
 import FormAddCritetia from "../../components/Form-dialogs/FormAddCriteria";
+import CriteriaBar from "../../components/criteriaBar/Index";
 //Material UI
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -36,6 +37,7 @@ function Index() {
   const classes = useStyles();
   const [listCriterias, setListCriterias] = useState([]);
   const [download, setDownload] = useState(false);
+  const [showPhysic, setShowPhysic] = useState(false);
 
   const fetchCriterias = async () => {
     await axios
@@ -56,6 +58,10 @@ function Index() {
     fetchCriterias();
   }, []);
 
+  const handleClickPhysic = () => {
+    setShowPhysic(!showPhysic);
+  };
+
   return (
     <div className="criteria-page">
       <Navbar />
@@ -73,15 +79,6 @@ function Index() {
               className={classes.elementMT}
             />
             <FormAddCritetia />
-            {/* <Tooltip title="Add" aria-label="add">
-              <Fab color="secondary" className={classes.buttons}>
-                <AddIcon
-                  onClick={() => {
-                    console.log("click on add");
-                  }}
-                />
-              </Fab>
-            </Tooltip> */}
             <Tooltip title="Filter" aria-label="filter">
               <Fab color="secondary" className={classes.buttons}>
                 <FilterListIcon />
@@ -89,13 +86,58 @@ function Index() {
             </Tooltip>
           </div>
           <div className="criteria-page-list">
+            <CriteriaBar text={"Physique"}></CriteriaBar>
             {download ? (
               listCriterias.map((data) => {
-                return (
-                  <div>
-                    {data.name} , {data.groupe}
-                  </div>
-                );
+                if (data.groupe == "Physique") {
+                  return (
+                    <div>
+                      {data.name} , {data.groupe}
+                    </div>
+                  );
+                }
+              })
+            ) : (
+              <p>No criteria</p>
+            )}
+            <CriteriaBar text={"Stratégique"}></CriteriaBar>
+            {download ? (
+              listCriterias.map((data) => {
+                if (data.groupe == "Stratégique") {
+                  return (
+                    <div>
+                      {data.name} , {data.groupe}
+                    </div>
+                  );
+                }
+              })
+            ) : (
+              <p>No criteria</p>
+            )}
+            <CriteriaBar text={"Technique"}></CriteriaBar>
+            {download ? (
+              listCriterias.map((data) => {
+                if (data.groupe == "Technique") {
+                  return (
+                    <div>
+                      {data.name} , {data.groupe}
+                    </div>
+                  );
+                }
+              })
+            ) : (
+              <p>No criteria</p>
+            )}
+            <CriteriaBar text={"Psychologique"}></CriteriaBar>
+            {download ? (
+              listCriterias.map((data) => {
+                if (data.groupe == "Psychologique") {
+                  return (
+                    <div>
+                      {data.name} , {data.groupe}
+                    </div>
+                  );
+                }
               })
             ) : (
               <p>No criteria</p>

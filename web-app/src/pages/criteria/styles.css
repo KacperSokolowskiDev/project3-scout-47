@@ -41,3 +41,8 @@
   height: 100%;
   overflow: auto;
 }
+
+.criteria-page-volet-physic {
+  display: flex;
+  flex-direction: row;
+}
