@@ -28,18 +28,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FormDialog() {
+export default function FormAddPlayer() {
   const classes = useStyles();
-
   const initialState = {
-    name: "",
-    groupe: "",
-    score: 1,
+    firstname: "",
+    lastname: "",
   };
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { name, groupe } = state;
+  const { firstname, lastname } = state;
   const [open, setOpen] = useState(false);
-
   function reducer(state, action) {
     switch (action.type) {
       case "fill_input":
@@ -52,26 +49,25 @@ export default function FormDialog() {
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
 
-  const submitCriteria = async (e) => {
+  const submitPlayer = async (e) => {
     e.preventDefault();
     try {
-      console.log(name, groupe, "dans le try");
+      console.log(firstname, lastname);
       await axios
-        .post("http://localhost:5000/api/criterias", state)
+        .post("http://localhost:5000/api/players", state)
         .then((res) => {
-          console.log("criteria posted", res.data);
+          console.log("player added", res.data);
           handleClose();
         })
         .catch((error) => {
           console.log(error);
         });
     } catch (error) {
-      console.log("dans le error", error);
+      console.log("dans l'erreur", error);
     }
   };
 
@@ -87,52 +83,50 @@ export default function FormDialog() {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Ajout d'un critère : </DialogTitle>
+        <DialogTitle id="form-dialog-title"> Ajout d'un joueur : </DialogTitle>
         <DialogContent>
-          <DialogContentText color="white">
-            Veuillez ajouter le nom et le groupe du nouveau critère
+          <DialogContentText>
+            Veuillez ajouter le nom et le prénom du nouveau joueur.
           </DialogContentText>
           <TextField
-            autoComplete="no"
+            autoFocus
             color="secondary"
             margin="dense"
-            id="name"
-            label="Nom"
+            id="standard-basic"
+            label="Prénom"
             type="text"
             fullWidth
+            autoComplete="no"
+            required
             onChange={(e) =>
               dispatch({
                 type: "fill_input",
-                fieldName: "name",
+                fieldName: "firstname",
                 payload: e.currentTarget.value,
               })
             }
           />
           <TextField
-            autoComplete="no"
             color="secondary"
             margin="dense"
-            id="groupe"
-            label="Groupe"
+            id="standard-basic"
+            label="Nom De Famille"
             type="text"
             fullWidth
+            autoComplete="no"
+            required
             onChange={(e) =>
               dispatch({
                 type: "fill_input",
-                fieldName: "groupe",
+                fieldName: "lastname",
                 payload: e.currentTarget.value,
               })
             }
           />
         </DialogContent>
-
         <DialogActions>
-          <Button onClick={handleClose} color="white">
-            Annuler
-          </Button>
-          <Button onClick={submitCriteria} color="white">
-            Ajouter
-          </Button>
+          <Button onClick={handleClose}>Annuler</Button>
+          <Button onClick={submitPlayer}>Ajouter</Button>
         </DialogActions>
       </Dialog>
     </div>
