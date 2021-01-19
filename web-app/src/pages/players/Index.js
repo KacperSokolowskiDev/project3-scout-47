@@ -1,6 +1,7 @@
 import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
 import PlayerCard from "../../components/PlayerCard/Index";
+import FormAddPlayer from "../../components/Form-dialogs/FormAddPlayer";
 
 import axios from "axios";
 import React, { useState, useEffect } from "react";
@@ -76,11 +77,7 @@ function Index() {
               autoComplete="off"
               className={classes.elementMT}
             />
-            <Tooltip title="Add" aria-label="add">
-              <Fab color="secondary" className={classes.buttons}>
-                <AddIcon />
-              </Fab>
-            </Tooltip>
+            <FormAddPlayer />
             <Tooltip title="Filter" aria-label="filter">
               <Fab color="secondary" className={classes.buttons}>
                 <FilterListIcon />

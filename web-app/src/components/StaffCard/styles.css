@@ -11,8 +11,8 @@
   }
   
   .staff-picture {
-    height: 200px;
-    width: 200px;
+    height: 110px;
+    width: 110px;
     border: solid 5px #28df99;
     border-radius: 100px;
     position: relative;
@@ -29,9 +29,10 @@
     top: 20%;
     left: -45px;
     border-radius: 35px;
-    width: 300px;
+    width: 250px;
     z-index: 8;
-    justify-content: space-evenly;
+    text-align: center;
+    justify-content: space-around;
   }
   
   .staff-card-text {
