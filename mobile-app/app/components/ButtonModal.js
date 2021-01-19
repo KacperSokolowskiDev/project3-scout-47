@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   title: {
+    display: "flex",
     color: defaultStyles.colors.white,
     fontSize: 25,
   },
