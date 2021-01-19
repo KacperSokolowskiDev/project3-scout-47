@@ -34,6 +34,7 @@ export default function FormDialog() {
   const initialState = {
     name: "",
     groupe: "",
+    score: 1,
   };
   const [state, dispatch] = useReducer(reducer, initialState);
   const { name, groupe } = state;
@@ -92,7 +93,7 @@ export default function FormDialog() {
             Veuillez ajouter le nom et le groupe du nouveau critère
           </DialogContentText>
           <TextField
-            autoFocus
+            autoComplete="no"
             color="secondary"
             margin="dense"
             id="name"
@@ -108,7 +109,7 @@ export default function FormDialog() {
             }
           />
           <TextField
-            autoFocus
+            autoComplete="no"
             color="secondary"
             margin="dense"
             id="groupe"

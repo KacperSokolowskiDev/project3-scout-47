@@ -1,22 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
 import { Fab, TextField, Tooltip } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import { makeStyles } from "@material-ui/core/styles";
-
 import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
 import StaffCard from "../../components/StaffCard/Index";
-
 import "./styles.css";
 require("dotenv").config();
-
 const useStyles = makeStyles((theme) => ({
   buttons: {
     marginLeft: theme.spacing(2),
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(0),
   },
   elementMR: {
     marginRight: theme.spacing(1),
@@ -25,15 +21,13 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(2),
   },
   elementMT: {
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(0),
   },
 }));
-
 const Index = () => {
   const classes = useStyles();
   const [listStaff, setListStaff] = useState([]);
   const [download, setDownload] = useState(false);
-
   const fetchStaff = async () => {
     await axios
       .get("http://localhost:5000/api/scouts")
@@ -46,11 +40,9 @@ const Index = () => {
         console.log(error);
       });
   };
-
   useEffect(() => {
     fetchStaff();
   }, []);
-
   return (
     <div className="staff-page">
       <Navbar />
@@ -92,5 +84,4 @@ const Index = () => {
     </div>
   );
 };
-
 export default Index;

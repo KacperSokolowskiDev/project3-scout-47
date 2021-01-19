@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: defaultStyles.colors.white,
+    fontSize: 25,
   },
 });
 

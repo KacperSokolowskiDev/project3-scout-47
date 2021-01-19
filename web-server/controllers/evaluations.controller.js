@@ -11,6 +11,18 @@ const create = async (req, res, next) => {
   }
 };
 
+const createMore = async (req, res, next) => {
+  const data = req.body;
+  console.log("data", data);
+  try {
+    const evaluations = await Evaluation.bulkCreate(data);
+    res.status(200).json(evaluations);
+  } catch (error) {
+    let message = "Evaluation bulk can't be created";
+    res.status(500).json(message);
+  }
+};
+
 const show = async (req, res, next) => {
   const { id } = req.params;
   try {
@@ -57,6 +69,7 @@ const destroy = async (req, res, next) => {
 
 module.exports = {
   create,
+  createMore,
   show,
   index,
   update,

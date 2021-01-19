@@ -10,12 +10,12 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       createdAt: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
         defaultValue: new Date(),
       },
       updatedAt: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
         defaultValue: new Date(),
       },
