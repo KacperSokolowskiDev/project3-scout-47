@@ -1,69 +1,29 @@
-const sequelize = require("../config");
-const { DataTypes } = require("sequelize");
-
-const Client = require("./Clients");
-const Club = require("./Clubs");
-const Criteria = require("./Criterias");
-const Scout = require("./Scouts");
-
-const Player = sequelize.define(
-  "players",
-  {
-    firstname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    lastname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    birthdate: {
-      type: DataTypes.DATEONLY,
-      allowNull: true,
-    },
-    age: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    position: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    height: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    weight: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    strongFoot: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    picture: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-  },
-  {
-    //to ignore createdAt & updatedAt
-    timestamps: false,
+("use strict");
+const { Model } = require("sequelize");
+module.exports = (sequelize, DataTypes) => {
+  class Player extends Model {
+    static associate(models) {
+      models.Client.hasMany(Player, { foreignKey: "client_id" });
+      models.Scout.hasMany(Player, { foreignKey: "scout_id" });
+      models.Club.hasMany(Player, { foreignKey: "club_id" });
+    }
   }
-);
+  Player.init(
+    {
+      firstname: DataTypes.STRING,
+      lastname: DataTypes.STRING,
+      birthdate: DataTypes.DATE,
+      position: DataTypes.STRING,
+      height: DataTypes.INTEGER,
+      weight: DataTypes.INTEGER,
+      strongFoot: DataTypes.STRING,
+      picture: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "Player",
+    }
+  );
 
-Player.belongsTo(Client, { foreignKey: "client_id", targetKey: "id" });
-Player.belongsTo(Club, { foreignKey: "club_id", targetKey: "id" });
-Player.belongsTo(Criteria, { foreignKey: "criteria_id", targetKey: "id" });
-Player.belongsTo(Scout, { foreignKey: "scout_id", targetKey: "id" });
-
-//sync module
-(async () => {
-  try {
-    await Player.sync({ alter: true });
-    console.log("The table players was updated");
-  } catch (error) {
-    console.error("Unable to sync users:", error);
-  }
-})();
-module.exports = Player;
+  return Player;
+};

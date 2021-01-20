@@ -1,4 +1,4 @@
-const Evaluation = require("../models/Evaluations");
+const { Evaluation } = require("../models");
 
 const create = async (req, res, next) => {
   const data = { ...req.body };
@@ -7,6 +7,18 @@ const create = async (req, res, next) => {
     res.status(200).json(evaluation);
   } catch (error) {
     let message = "Evaluation can't be created";
+    res.status(500).json(message);
+  }
+};
+
+const createMore = async (req, res, next) => {
+  const data = req.body;
+  console.log("data", data);
+  try {
+    const evaluations = await Evaluation.bulkCreate(data);
+    res.status(200).json(evaluations);
+  } catch (error) {
+    let message = "Evaluation bulk can't be created";
     res.status(500).json(message);
   }
 };
@@ -57,6 +69,7 @@ const destroy = async (req, res, next) => {
 
 module.exports = {
   create,
+  createMore,
   show,
   index,
   update,

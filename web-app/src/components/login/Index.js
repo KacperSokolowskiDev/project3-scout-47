@@ -15,20 +15,27 @@ const login = () => {
         <img className="logoScout" src={Logo} alt="Logo" />
       </div>
       <div className="input">
-        <TextField color="secondary" id="standard-basic" label="E-mail" />
-        <TextField color="secondary" id="standard-basic" label="Password" />
+        <TextField
+          color="secondary"
+          id="standard-basic"
+          label="E-mail"
+          autoComplete="off"
+          required
+        />
+        <TextField
+          color="secondary"
+          id="standard-basic"
+          label="Password"
+          autoComplete="off"
+          required
+        />
       </div>
       <div className="buttons">
-        <Box mr="2.5rem">
-          <Link className="btnLogin" to="/dashboard">
-            <Button variant="contained" color="secondary">
-              Log In
-            </Button>
-          </Link>
-        </Box>
-        <Button variant="contained" color="secondary">
-          Sign In
-        </Button>
+        <Link className="btnLogin" to="/">
+          <Button variant="contained" color="secondary">
+            Log In
+          </Button>
+        </Link>
       </div>
     </div>
   );

@@ -1,0 +1,48 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.criteria-page {
+  background-color: black;
+}
+
+.criteria-page-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.criteria-page-content {
+  display: flex;
+  flex-direction: column;
+  width: 94%;
+}
+
+.criteria-title {
+  color: white;
+  font-size: 3em;
+  margin: 3%;
+}
+
+.criteria-page-search-info {
+  display: flex;
+  flex-direction: row;
+  margin-left: 3%;
+  max-width: 40%;
+}
+
+.criteria-page-list {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10%;
+  margin-top: 3%;
+  color: white;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.criteria-page-volet-physic {
+  display: flex;
+  flex-direction: row;
+}
