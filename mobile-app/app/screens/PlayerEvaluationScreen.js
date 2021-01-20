@@ -29,7 +29,7 @@ function PlayerEvaluationScreen({ playerInfo }) {
   const FetchCriteria = async () => {
     try {
       axios
-        .get("http://192.168.0.103:5000/api/criterias")
+        .get("http://192.168.50.74:5000/api/criterias")
         .then((res) => {
           let result = res.data;
           setListCriteria(result);
@@ -136,7 +136,7 @@ function PlayerEvaluationScreen({ playerInfo }) {
     console.log("new eval", newEvaluation);
     try {
       axios
-        .post("http://192.168.0.103:5000/api/evaluations/all", newEvaluation)
+        .post("http://192.168.50.74:5000/api/evaluations/all", newEvaluation)
         .then((res) => {
           console.log(res.data);
         });
