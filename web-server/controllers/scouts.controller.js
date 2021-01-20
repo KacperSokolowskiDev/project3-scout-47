@@ -1,4 +1,4 @@
-const Scout = require("../models/Scouts");
+const { Scout } = require("../models");
 
 //Post scout in database
 const create = async (req, res, next) => {

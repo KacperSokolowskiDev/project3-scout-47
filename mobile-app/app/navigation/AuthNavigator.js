@@ -5,7 +5,8 @@ import {
   AddPlayerScreen,
   ListPlayerScreen,
   LoginScreen,
-  PlayerProfileScreen,
+  PlayerAgendaScreen,
+  PlayerSchoolScreen,
 } from "../screens";
 import PlayerNavigator from "../navigation/PlayerNavigator";
 
@@ -19,6 +20,7 @@ const AuthNavigator = () => {
       <Stack.Screen name="AddPlayer" component={AddPlayerScreen} />
       <Stack.Screen name="AddClub" component={AddClubScreen} />
       <Stack.Screen name="PlayerPage" component={PlayerNavigator} />
+      <Stack.Screen name="AgendaPage" component={PlayerAgendaScreen} />
     </Stack.Navigator>
   );
 };

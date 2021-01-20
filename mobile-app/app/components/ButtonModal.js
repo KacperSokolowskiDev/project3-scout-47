@@ -38,10 +38,12 @@ function ButtonModal({ children, title, style, ...otherProps }) {
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constant.statusBarHeight,
-    color: "red",
+    height: "100%",
   },
   title: {
+    display: "flex",
     color: defaultStyles.colors.white,
+    fontSize: 25,
   },
 });
 

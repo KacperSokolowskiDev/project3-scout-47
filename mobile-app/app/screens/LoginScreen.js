@@ -29,8 +29,8 @@ function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {},
   logo: {
-    width: 120,
-    height: 120,
+    width: 180,
+    height: 180,
     alignSelf: "center",
     marginTop: 50,
     marginBottom: 50,
