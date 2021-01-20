@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import { Fab, TextField, Tooltip } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
 import StaffCard from "../../components/StaffCard/Index";
+import FormAddStaff from "../../components/Form-dialogs/FormAddStaff";
 
 import "./styles.css";
 require("dotenv").config();
@@ -16,7 +17,7 @@ require("dotenv").config();
 const useStyles = makeStyles((theme) => ({
   buttons: {
     marginLeft: theme.spacing(2),
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(0),
   },
   elementMR: {
     marginRight: theme.spacing(1),
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(2),
   },
   elementMT: {
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(0),
   },
 }));
 
@@ -67,26 +68,24 @@ const Index = () => {
               variant="filled"
               className={classes.elementMT}
             />
-            <Tooltip title="Add" aria-label="add">
-              <Fab color="secondary" className={classes.buttons}>
-                <AddIcon />
-              </Fab>
-            </Tooltip>
+            <FormAddStaff />
             <Tooltip title="Filter" aria-label="filter">
               <Fab color="secondary" className={classes.buttons}>
                 <FilterListIcon />
               </Fab>
             </Tooltip>
           </div>
-          <div className="staff-page-list">
-            {download ? (
-              listStaff.map((data) => {
-                return <StaffCard staffInfo={data} />;
-              })
-            ) : (
-              <div>No staff in database</div>
-            )}
-          </div>
+          <Link className="link-profile" to="/staffs/profile">
+            <div className="staff-page-list">
+              {download ? (
+                listStaff.map((data) => {
+                  return <StaffCard staffInfo={data} />;
+                })
+              ) : (
+                <div>No staff in database</div>
+              )}
+            </div>
+          </Link>
         </div>
       </div>
     </div>
