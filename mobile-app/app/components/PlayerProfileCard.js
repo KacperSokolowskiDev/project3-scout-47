@@ -24,7 +24,7 @@ function PlayerProfileCard({ playerInfo }) {
         <AppText style={styles.name}>{height} cm </AppText>
         <AppText style={styles.name}>{weight} kg </AppText>
         <AppText style={styles.name}>{strongFoot} </AppText>
-        <AppText style={styles.name}>{lastname} </AppText>
+        <AppText style={styles.name}>{birthdate} </AppText>
         <AppText style={styles.name}>{position} </AppText>
       </View>
     </View>
