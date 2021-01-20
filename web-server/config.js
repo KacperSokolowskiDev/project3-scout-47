@@ -1,4 +1,5 @@
 require("dotenv").config();
+console.log("HERE", process.env.PORT);
 const mysql = require("mysql2");
 const { Sequelize } = require("sequelize");
 const dbConfig = {
