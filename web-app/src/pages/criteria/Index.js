@@ -100,7 +100,7 @@ function Index() {
             ) : (
               <p>No criteria</p>
             )}
-            <CriteriaBar text={"Stratégique"}></CriteriaBar>
+            {/* <CriteriaBar text={"Stratégique"}></CriteriaBar>
             {download ? (
               listCriterias.map((data) => {
                 if (data.groupe == "Stratégique") {
@@ -141,7 +141,7 @@ function Index() {
               })
             ) : (
               <p>No criteria</p>
-            )}
+            )} */}
           </div>
         </div>
       </div>
