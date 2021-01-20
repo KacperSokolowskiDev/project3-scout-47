@@ -11,6 +11,7 @@ function Index() {
         <LateralBar />
         <div className="dashboard-page-content">
           <h1 className="dashboard-title">DASHBOARD</h1>
+          <h1 className="dashboard-test">TEST</h1>
         </div>
       </div>
     </div>

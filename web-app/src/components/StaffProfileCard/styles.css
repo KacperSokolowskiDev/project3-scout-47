@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.staff-profil-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+}
+
+.staff-profil-name {
+  color: white;
+  font-size: 3em;
+  margin: 3% 0 0 3%;
+}
+
+.staff-profil-sub-title {
+  color: white;
+  font-size: 2em;
+  margin: 3% 0 0 3%;
+}
