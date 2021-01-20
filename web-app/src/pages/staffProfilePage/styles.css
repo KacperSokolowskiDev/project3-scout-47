@@ -1,4 +1,4 @@
-* {
+*{
   margin: 0;
   padding: 0;
 }
@@ -18,7 +18,7 @@
   width: 94%;
 }
 
-.staff-profil-header {
+.staff-profil-header{
   display: flex;
   flex-direction: row;
   margin: 3% 0 0 3%;
@@ -42,7 +42,7 @@
 }
 
 .staff-profil-sub-title {
-  color: white;
+  color:white;
   font-size: 2em;
   margin: 3% 0 0 3%;
 }
@@ -62,5 +62,5 @@
   width: 150px;
   border: solid 5px #28df99;
   border-radius: 100px;
-  margin: 0 2rem;
+  margin: 0 2rem; 
 }
