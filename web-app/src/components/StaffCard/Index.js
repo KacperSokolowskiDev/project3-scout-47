@@ -1,7 +1,5 @@
 import React from "react";
-
 import "./styles.css";
-
 const Index = ({ staffInfo }) => {
   const { firstname, lastname, email, telephone, picture } = { ...staffInfo };
   return (
@@ -16,5 +14,4 @@ const Index = ({ staffInfo }) => {
     </div>
   );
 };
-
 export default Index;

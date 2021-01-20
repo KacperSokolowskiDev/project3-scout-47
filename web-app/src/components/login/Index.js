@@ -31,7 +31,7 @@ const login = () => {
         />
       </div>
       <div className="buttons">
-        <Link className="btnLogin" to="/dashboard">
+        <Link className="btnLogin" to="/">
           <Button variant="contained" color="secondary">
             Log In
           </Button>

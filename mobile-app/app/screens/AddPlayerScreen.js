@@ -24,8 +24,8 @@ function AddPlayerScreen({ navigation }) {
 
   const postPlayer = async (values) => {
     if (isPosted == false) {
-      await axios
-        .post("http://192.168.50.226:5000/api/players", values)
+      axios
+        .post("http://192.168.50.74:5000/api/players", values)
         .then((res) => {
           console.log(res.data);
         })

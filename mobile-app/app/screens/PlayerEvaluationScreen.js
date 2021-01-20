@@ -24,11 +24,12 @@ function PlayerEvaluationScreen({ playerInfo }) {
   const [showCriteriaPsychologic, setShowCriteriaPsychologic] = useState(false);
   const [showCriteriaTechnic, setShowCriteriaTechnic] = useState(false);
   const [listCriterias, setListCriteria] = useState([]);
+  const [evaluation, setEvaluation] = useState([]);
 
   const FetchCriteria = async () => {
     try {
-      await axios
-        .get("http://192.168.50.226:5000/api/criterias")
+      axios
+        .get("http://192.168.50.74:5000/api/criterias")
         .then((res) => {
           let result = res.data;
           setListCriteria(result);
@@ -50,23 +51,23 @@ function PlayerEvaluationScreen({ playerInfo }) {
   };
 
   const showPhysics = async () => {
-    const groupe = { groupe: "Physique" };
-    url = `http://192.168.50.226:5000/api/criterias/search/groupe`;
-    try {
-      //const response = await axios.get(url, groupe);
-      const response = await axios({
-        method: "GET",
-        url: url,
-        header: { "Content-type": "application/json; charset=UTF-8" },
-        body: JSON.stringify({ groupe: "Physique" }),
-      })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-      const newList = response.data;
-      setListPhysic(newList);
-    } catch (error) {
-      console.log(error);
-    }
+    // const groupe = { groupe: "Physique" };
+    // url = `http://192.168.50.226:5000/api/criterias/search/groupe`;
+    // try {
+    //   //const response = await axios.get(url, groupe);
+    //   const response = await axios({
+    //     method: "GET",
+    //     url: url,
+    //     header: { "Content-type": "application/json; charset=UTF-8" },
+    //     body: JSON.stringify({ groupe: "Physique" }),
+    //   })
+    //     .then((response) => response.json())
+    //     .then((json) => console.log(json));
+    //   const newList = response.data;
+    //   setListPhysic(newList);
+    // } catch (error) {
+    //   console.log(error);
+    // }
     setShowCriteriaPhysic(!showCriteriaPhysic);
   };
 
@@ -86,21 +87,102 @@ function PlayerEvaluationScreen({ playerInfo }) {
     FetchCriteria();
   }, []);
 
+  const decrement = (score, id) => {
+    score--;
+    if (score <= 1) {
+      score = 1;
+    }
+    const newList = listCriterias.map((criteria) => {
+      if (criteria.id === id) {
+        criteria.score = score;
+      }
+      return criteria;
+    });
+    setListCriteria(newList);
+  };
+
+  const increment = (score, id) => {
+    score++;
+    if (score >= 10) {
+      score = 10;
+    }
+    const newList = listCriterias.map((criteria) => {
+      if (criteria.id === id) {
+        criteria.score = score;
+      }
+      return criteria;
+    });
+    setListCriteria(newList);
+  };
+
+  const postEvaluation = async () => {
+    var today = new Date(),
+      date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate();
+    const newEvaluation = listCriterias.map((criteria) => {
+      return {
+        player_id: playerInfo.id,
+        criteria_id: criteria.id,
+        value: criteria.score,
+        evaluationDate: date,
+        createdAt: date,
+        updatedAt: date,
+      };
+    });
+    console.log("new eval", newEvaluation);
+    try {
+      axios
+        .post("http://192.168.50.74:5000/api/evaluations/all", newEvaluation)
+        .then((res) => {
+          console.log(res.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Screen>
       <View style={styles.container}>
         <AppButton title="Tout" onPress={() => showAll()}></AppButton>
         <AppButton title="Physique" onPress={() => showPhysics()}></AppButton>
-        {showCriteriaPhysic ? (
+        {showCriteriaPhysic && listCriterias.length ? (
           <FlatList
-            data={listPhysic}
-            keyExtractor={(criteria) => criteria.id.toString()}
-            renderItem={({ item }) => <AppButton title={item.name}></AppButton>}
+            data={listCriterias}
+            keyExtractor={(criteria) => {
+              return criteria.id.toString();
+            }}
+            renderItem={({ item }) => (
+              <ButtonModal
+                title={item.name + " : " + item.score}
+                style={styles.modal}
+              >
+                <AppText style={styles.modalText}>{item.name}</AppText>
+                <View style={styles.modalContainer}>
+                  <Button
+                    title="-"
+                    style={styles.modalCrement}
+                    onPress={() => decrement(item.score, item.id)}
+                  />
+                  <AppText style={styles.modalText}>{item.score}</AppText>
+                  <Button
+                    title="+"
+                    style={styles.modalCrement}
+                    onPress={() => increment(item.score, item.id)}
+                  />
+                </View>
+              </ButtonModal>
+            )}
           ></FlatList>
         ) : (
           <AppText style={styles.infoText}>Pas de critères (Physique)</AppText>
         )}
-        <AppButton
+
+        {/* <AppButton
           title="Stratégique"
           onPress={() => showStrategic()}
         ></AppButton>
@@ -141,10 +223,10 @@ function PlayerEvaluationScreen({ playerInfo }) {
           <AppText style={styles.infoText}>
             Pas de critères (Techniques)
           </AppText>
-        )}
-
+        )} */}
+        <Button title="submit" onPress={() => postEvaluation()}></Button>
         <ButtonModal
-          style={styles.modal}
+          style={styles.modalInfo}
           title={
             <Entypo
               name="info"
@@ -153,7 +235,7 @@ function PlayerEvaluationScreen({ playerInfo }) {
             />
           }
         >
-          <AppText style={styles.titre}>Echelles de critères</AppText>
+          <AppText style={styles.titre}>Echelles de critères :</AppText>
           <AppText style={styles.sousTitre}>0 à 2 : médiocres</AppText>
           <AppText style={styles.sousTitre}>3 à 5 : mauvais</AppText>
           <AppText style={styles.sousTitre}>6 à 8 : bon</AppText>
@@ -195,6 +277,20 @@ const styles = StyleSheet.create({
   },
   modal: {
     backgroundColor: "black",
+    display: "flex",
+    alignItems: "center",
+  },
+  modalContainer: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  modalCrement: {},
+  modalInfo: {
+    backgroundColor: "black",
+  },
+  modalText: {
+    color: "white",
+    fontSize: 45,
   },
   sousTitre: {
     color: "white",
