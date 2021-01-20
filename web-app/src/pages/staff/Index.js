@@ -52,14 +52,11 @@ const Index = () => {
     fetchStaff();
   }, []);
 
-<<<<<<< HEAD
   // useEffect(() => {
   //   console.log("useEffect --- Bool");
   //   fetchStaff();
   // }, [])
 
-=======
->>>>>>> a366194d0c401f49f42469fa829611a6d62a8384
   return (
     <div className="staff-page">
       <Navbar />
