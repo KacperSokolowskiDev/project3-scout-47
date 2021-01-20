@@ -9,6 +9,10 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Fab from "@material-ui/core/Fab";
 import Tooltip from "@material-ui/core/Tooltip";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 
@@ -25,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
   },
   elementMT: {
     marginTop: theme.spacing(0),
+  },
+  formControl: {
+    margin: theme.spacing(0),
+    minWidth: 200,
   },
 }));
 
@@ -108,22 +116,26 @@ export default function FormAddCriteria() {
               })
             }
           />
-          <TextField
-            autoComplete="no"
-            color="secondary"
-            margin="dense"
-            id="groupe"
-            label="Groupe"
-            type="text"
-            fullWidth
-            onChange={(e) =>
-              dispatch({
-                type: "fill_input",
-                fieldName: "groupe",
-                payload: e.currentTarget.value,
-              })
-            }
-          />
+          <FormControl className={classes.formControl}>
+            <InputLabel id="demo-dialog-select-label">Groupe</InputLabel>
+            <Select
+              labelId="demo-dialog-select-label"
+              id="demo-dialog-select"
+              onChange={(e) =>
+                dispatch({
+                  type: "fill_input",
+                  fieldName: "groupe",
+                  payload: e.currentTarget.value,
+                })
+              }
+              value={""}
+            >
+              <MenuItem value={"Physique"}>Physique</MenuItem>
+              <MenuItem value={"Technique"}>Technique</MenuItem>
+              <MenuItem value={"Stratégique"}>Stratégique</MenuItem>
+              <MenuItem value={"Psychologique"}>Psychologique</MenuItem>
+            </Select>
+          </FormControl>
         </DialogContent>
 
         <DialogActions>
