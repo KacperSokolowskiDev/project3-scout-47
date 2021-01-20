@@ -6,24 +6,28 @@ module.exports = {
       "Criterias",
       [
         {
+          id: 8,
           name: "Vitesse",
           groupe: "Physique",
+          score: 5,
         },
         {
+          id: 10,
           name: "Endurance",
           groupe: "Physique",
+          score: 5,
         },
         {
+          id: 12,
           name: "Dribble",
           groupe: "Technique",
+          score: 5,
         },
         {
+          id: 14,
           name: "Motivation",
           groupe: "Psychologique",
-        },
-        {
-          name: "Sprint",
-          groupe: "Physique",
+          score: 1,
         },
       ],
       {}

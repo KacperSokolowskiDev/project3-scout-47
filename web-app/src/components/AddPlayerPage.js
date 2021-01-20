@@ -61,7 +61,7 @@ function AddPlayerPage() {
         console.log(res.data);
       })
       .catch((error) => {
-        console.log("ERROR §§§§! : ", error);
+        console.log("ERROR : ", error);
       });
   }
 

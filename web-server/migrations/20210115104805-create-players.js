@@ -42,12 +42,12 @@ module.exports = {
         allowNull: true,
       },
       createdAt: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
         defaultValue: new Date(),
       },
       updatedAt: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
         defaultValue: new Date(),
       },
