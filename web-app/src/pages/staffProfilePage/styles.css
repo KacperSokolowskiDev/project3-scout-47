@@ -5,6 +5,8 @@
 
 .staff-profil-page {
   background-color: black;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 .staff-profil-page-container {
