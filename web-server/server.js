@@ -4,8 +4,25 @@ const sequelize = require("./config");
 const routes = require("./routes");
 const cors = require("cors");
 
+const AdminBro = require("admin-bro");
+const AdminBroExpress = require("@admin-bro/express");
+const AdminBroSequelize = require("@admin-bro/sequelize");
+
 app.use(express.json());
 app.use(cors());
+
+//AdminBro
+AdminBro.registerAdapter(AdminBroSequelize);
+const db = require("./models");
+const adminBro = new AdminBro({
+  databases: [db],
+  rootPath: "/admin",
+});
+
+const router = AdminBroExpress.buildRouter(adminBro);
+
+app.use(adminBro.options.rootPath, router);
+
 app.use("/api", routes);
 
 //Error handling middleware
@@ -19,11 +36,17 @@ app.get("/", (req, res) => {
 });
 
 // Server Start & Database connection
-sequelize
-  .authenticate()
-  .then(() =>
-    app.listen(process.env.PORT || 5000, () =>
-      console.log(`Server up and running on port: ${process.env.PORT || 5000}!`)
-    )
-  )
-  .catch((error) => console.log("Cannot reach database: ", error));
+app.listen(5000, () => console.log("AdminBro is under localhost:5000/admin"));
+// sequelize
+//   .authenticate()
+//   .then(() =>
+//     app.listen(
+//       process.env.PORT || 5000,
+//       () =>
+//         console.log(
+//           `Server up and running on port: ${process.env.PORT || 5000}!`
+//         ),
+//       console.log("AdminBro is under localhost:8080/admin")
+//     )
+//   )
+//   .catch((error) => console.log("Cannot reach database: ", error));

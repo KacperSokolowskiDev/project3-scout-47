@@ -1,5 +1,6 @@
 import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
+import StaffProfileCard from "../../components/StaffProfileCard/Index";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import noPic from "../../assets/user.png";
@@ -41,12 +42,7 @@ const StaffProfilePage = () => {
                 alt="staffProfilPic"
               />
             </div>
-            <div className="staff-profil-info">
-              <h1 className="staff-profil-name">Profil Staff</h1>
-              <h2 className="staff-profil-sub-title">Club Name</h2>
-              <h3 className="staff-profil-sub-title">Email</h3>
-              <h3 className="staff-profil-sub-title">Telephone</h3>
-            </div>
+            <StaffProfileCard />
           </div>
           <div className="staff-player-list">
             {download ? (

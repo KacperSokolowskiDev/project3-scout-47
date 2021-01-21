@@ -5,6 +5,7 @@ import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
 import FormAddCritetia from "../../components/Form-dialogs/FormAddCriteria";
 import CriteriaBar from "../../components/criteriaBar/Index";
+import CriteriasGroupeCard from "../../components/CriteriasGroupeCard/Index";
 //Material UI
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -86,62 +87,26 @@ function Index() {
             </Tooltip>
           </div>
           <div className="criteria-page-list">
-            <CriteriaBar text={"Physique"}></CriteriaBar>
-            {download ? (
-              listCriterias.map((data) => {
-                if (data.groupe == "Physique") {
-                  return (
-                    <div>
-                      {data.name} , {data.groupe}
-                    </div>
-                  );
-                }
-              })
-            ) : (
-              <p>No criteria</p>
-            )}
-            {/* <CriteriaBar text={"Stratégique"}></CriteriaBar>
-            {download ? (
-              listCriterias.map((data) => {
-                if (data.groupe == "Stratégique") {
-                  return (
-                    <div>
-                      {data.name} , {data.groupe}
-                    </div>
-                  );
-                }
-              })
-            ) : (
-              <p>No criteria</p>
-            )}
-            <CriteriaBar text={"Technique"}></CriteriaBar>
-            {download ? (
-              listCriterias.map((data) => {
-                if (data.groupe == "Technique") {
-                  return (
-                    <div>
-                      {data.name} , {data.groupe}
-                    </div>
-                  );
-                }
-              })
-            ) : (
-              <p>No criteria</p>
-            )}
-            <CriteriaBar text={"Psychologique"}></CriteriaBar>
-            {download ? (
-              listCriterias.map((data) => {
-                if (data.groupe == "Psychologique") {
-                  return (
-                    <div>
-                      {data.name} , {data.groupe}
-                    </div>
-                  );
-                }
-              })
-            ) : (
-              <p>No criteria</p>
-            )} */}
+            <CriteriasGroupeCard
+              listCriterias={listCriterias}
+              groupe={"Physique"}
+              download={download}
+            />
+            <CriteriasGroupeCard
+              listCriterias={listCriterias}
+              groupe={"Technique"}
+              download={download}
+            />
+            <CriteriasGroupeCard
+              listCriterias={listCriterias}
+              groupe={"Stratégique"}
+              download={download}
+            />
+            <CriteriasGroupeCard
+              listCriterias={listCriterias}
+              groupe={"Psychologique"}
+              download={download}
+            />
           </div>
         </div>
       </div>
