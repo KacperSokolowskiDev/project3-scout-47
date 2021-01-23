@@ -41,7 +41,7 @@ function Index() {
           </Link>
         </Tooltip>
         <Tooltip title="Players" placement="bottom-start">
-          <Link className="links-circle" to="/player">
+          <Link className="links-circle" to="/players">
             <img
               src="https://www.flaticon.com/svg/static/icons/svg/1654/1654387.svg"
               alt="Icon Player"
