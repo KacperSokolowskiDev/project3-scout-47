@@ -1,54 +1,43 @@
 "use strict";
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Scouts", {
+    await queryInterface.createTable("Criterias", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      firstname: {
-        allowNull: false,
+      name: {
         type: Sequelize.STRING,
       },
-      lastname: {
-        allowNull: false,
-        type: Sequelize.STRING,
+      groupe: {
+        type: Sequelize.ENUM,
+        values: ["Physique", "Technique", "Stratégique", "Psychologique"],
+        defaultValue: "Physique",
       },
-      email: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      telephone: {
-        allowNull: true,
+      score: {
         type: Sequelize.INTEGER,
       },
-      picture: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
       createdAt: {
-        type: Sequelize.DATEONLY,
         allowNull: false,
         defaultValue: new Date(),
+        type: Sequelize.DATEONLY,
       },
       updatedAt: {
-        type: Sequelize.DATEONLY,
         allowNull: false,
         defaultValue: new Date(),
+        type: Sequelize.DATEONLY,
       },
-      client_id: {
+      formation_center_id: {
         type: Sequelize.DataTypes.INTEGER,
-        references: { model: { tableName: "Clients" }, key: "id" },
+        reference: { models: { tableName: "FormationCenters" }, key: "id" },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
     });
   },
-
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Scouts");
+    await queryInterface.dropTable("Criterias");
   },
 };

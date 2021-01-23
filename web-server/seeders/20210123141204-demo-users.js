@@ -3,16 +3,24 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert(
-      "Scouts",
+      "Users",
       [
         {
-          firstname: "James",
-          lastname: "Junior",
-          email: "J_J@gmail.com",
+          role_id: 1,
+          formation_center_id: 1,
+          password: 1234,
+          yearCategory: "2009",
+          firstname: "Manu",
+          lastname: "Manu",
+          email: "MM@gmail.com",
           telephone: 123489,
           picture: "https://source.unsplash.com/random",
         },
         {
+          role_id: 2,
+          formation_center_id: 1,
+          password: 1234,
+          yearCategory: "2009",
           firstname: "Jin",
           lastname: "Kazama",
           email: "J_K@gmail.com",
@@ -20,6 +28,10 @@ module.exports = {
           picture: "https://source.unsplash.com/random",
         },
         {
+          role_id: 3,
+          formation_center_id: 1,
+          password: 1234,
+          yearCategory: "2010",
           firstname: "Naruto",
           lastname: "Uzumaki",
           email: "N_U@gmail.com",
@@ -27,6 +39,10 @@ module.exports = {
           picture: "https://source.unsplash.com/random",
         },
         {
+          role_id: 3,
+          formation_center_id: 1,
+          password: 1234,
+          yearCategory: "2010",
           firstname: "Sasuke",
           lastname: "Uchiha",
           email: "S_U@gmail.com",
@@ -34,6 +50,10 @@ module.exports = {
           picture: "https://source.unsplash.com/random",
         },
         {
+          role_id: 2,
+          formation_center_id: 2,
+          password: 1234,
+          yearCategory: "2010",
           firstname: "Kakashi",
           lastname: "Hatake",
           email: "K_H@gmail.com",
@@ -41,6 +61,10 @@ module.exports = {
           picture: "https://source.unsplash.com/random",
         },
         {
+          role_id: 3,
+          formation_center_id: 2,
+          password: 1234,
+          yearCategory: "2010",
           firstname: "Madara",
           lastname: "Uchiha",
           email: "M_U@gmail.com",
@@ -48,6 +72,10 @@ module.exports = {
           picture: "https://source.unsplash.com/random",
         },
         {
+          role_id: 3,
+          formation_center_id: 3,
+          password: 1234,
+          yearCategory: "2010",
           firstname: "James",
           lastname: "Norrington",
           email: "J_N@gmail.com",
@@ -55,6 +83,10 @@ module.exports = {
           picture: "https://source.unsplash.com/random",
         },
         {
+          role_id: 2,
+          formation_center_id: 3,
+          password: 1234,
+          yearCategory: "2010",
           firstname: "Jack",
           lastname: "Sparrow",
           email: "J_S@gmail.com",
@@ -62,6 +94,10 @@ module.exports = {
           picture: "https://source.unsplash.com/random",
         },
         {
+          role_id: 3,
+          formation_center_id: 3,
+          password: 1234,
+          yearCategory: "2010",
           firstname: "Sacha",
           lastname: "Palette",
           email: "S_P@gmail.com",

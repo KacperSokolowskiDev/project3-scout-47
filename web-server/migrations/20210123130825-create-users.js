@@ -1,50 +1,61 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("AgendaEvents", {
+    await queryInterface.createTable("Users", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      label: {
+      firstname: {
         type: Sequelize.STRING,
       },
-      time: {
-        type: Sequelize.TIME,
+      lastname: {
+        type: Sequelize.STRING,
       },
-      date: {
-        type: Sequelize.DATE,
+      yearCategory: {
+        type: Sequelize.ENUM,
+        values: ["2008", "2009", "2010"],
+        defaultValue: "2008",
       },
-      description: {
+      telephone: {
+        type: Sequelize.INTEGER,
+      },
+      email: {
+        type: Sequelize.STRING,
+      },
+      password: {
+        type: Sequelize.STRING,
+      },
+      picture: {
         type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATEONLY,
         defaultValue: new Date(),
+        type: Sequelize.DATEONLY,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATEONLY,
         defaultValue: new Date(),
+        type: Sequelize.DATEONLY,
       },
-      scout_id: {
+      role_id: {
         type: Sequelize.DataTypes.INTEGER,
-        references: { model: { tableName: "Scouts" }, key: "id" },
+        reference: { models: { tableName: "Roles" }, key: "id" },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
-      client_id: {
+      formation_center_id: {
         type: Sequelize.DataTypes.INTEGER,
-        references: { model: { tableName: "Clients" }, key: "id" },
+        reference: { models: { tableName: "FormationCenters" }, key: "id" },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("AgendaEvents");
+    await queryInterface.dropTable("Users");
   },
 };

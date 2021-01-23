@@ -1,11 +1,11 @@
 const { Sequelize } = require("../config");
-const { AgendaEvent } = require("../models");
+const { AgendaEvents } = require("../models");
 
-//Post agenda event in database
+//Post an event in the agenda
 const create = async (req, res, next) => {
   const data = { ...req.body };
   try {
-    const event = await AgendaEvent.create(data);
+    const event = await AgendaEvents.create(data);
     res.status(200).json(event);
   } catch (error) {
     let message = "Agenda event can't be created";
@@ -13,11 +13,11 @@ const create = async (req, res, next) => {
   }
 };
 
-// Get agenda event  by id from database
+// Get an event in the agenda
 const show = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const event = await AgendaEvent.findOne({ where: { id } });
+    const event = await AgendaEvents.findOne({ where: { id } });
     res.status(200).json(event);
   } catch (error) {
     let message = "agenda event (by id) can't be shown";
@@ -25,23 +25,23 @@ const show = async (req, res, next) => {
   }
 };
 
-// Get agenda event  by group
-const showByScout = async (req, res, next) => {
+// Get all events in the agenda of a user
+const showByUser = async (req, res, next) => {
   try {
-    const event = await AgendaEvent.findAll({
-      where: Sequelize.or({ scout_id: req.body.scout_id }),
+    const event = await AgendaEvents.findAll({
+      where: Sequelize.or({ user_id: req.body.user_id }),
     });
     res.status(200).json(event);
   } catch (error) {
-    let message = "Events by scout can't be shown";
+    let message = "Events by user can't be shown";
     res.status(500).json(message);
   }
 };
 
-// Get agenda event  from Database
+// Get all agenda events from Database
 const index = async (req, res, next) => {
   try {
-    const listEvents = await AgendaEvent.findAll();
+    const listEvents = await AgendaEvents.findAll();
     res.status(200).json(listEvents);
   } catch (error) {
     let message = " list of events can't be shown";
@@ -50,12 +50,12 @@ const index = async (req, res, next) => {
   }
 };
 
-//Update agenda event  from database
+//Update an event of the agenda
 const update = async (req, res, next) => {
   const { id } = req.params;
   const data = { ...req.body };
   try {
-    let event = await AgendaEvent.update(data, { where: { id } });
+    let event = await AgendaEvents.update(data, { where: { id } });
     res.status(200).json(event);
   } catch (error) {
     let message = "Event can't be updated";
@@ -63,11 +63,11 @@ const update = async (req, res, next) => {
   }
 };
 
-//Destroy agenda event  from database
+//Destroy an event in the agenda
 const destroy = async (req, res, next) => {
   const { id } = req.params;
   try {
-    let event = await AgendaEvent.destroy({ where: { id } });
+    let event = await AgendaEvents.destroy({ where: { id } });
     res.status(200).json(`event with id : ${id} was deleted !`);
   } catch (error) {
     let message = "event can't be destroy";
@@ -78,7 +78,7 @@ const destroy = async (req, res, next) => {
 module.exports = {
   create,
   show,
-  showByScout,
+  showByUser,
   index,
   update,
   destroy,

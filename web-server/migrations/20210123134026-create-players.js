@@ -1,5 +1,4 @@
 "use strict";
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("Players", {
@@ -10,68 +9,54 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       firstname: {
-        allowNull: false,
         type: Sequelize.STRING,
       },
       lastname: {
-        allowNull: false,
         type: Sequelize.STRING,
       },
       birthdate: {
-        allowNull: true,
-        type: Sequelize.DATEONLY,
-      },
-      position: {
-        type: Sequelize.STRING,
-        allowNull: true,
+        type: Sequelize.DATE,
       },
       height: {
         type: Sequelize.INTEGER,
-        allowNull: true,
       },
       weight: {
         type: Sequelize.INTEGER,
-        allowNull: true,
+      },
+      position: {
+        type: Sequelize.STRING,
       },
       strongFoot: {
         type: Sequelize.STRING,
-        allowNull: true,
       },
       picture: {
         type: Sequelize.STRING,
         allowNull: true,
       },
       createdAt: {
-        type: Sequelize.DATEONLY,
         allowNull: false,
         defaultValue: new Date(),
+        type: Sequelize.DATEONLY,
       },
       updatedAt: {
-        type: Sequelize.DATEONLY,
         allowNull: false,
         defaultValue: new Date(),
+        type: Sequelize.DATEONLY,
       },
-      client_id: {
+      formation_center_id: {
         type: Sequelize.DataTypes.INTEGER,
-        references: { model: { tableName: "Clients" }, key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
-      scout_id: {
-        type: Sequelize.DataTypes.INTEGER,
-        references: { model: { tableName: "Scouts" }, key: "id" },
+        reference: { models: { tableName: "FormationCenters" }, key: "id" },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
       club_id: {
         type: Sequelize.DataTypes.INTEGER,
-        references: { model: { tableName: "Clubs" }, key: "id" },
+        reference: { models: { tableName: "Clubs" }, key: "id" },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
     });
   },
-
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable("Players");
   },

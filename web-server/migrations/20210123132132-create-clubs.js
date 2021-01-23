@@ -1,8 +1,7 @@
 "use strict";
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Criterias", {
+    await queryInterface.createTable("Clubs", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,38 +9,40 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       name: {
-        allowNull: false,
         type: Sequelize.STRING,
       },
-      groupe: {
+      address: {
         type: Sequelize.STRING,
-        allowNull: true,
       },
-      score: {
+      email: {
+        type: Sequelize.STRING,
+      },
+      telephone: {
         type: Sequelize.INTEGER,
+      },
+      picture: {
+        type: Sequelize.STRING,
         allowNull: true,
-        defaultValue: 1,
       },
       createdAt: {
-        type: Sequelize.DATEONLY,
         allowNull: false,
         defaultValue: new Date(),
+        type: Sequelize.DATEONLY,
       },
       updatedAt: {
-        type: Sequelize.DATEONLY,
         allowNull: false,
         defaultValue: new Date(),
+        type: Sequelize.DATEONLY,
       },
-      client_id: {
+      formation_center_id: {
         type: Sequelize.DataTypes.INTEGER,
-        references: { model: { tableName: "Clients" }, key: "id" },
+        reference: { models: { tableName: "FormationCenters" }, key: "id" },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
     });
   },
-
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Criterias");
+    await queryInterface.dropTable("Clubs");
   },
 };
