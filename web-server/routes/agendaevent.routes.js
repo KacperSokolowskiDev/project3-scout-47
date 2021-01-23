@@ -2,22 +2,22 @@ const express = require("express");
 const router = express.Router();
 const agendaEventController = require("../controllers/agendaevent.controller");
 
-// Get all criterias
+// Get all agenda events
 router.get("/", agendaEventController.index);
 
-// Get criteria by id
+// Get agenda event by id
 router.get("/:id", agendaEventController.show);
 
-// Get criteria by groupe
-router.get("/byScout", agendaEventController.showByScout);
+// Get agenda events for a user
+router.get("/byUser", agendaEventController.showByUser);
 
-// Post criteria
+// Post agenda events
 router.post("/", agendaEventController.create);
 
-// Update criteria by id
+// Update an agenda events
 router.put("/:id", agendaEventController.update);
 
-// Delete criteria by id
+// Delete an agenda events
 router.delete("/:id", agendaEventController.destroy);
 
 module.exports = router;

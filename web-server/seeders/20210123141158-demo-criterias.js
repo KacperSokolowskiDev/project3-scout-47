@@ -6,28 +6,40 @@ module.exports = {
       "Criterias",
       [
         {
-          id: 8,
           name: "Vitesse",
           groupe: "Physique",
-          score: 5,
+          score: 2,
+          formation_center_id: 1,
         },
         {
-          id: 10,
           name: "Endurance",
           groupe: "Physique",
-          score: 5,
+          score: 2,
+          formation_center_id: 1,
         },
         {
-          id: 12,
           name: "Dribble",
           groupe: "Technique",
-          score: 5,
+          score: 2,
+          formation_center_id: 2,
         },
         {
-          id: 14,
           name: "Motivation",
           groupe: "Psychologique",
-          score: 1,
+          score: 2,
+          formation_center_id: 2,
+        },
+        {
+          name: "Dribble",
+          groupe: "Psychologique",
+          score: 2,
+          formation_center_id: 3,
+        },
+        {
+          name: "Sprint",
+          groupe: "Psychologique",
+          score: 2,
+          formation_center_id: 3,
         },
       ],
       {}

@@ -1,23 +1,22 @@
-("use strict");
+"use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Evaluation extends Model {
+  class Evaluations extends Model {
     static associate(models) {
-      models.Client.hasMany(Evaluation, { foreignKey: "client_id" });
-      models.Scout.hasMany(Evaluation, { foreignKey: "scout_id" });
-      models.Player.hasMany(Evaluation, { foreignKey: "player_id" });
-      models.Criterias.hasMany(Evaluation, { foreignKey: "criteria_id" });
+      models.Users.hasMany(Evaluations, { foreignKey: "user_id" });
+      models.Criterias.hasMany(Evaluations, { foreignKey: "criteria_id" });
+      models.Players.hasMany(Evaluations, { foreignKey: "player_id" });
     }
   }
-  Evaluation.init(
+  Evaluations.init(
     {
-      evaluationDate: DataTypes.DATEONLY,
-      value: DataTypes.INTEGER,
+      score: DataTypes.INTEGER,
+      date: DataTypes.DATE,
     },
     {
       sequelize,
-      modelName: "Evaluation",
+      modelName: "Evaluations",
     }
   );
-  return Evaluation;
+  return Evaluations;
 };

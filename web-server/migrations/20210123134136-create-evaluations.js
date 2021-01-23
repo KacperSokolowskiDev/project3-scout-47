@@ -1,5 +1,4 @@
 "use strict";
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("Evaluations", {
@@ -9,63 +8,43 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      score: {
+        type: Sequelize.INTEGER,
+      },
+      date: {
+        type: Sequelize.DATE,
+      },
       createdAt: {
-        type: Sequelize.DATEONLY,
         allowNull: false,
         defaultValue: new Date(),
+        type: Sequelize.DATEONLY,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATEONLY,
         defaultValue: new Date(),
-      },
-      evaluationDate: {
-        allowNull: false,
         type: Sequelize.DATEONLY,
-        defaultValue: new Date(),
       },
-      value: {
-        allowNull: true,
-        type: Sequelize.INTEGER,
-        defaultValue: null,
-      },
-      client_id: {
+      criteria_id: {
         type: Sequelize.DataTypes.INTEGER,
-        references: { model: { tableName: "Clients" }, key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
-      scout_id: {
-        type: Sequelize.DataTypes.INTEGER,
-        references: { model: { tableName: "Scouts" }, key: "id" },
+        reference: { models: { tableName: "Criterias" }, key: "id" },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
       player_id: {
         type: Sequelize.DataTypes.INTEGER,
-        references: { model: { tableName: "Players" }, key: "id" },
+        reference: { models: { tableName: "Players" }, key: "id" },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
-      criteria_id: {
+      user_id: {
         type: Sequelize.DataTypes.INTEGER,
-        references: { model: { tableName: "Criterias" }, key: "id" },
+        reference: { models: { tableName: "Users" }, key: "id" },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
     });
   },
-
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable("Evaluations");
   },
 };
-
-// {
-//   "id": 5,
-//   "criteria_id":5,
-//   "value":8,
-//   "createdAt": "2021-01-19",
-//   "updatedAt": "2021-01-19",
-//   "evaluationDate": "2021-01-19"
-// }
