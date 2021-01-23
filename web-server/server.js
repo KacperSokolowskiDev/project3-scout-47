@@ -8,6 +8,9 @@ const AdminBro = require("admin-bro");
 const AdminBroExpress = require("@admin-bro/express");
 const AdminBroSequelize = require("@admin-bro/sequelize");
 
+//const logo_scout47 = require("./logo_scout47");
+//import logo from "./assets/logo_scout47.png";
+
 app.use(express.json());
 app.use(cors());
 
@@ -17,6 +20,12 @@ const db = require("./models");
 const adminBro = new AdminBro({
   databases: [db],
   rootPath: "/admin",
+  branding: {
+    companyName: "Scout 47",
+    logo:
+      "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8Zm9vdGJhbGx8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
+  },
+  BrandingOption: {},
 });
 
 const router = AdminBroExpress.buildRouter(adminBro);

@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FormAddPlayer() {
+export default function FormAddPlayer({ fetchPlayers }) {
   const classes = useStyles();
   const initialState = {
     firstname: "",
@@ -61,6 +61,7 @@ export default function FormAddPlayer() {
         .post("http://localhost:5000/api/players", state)
         .then((res) => {
           console.log("player added", res.data);
+          fetchPlayers();
           handleClose();
         })
         .catch((error) => {

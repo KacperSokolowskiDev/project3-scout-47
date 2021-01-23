@@ -79,7 +79,7 @@ function Index() {
               autoComplete="off"
               className={classes.elementMT}
             />
-            <FormAddCritetia />
+            <FormAddCritetia fetchCriterias={fetchCriterias} />
             <Tooltip title="Filter" aria-label="filter">
               <Fab color="secondary" className={classes.buttons}>
                 <FilterListIcon />

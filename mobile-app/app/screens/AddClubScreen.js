@@ -15,7 +15,7 @@ function AddClubScreen({ navigation }) {
       name: club,
     };
     axios
-      .post("http://192.168.0.103:5000/api/clubs", newClub)
+      .post("http://192.168.50.74:5000/api/clubs", newClub)
       .then((res) => {
         console.log(res.data);
       })
