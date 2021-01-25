@@ -15,7 +15,7 @@ module.exports = {
       groupe: {
         type: Sequelize.STRING,
       },
-      score: {
+      maxScore: {
         type: Sequelize.INTEGER,
       },
       createdAt: {

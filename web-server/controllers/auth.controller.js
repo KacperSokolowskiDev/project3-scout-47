@@ -72,17 +72,14 @@ const isAuthenticated = async (req, res, next) => {
   // si correcte, on va décoder les infos user + privileges
   // append user+privilege a la req en cours
 
-  console.log("hearders", req.headers);
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
 
-  console.log(token);
   try {
     if (!token) {
       throw new Error("Missing Token!!!!");
     }
     let { user } = await jwt.verify(token, secret);
-    console.log(user);
     req.user = { ...user };
     return next();
   } catch (error) {

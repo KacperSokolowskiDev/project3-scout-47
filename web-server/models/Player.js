@@ -1,9 +1,16 @@
 "use strict";
 
-const { Model, Sequelize } = require("sequelize");
+const { Model, Evaluation, Sequelize } = require("sequelize");
+const { findAll } = require("./Criterion");
+//const Evaluation = require("./Evaluation");
 
 class Player extends Model {
-  static associate({ Evaluation, Criterion }) {}
+  static associate({ Evaluation, Criterion }) {
+    this.Evaluation = Evaluation;
+    this.belongsToManyCriterion = this.belongsToMany(Criterion, {
+      through: "Evaluation",
+    });
+  }
 
   static init(sequelize, DataTypes) {
     return super.init(
@@ -24,6 +31,21 @@ class Player extends Model {
       }
     );
   }
+
+  static findAllEvaluations = async (id) => {
+    console.log("Findall de model Player", id);
+    try {
+      console.log("try");
+      const result = await this.findAll({
+        include: { all: true },
+        where: { id },
+      });
+      console.log(result);
+      return result;
+    } catch (error) {
+      throw new Error(error.toString());
+    }
+  };
 }
 
 module.exports = Player;
