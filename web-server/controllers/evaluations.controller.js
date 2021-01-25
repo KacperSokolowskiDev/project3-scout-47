@@ -1,4 +1,4 @@
-const { Evaluation } = require("../models");
+const { Evaluation, Player } = require("../models");
 
 // Post an evaluation
 const create = async (req, res, next) => {
@@ -39,10 +39,26 @@ const show = async (req, res, next) => {
 
 // Get all evaluations
 const index = async (req, res, next) => {
+  console.log(req.params.PlayerId);
+  if (req.params.PlayerId) {
+    console.log("dans condition");
+    return next();
+  }
   console.log("here in index Evalu");
   try {
     const listEvaluation = await Evaluation.findAll();
     res.status(200).json(listEvaluation);
+  } catch (error) {
+    let message = "Evaluation can't be shown";
+    res.status(200).json(error);
+  }
+};
+
+const indexByPlayer = async (req, res, next) => {
+  console.log("here in index Evalu");
+  try {
+    const evaluations = await Player.findAllEvaluations(req.params.PlayerId);
+    res.status(200).json(evaluations);
   } catch (error) {
     let message = "Evaluation can't be shown";
     res.status(200).json(error);
@@ -79,6 +95,7 @@ module.exports = {
   createMore,
   show,
   index,
+  indexByPlayer,
   update,
   destroy,
 };

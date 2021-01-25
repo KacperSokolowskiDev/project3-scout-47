@@ -6,8 +6,6 @@ module.exports = {
       "Players",
       [
         {
-          formation_center_id: 1,
-          club_id: 1,
           firstname: "Lionel",
           lastname: "Messi",
           birthdate: "2005-01-01",
