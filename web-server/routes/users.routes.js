@@ -1,6 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const usersController = require("../controllers/users.controller");
+const authController = require("../controllers/auth.controller");
+
+// Create a new users
+router.post("/signup", authController.register);
+
+// Log in as a users
+router.post("/login", authController.authenticate);
 
 // Get all users
 router.get("/", usersController.index);
@@ -9,7 +16,7 @@ router.get("/", usersController.index);
 router.get("/:id", usersController.show);
 
 // Get users by roles
-router.get("/search/roles", usersController.indexUsersByRole);
+//router.get("/search/roles", usersController.indexUsersByRole);
 
 // Post user
 router.post("/", usersController.create);

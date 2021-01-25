@@ -1,10 +1,10 @@
-const { Privileges } = require("../models");
+const { Privilege } = require("../models");
 
 // Post a Privileges in database
 const create = async (req, res, next) => {
   const data = { ...req.body };
   try {
-    const privilege = await Privileges.create(data);
+    const privilege = await Privilege.create(data);
     res.status(200).json(privilege);
   } catch (error) {
     let message = "Privilege can't be created";
@@ -16,7 +16,7 @@ const create = async (req, res, next) => {
 const show = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const privilege = await Privileges.findOne({ where: { id } });
+    const privilege = await Privilege.findOne({ where: { id } });
     res.status(200).json(privilege);
   } catch (error) {
     let message = "Privilege (by id) can't be shown";
@@ -27,7 +27,7 @@ const show = async (req, res, next) => {
 // Get all privilege from Database
 const index = async (req, res, next) => {
   try {
-    const listPrivileges = await Privileges.findAll();
+    const listPrivileges = await Privilege.findAll();
     res.status(200).json(listPrivileges);
   } catch (error) {
     let message = "List privileges can't be shown";
@@ -41,7 +41,7 @@ const update = async (req, res, next) => {
   const { id } = req.params;
   const data = { ...req.body };
   try {
-    let privilege = await Privileges.update(data, { where: { id } });
+    let privilege = await Privilege.update(data, { where: { id } });
     res.status(200).json(privilege);
   } catch (error) {
     let message = "Privilege can't be updated";
@@ -53,7 +53,7 @@ const update = async (req, res, next) => {
 const destroy = async (req, res, next) => {
   const { id } = req.params;
   try {
-    let privilege = await Privileges.destroy({ where: { id } });
+    let privilege = await Privilege.destroy({ where: { id } });
     res.status(200).json(`Privilege with id : ${id} was deleted !`);
   } catch (error) {
     let message = "Privilege can't be deleted";
