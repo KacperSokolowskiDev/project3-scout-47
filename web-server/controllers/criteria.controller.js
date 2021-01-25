@@ -1,47 +1,48 @@
 const { Sequelize } = require("../config");
-const { Criterias } = require("../models");
+const { Criterion } = require("../models");
 
 //Post criteria in database
 const create = async (req, res, next) => {
   const data = { ...req.body };
   try {
-    const criteria = await Criterias.create(data);
-    res.status(200).json(criteria);
+    const criterion = await Criterion.create(data);
+    res.status(200).json(criterion);
   } catch (error) {
-    let message = "criteria can't be created";
+    let message = "criterion can't be created";
     res.status(500).json(message);
   }
 };
 
-// Get criteria by id from database
+// Get criterion by id from database
 const show = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const criteria = await Criterias.findOne({ where: { id } });
-    res.status(200).json(criteria);
+    const criterion = await Criterion.findOne({ where: { id } });
+    res.status(200).json(criterion);
   } catch (error) {
-    let message = "criteria (by id) can't be shown";
+    let message = "criterion (by id) can't be shown";
     res.status(500).json(message);
   }
 };
 
-// Get criterias by group
+// Get all criterias by a specific group
 const showByGroup = async (req, res, next) => {
   try {
-    const criterias = await Criterias.findAll({
+    const criterias = await Criterion.findAll({
       where: Sequelize.or({ groupe: req.body.groupe }),
     });
     res.status(200).json(criterias);
   } catch (error) {
-    let message = "Criterias by groupe can't be shown";
+    let message = "Criteria by groupe can't be shown";
     res.status(500).json(message);
   }
 };
 
-// Get criterias from Database
+// Get all criterias from Database
 const index = async (req, res, next) => {
+  console.log("here in index criteria");
   try {
-    const listCriteria = await Criterias.findAll();
+    const listCriteria = await Criterion.findAll();
     res.status(200).json(listCriteria);
   } catch (error) {
     let message = "criteria can't be shown";
@@ -50,27 +51,27 @@ const index = async (req, res, next) => {
   }
 };
 
-//Update criteria from database
+//Update criterion from database
 const update = async (req, res, next) => {
   const { id } = req.params;
   const data = { ...req.body };
   try {
-    let criteria = await Criterias.update(data, { where: { id } });
-    res.status(200).json(criteria);
+    let criterion = await Criterion.update(data, { where: { id } });
+    res.status(200).json(criterion);
   } catch (error) {
-    let message = "criteria can't be updated";
+    let message = "Criterion can't be updated";
     res.status(500).json(message);
   }
 };
 
-//Destroy criteria from database
+//Destroy criterion from database
 const destroy = async (req, res, next) => {
   const { id } = req.params;
   try {
-    let criteria = await Criterias.destroy({ where: { id } });
+    let criterion = await Criterion.destroy({ where: { id } });
     res.status(200).json(`criteria with id : ${id} was deleted !`);
   } catch (error) {
-    let message = "criteria can't DIE";
+    let message = "Criterion can't deleted";
     res.status(500).json(message);
   }
 };

@@ -1,11 +1,11 @@
 const { Sequelize } = require("../config");
-const { Players } = require("../models");
+const { Player } = require("../models");
 
 // Post player in database
 const create = async (req, res, next) => {
   const data = { ...req.body };
   try {
-    const player = await Players.create(data);
+    const player = await Player.create(data);
     res.status(200).json(player);
   } catch (error) {
     let message = "Player can't be created";
@@ -17,7 +17,7 @@ const create = async (req, res, next) => {
 const show = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const player = await Players.findOne({ where: { id } });
+    const player = await Player.findOne({ where: { id } });
     res.status(200).json(player);
   } catch (error) {
     let message = "Player (by id) can't be shown";
@@ -28,7 +28,7 @@ const show = async (req, res, next) => {
 // Get all players from Database
 const index = async (req, res, next) => {
   try {
-    const listPlayer = await Players.findAll();
+    const listPlayer = await Player.findAll();
     res.status(200).json(listPlayer);
   } catch (error) {
     let message = "Players can't be shown";
@@ -42,7 +42,7 @@ const indexInfinite = async (req, res, next) => {
   console.log(req.query);
 
   try {
-    const listPlayer = await Players.findAll({
+    const listPlayer = await Player.findAll({
       limit: 5,
       offset: parseInt(req.query.offset),
     });
@@ -57,7 +57,7 @@ const indexInfinite = async (req, res, next) => {
 // Get players from a specific data
 const searchSpecificPlayer = async (req, res, next) => {
   try {
-    const player = await Players.findAll({
+    const player = await Player.findAll({
       limit: 3,
       where: Sequelize.or(
         { firstname: req.body.firstname },

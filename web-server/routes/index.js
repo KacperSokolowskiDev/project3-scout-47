@@ -1,24 +1,20 @@
 const express = require("express");
 const router = express.Router();
 
-const rolesRoutes = require("./roles.routes");
-const formationcenterRoutes = require("./formationcenter.routes");
-const usersRoutes = require("./users.routes");
-const playersRoutes = require("./players.routes");
-const clubsRoutes = require("./clubs.routes");
-const criteriasRoutes = require("./criterias.routes");
+//const AgendaEventsRoutes = require("./agendaevent.routes");
+//const clubsRoutes = require("./clubs.routes");
+const criteriasRoutes = require("./criteria.routes");
 const evaluationsRoutes = require("./evaluations.routes");
-const AgendaEventsRoutes = require("./agendaevent.routes");
+const playersRoutes = require("./players.routes");
 const PrivilegesRoutes = require("./privileges.routes");
+const usersRoutes = require("./users.routes");
 
-router.use("/roles", rolesRoutes);
-router.use("/formationcenters", formationcenterRoutes);
-router.use("/users", usersRoutes);
-router.use("/clubs", clubsRoutes);
-router.use("/criterias", criteriasRoutes);
-router.use("/players", playersRoutes);
+// router.use("/agenda/events", AgendaEventsRoutes);
+// router.use("/clubs", clubsRoutes);
+router.use("/criteria", criteriasRoutes);
 router.use("/evaluations", evaluationsRoutes);
-router.use("/agenda/events", AgendaEventsRoutes);
+router.use("/players", playersRoutes);
 router.use("/privileges", PrivilegesRoutes);
+router.use("/users", usersRoutes);
 
 module.exports = router;

@@ -1,11 +1,12 @@
 const { Sequelize } = require("../config");
-const { Roles, Users } = require("../models");
+const { Privilege, User } = require("../models");
 
 //Post user in database
 const create = async (req, res, next) => {
   const data = { ...req.body };
+  console.log("data in create user", data);
   try {
-    const user = await Users.create(data);
+    const user = await User.create({ ...data }, { include: [Privilege] });
     res.status(200).json(user);
   } catch (error) {
     let message = "User can't be created";
@@ -15,12 +16,11 @@ const create = async (req, res, next) => {
 
 //Get user by id
 const show = async (req, res, next) => {
+  console.log("dans user by id");
   const { id } = req.params;
+  console.log("idddd ", id);
   try {
-    const user = await Users.findOne(
-      { include: Privileges },
-      { where: { id } }
-    );
+    const user = await User.findOne({ include: Privilege, where: { id } });
     res.status(200).json(user);
   } catch (error) {
     let message = "User (by id) can't be shown";
@@ -28,26 +28,26 @@ const show = async (req, res, next) => {
   }
 };
 
-const indexUsersByRole = async (req, res, next) => {
-  console.log("req.body", req.body);
-  try {
-    const users = await Users.findAll(
-      { include: Roles },
-      {
-        where: { role_id },
-      }
-    );
-    res.status(200).json(users);
-  } catch (error) {
-    let message = "Users (by role) can't be shown";
-    res.status(500).json(error);
-  }
-};
+// const indexUsersByRole = async (req, res, next) => {
+//   console.log("req.body", req.body);
+//   try {
+//     const users = await User.findAll(
+//       { include: Roles },
+//       {
+//         where: { role_id },
+//       }
+//     );
+//     res.status(200).json(users);
+//   } catch (error) {
+//     let message = "Users (by role) can't be shown";
+//     res.status(500).json(error);
+//   }
+// };
 
 // Get Users from Database
 const index = async (req, res, next) => {
   try {
-    const listUsers = await Users.findAll();
+    const listUsers = await User.findAll();
     res.status(200).json(listUsers);
   } catch (error) {
     let message = "Users can't be shown";
@@ -61,7 +61,7 @@ const update = async (req, res, next) => {
   const { id } = req.params;
   const data = { ...req.body };
   try {
-    let user = await Users.update(data, { where: { id } });
+    let user = await User.update(data, { where: { id } });
     res.status(200).json(user);
   } catch (error) {
     let message = "User can't be updated";
@@ -73,7 +73,7 @@ const update = async (req, res, next) => {
 const destroy = async (req, res, next) => {
   const { id } = req.params;
   try {
-    let user = await Users.destroy({ where: { id } });
+    let user = await User.destroy({ where: { id } });
     res.status(200).json(`User with id : ${id} was deleted !`);
   } catch (error) {
     let message = "User can't deleted";
@@ -84,7 +84,7 @@ const destroy = async (req, res, next) => {
 module.exports = {
   create,
   show,
-  indexUsersByRole,
+  //indexUsersByRole,
   index,
   update,
   destroy,
