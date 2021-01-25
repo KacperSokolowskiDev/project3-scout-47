@@ -27,6 +27,7 @@ const show = async (req, res, next) => {
 
 // Get all players from Database
 const index = async (req, res, next) => {
+  console.log("dans players index");
   try {
     const listPlayer = await Player.findAll();
     res.status(200).json(listPlayer);

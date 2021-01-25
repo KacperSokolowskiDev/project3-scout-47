@@ -1,6 +1,8 @@
 const { Privilege, User } = require("../models");
 const randomBytes = require("randombytes");
 const argon2 = require("argon2");
+const jwt = require("jsonwebtoken");
+const secret = process.env.JWT_SECRET;
 
 const register = async (req, res, next) => {
   console.log("je suis dans register de users");
@@ -33,6 +35,30 @@ const register = async (req, res, next) => {
 const authenticate = async (req, res, next) => {
   // login
   // recupérer le email + password
+  console.log("das login");
+
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({
+      include: Privilege,
+      where: { email },
+    });
+    console.log(user);
+    if (!user) {
+      throw new Error("User not found");
+    }
+    const isPasswordCorrect = await argon2.verify(user.password, password);
+    if (!isPasswordCorrect) {
+      throw new Error("Password incorrect");
+    }
+
+    const payload = { user };
+    const token = jwt.sign(payload, secret, { expiresIn: "6h" });
+
+    res.status(200).json({ token });
+  } catch (error) {
+    res.status(401).json(error.toString());
+  }
   // chercher le user qui match avec le mail
   // decrypté le mdp associé
   // le comparer avec le mdp soumis
@@ -45,6 +71,23 @@ const isAuthenticated = async (req, res, next) => {
   // verifié le token
   // si correcte, on va décoder les infos user + privileges
   // append user+privilege a la req en cours
+
+  console.log("hearders", req.headers);
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  console.log(token);
+  try {
+    if (!token) {
+      throw new Error("Missing Token!!!!");
+    }
+    let { user } = await jwt.verify(token, secret);
+    console.log(user);
+    req.user = { ...user };
+    return next();
+  } catch (error) {
+    res.status(401).json(error.toString());
+  }
 };
 
 module.exports = { register, authenticate, isAuthenticated };
