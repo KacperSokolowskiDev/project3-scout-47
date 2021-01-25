@@ -1,5 +1,5 @@
 const { Sequelize } = require("../config");
-const { Users } = require("../models");
+const { Roles, Users } = require("../models");
 
 //Post user in database
 const create = async (req, res, next) => {
@@ -17,23 +17,30 @@ const create = async (req, res, next) => {
 const show = async (req, res, next) => {
   const { id } = req.params;
   try {
-    const user = await Users.findOne({ where: { id } });
+    const user = await Users.findOne(
+      { include: Privileges },
+      { where: { id } }
+    );
     res.status(200).json(user);
   } catch (error) {
     let message = "User (by id) can't be shown";
-    res.status(500).json(message);
+    res.status(500).json(error.toString());
   }
 };
 
-const showUserByRole = async (req, res, next) => {
+const indexUsersByRole = async (req, res, next) => {
+  console.log("req.body", req.body);
   try {
-    const users = await Users.findAll({
-      where: Sequelize.or({ role_id: req.body.role_id }),
-    });
+    const users = await Users.findAll(
+      { include: Roles },
+      {
+        where: { role_id },
+      }
+    );
     res.status(200).json(users);
   } catch (error) {
     let message = "Users (by role) can't be shown";
-    res.status(500).json(message);
+    res.status(500).json(error);
   }
 };
 
@@ -77,7 +84,7 @@ const destroy = async (req, res, next) => {
 module.exports = {
   create,
   show,
-  showUserByRole,
+  indexUsersByRole,
   index,
   update,
   destroy,
