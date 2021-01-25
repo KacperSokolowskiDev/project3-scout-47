@@ -75,7 +75,7 @@ function Index() {
               autoComplete="off"
               className={classes.elementMT}
             />
-            <FormAddPlayer />
+            <FormAddPlayer fetchPlayers={fetchPlayers} />
             <Tooltip title="Filter" aria-label="filter">
               <Fab color="secondary" className={classes.buttons}>
                 <FilterListIcon />

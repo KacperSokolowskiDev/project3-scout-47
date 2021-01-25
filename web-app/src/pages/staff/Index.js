@@ -52,11 +52,6 @@ const Index = () => {
     fetchStaff();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("useEffect --- Bool");
-  //   fetchStaff();
-  // }, [])
-
   return (
     <div className="staff-page">
       <Navbar />
@@ -73,7 +68,7 @@ const Index = () => {
               variant="filled"
               className={classes.elementMT}
             />
-            <FormAddStaff />
+            <FormAddStaff fetchStaff={fetchStaff} />
             <Tooltip title="Filter" aria-label="filter">
               <Fab color="secondary" className={classes.buttons}>
                 <FilterListIcon />

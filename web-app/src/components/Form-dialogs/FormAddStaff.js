@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FormAddStaff() {
+export default function FormAddStaff({ fetchStaff }) {
   const classes = useStyles();
   const initialState = {
     firstname: "",
@@ -63,6 +63,7 @@ export default function FormAddStaff() {
         .post("http://localhost:5000/api/scouts", state)
         .then((res) => {
           console.log("player added", res.data);
+          fetchStaff();
           handleClose();
         })
         .catch((error) => {

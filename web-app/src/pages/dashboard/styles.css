@@ -27,3 +27,7 @@
 .dashboard-test {
   color: white;
 }
+
+.charts {
+  display: flex;
+}
