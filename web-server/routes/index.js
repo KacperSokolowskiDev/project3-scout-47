@@ -9,6 +9,7 @@ const clubsRoutes = require("./clubs.routes");
 const criteriasRoutes = require("./criterias.routes");
 const evaluationsRoutes = require("./evaluations.routes");
 const AgendaEventsRoutes = require("./agendaevent.routes");
+const PrivilegesRoutes = require("./privileges.routes");
 
 router.use("/roles", rolesRoutes);
 router.use("/formationcenters", formationcenterRoutes);
@@ -18,5 +19,6 @@ router.use("/criterias", criteriasRoutes);
 router.use("/players", playersRoutes);
 router.use("/evaluations", evaluationsRoutes);
 router.use("/agenda/events", AgendaEventsRoutes);
+router.use("/privileges", PrivilegesRoutes);
 
 module.exports = router;

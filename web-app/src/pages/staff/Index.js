@@ -36,10 +36,13 @@ const Index = () => {
   const [download, setDownload] = useState(false);
 
   const fetchStaff = async () => {
+    const staff = { id: 2 };
+    console.log(staff);
     await axios
-      .get("http://localhost:5000/api/scouts")
+      .get("http://localhost:5000/api/users/search/roles", staff)
       .then((res) => {
         let result = res.data;
+        console.log("eee", result);
         setListStaff(result);
         setDownload(true);
       })

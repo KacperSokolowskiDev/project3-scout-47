@@ -9,7 +9,7 @@ router.get("/", usersController.index);
 router.get("/:id", usersController.show);
 
 // Get users by roles
-router.get("/search/roles", usersController.showUserByRole);
+router.get("/search/roles", usersController.indexUsersByRole);
 
 // Post user
 router.post("/", usersController.create);
