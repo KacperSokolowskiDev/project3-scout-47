@@ -1,4 +1,5 @@
 const express = require("express");
+const { isAuthenticated } = require("../controllers/auth.controller");
 const router = express.Router();
 
 //const AgendaEventsRoutes = require("./agendaevent.routes");
@@ -13,7 +14,7 @@ const usersRoutes = require("./users.routes");
 // router.use("/clubs", clubsRoutes);
 router.use("/criteria", criteriasRoutes);
 router.use("/evaluations", evaluationsRoutes);
-router.use("/players", playersRoutes);
+router.use("/players", isAuthenticated, playersRoutes);
 router.use("/privileges", PrivilegesRoutes);
 router.use("/users", usersRoutes);
 
