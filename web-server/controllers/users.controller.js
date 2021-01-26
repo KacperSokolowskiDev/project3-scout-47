@@ -16,9 +16,7 @@ const create = async (req, res, next) => {
 
 //Get user by id
 const show = async (req, res, next) => {
-  console.log("dans user by id");
   const { id } = req.params;
-  console.log("idddd ", id);
   try {
     const user = await User.findOne({ include: Privilege, where: { id } });
     res.status(200).json(user);

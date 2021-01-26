@@ -27,9 +27,10 @@ const show = async (req, res, next) => {
 
 // Get all players from Database
 const index = async (req, res, next) => {
-  console.log("dans players index");
+  console.log("Dans index Players");
+  console.log(req.user);
   try {
-    const listPlayer = await Player.findAll();
+    const listPlayer = await Player.findAllWithRestriction(req.user.Privilege);
     res.status(200).json(listPlayer);
   } catch (error) {
     let message = "Players can't be shown";
