@@ -1,4 +1,4 @@
-const { Privilege } = require("../models");
+const { Privilege, User } = require("../models");
 
 // Post a Privileges in database
 const create = async (req, res, next) => {
@@ -26,6 +26,10 @@ const show = async (req, res, next) => {
 
 // Get all privilege from Database
 const index = async (req, res, next) => {
+  console.log("dans l'index", req.params.role);
+  if (req.params.role) {
+    return next();
+  }
   try {
     const listPrivileges = await Privilege.findAll();
     res.status(200).json(listPrivileges);
@@ -33,6 +37,18 @@ const index = async (req, res, next) => {
     let message = "List privileges can't be shown";
     res.status(500).json(message);
     console.error("Unable to fetch:", error);
+  }
+};
+
+// Get all user with a specific role
+const indexByUsersRole = async (req, res, next) => {
+  console.log("dans indexByUserRole");
+  try {
+    const users = await User.findAllScouts(req.params.Privilege.role);
+    res.status(200).json(users);
+  } catch (error) {
+    let message = "Users (by role) can't be shown";
+    res.status(500).json(error);
   }
 };
 
@@ -65,6 +81,7 @@ module.exports = {
   create,
   show,
   index,
+  indexByUsersRole,
   update,
   destroy,
 };

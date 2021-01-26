@@ -3,7 +3,11 @@ const router = express.Router();
 const privilegesController = require("../controllers/privileges.controller");
 
 // Get all roles
-router.get("/", privilegesController.index);
+router.get(
+  "/",
+  privilegesController.index,
+  privilegesController.indexByUsersRole
+);
 
 // Get role by id
 router.get("/:id", privilegesController.show);

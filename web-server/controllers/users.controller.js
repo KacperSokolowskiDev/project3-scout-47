@@ -26,22 +26,6 @@ const show = async (req, res, next) => {
   }
 };
 
-// const indexUsersByRole = async (req, res, next) => {
-//   console.log("req.body", req.body);
-//   try {
-//     const users = await User.findAll(
-//       { include: Roles },
-//       {
-//         where: { role_id },
-//       }
-//     );
-//     res.status(200).json(users);
-//   } catch (error) {
-//     let message = "Users (by role) can't be shown";
-//     res.status(500).json(error);
-//   }
-// };
-
 // Get Users from Database
 const index = async (req, res, next) => {
   try {
@@ -82,7 +66,6 @@ const destroy = async (req, res, next) => {
 module.exports = {
   create,
   show,
-  //indexUsersByRole,
   index,
   update,
   destroy,

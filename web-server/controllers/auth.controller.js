@@ -35,7 +35,7 @@ const register = async (req, res, next) => {
 const authenticate = async (req, res, next) => {
   // login
   // recupérer le email + password
-  console.log("das login");
+  console.log("dans login");
 
   const { email, password } = req.body;
   try {
@@ -54,8 +54,9 @@ const authenticate = async (req, res, next) => {
 
     const payload = { user };
     const token = jwt.sign(payload, secret, { expiresIn: "6h" });
-
-    res.status(200).json({ token });
+    req.headers.authorization = token;
+    console.log("req heard dans login", req.headers);
+    res.status(200).json({ token, user });
   } catch (error) {
     res.status(401).json(error.toString());
   }
@@ -71,16 +72,19 @@ const isAuthenticated = async (req, res, next) => {
   // verifié le token
   // si correcte, on va décoder les infos user + privileges
   // append user+privilege a la req en cours
-
+  console.log("req header ", req.headers);
   const authHeader = req.headers["authorization"];
+  console.log("authHeader", authHeader);
   const token = authHeader && authHeader.split(" ")[1];
-
+  console.log("dans middleware isauthticate");
   try {
+    console.log("token dans midle", token);
     if (!token) {
       throw new Error("Missing Token!!!!");
     }
     let { user } = await jwt.verify(token, secret);
     req.user = { ...user };
+    console.log("req.user dans middlewate", req.user);
     return next();
   } catch (error) {
     res.status(401).json(error.toString());

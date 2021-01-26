@@ -39,7 +39,7 @@ const Index = () => {
     const staff = { id: 2 };
     console.log(staff);
     await axios
-      .get("http://localhost:5000/api/users/search/roles", staff)
+      .get("http://localhost:5000/api/users/", staff)
       .then((res) => {
         let result = res.data;
         console.log("eee", result);

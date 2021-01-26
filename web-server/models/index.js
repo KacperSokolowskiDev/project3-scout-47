@@ -15,6 +15,7 @@ if (config.use_env_variable) {
   );
 }
 
+// Require the differents models
 const Criterion = require("./Criterion");
 const Evaluation = require("./Evaluation");
 const Player = require("./Player");

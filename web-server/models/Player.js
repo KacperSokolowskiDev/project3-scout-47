@@ -1,8 +1,6 @@
 "use strict";
 
 const { Model, Evaluation, Sequelize } = require("sequelize");
-const { Privilege } = require(".");
-const { findAll } = require("./Criterion");
 const { Op } = require("sequelize");
 //const Evaluation = require("./Evaluation");
 
@@ -51,7 +49,7 @@ class Player extends Model {
 
   static findAllWithRestriction = async (Privilege) => {
     console.log("dans findallwithRes", Privilege);
-
+    //console.log("Privielege trainging id", Privilege.TrainingId);
     try {
       if (Privilege.ageGrade[0] === "*") {
         return await this.findAll();
@@ -63,6 +61,7 @@ class Player extends Model {
           this.sequelize.fn("YEAR", this.sequelize.col("birthdate")),
           { [Op.in]: [...Privilege.ageGrade] }
         ),
+        //where: playerId.TraininId = Privileges.TrainingId
       });
       console.log(result);
       return result;
