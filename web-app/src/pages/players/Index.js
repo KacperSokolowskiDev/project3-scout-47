@@ -2,9 +2,10 @@ import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
 import PlayerCard from "../../components/PlayerCard/Index";
 import FormAddPlayer from "../../components/Form-dialogs/FormAddPlayer";
+import UserContext from "../../context/UserContext";
 
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 //Material UI
@@ -40,10 +41,13 @@ function Index() {
 
   const [listPlayer, setListPlayer] = useState([]);
   const [download, setDownload] = useState(false);
+  const userContext = useContext(UserContext);
 
   const fetchPlayers = async () => {
     await axios
-      .get("http://localhost:5000/api/players")
+      .get("http://localhost:5000/api/players", {
+        headers: { Authorization: `Bearer ${userContext.token}` },
+      })
       .then((res) => {
         let result = res.data;
         setListPlayer(result);

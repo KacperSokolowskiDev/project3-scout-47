@@ -42,7 +42,7 @@ function Index() {
 
   const fetchCriterias = async () => {
     await axios
-      .get("http://localhost:5000/api/criterias")
+      .get("http://localhost:5000/api/criteria")
       .then((res) => {
         let result = res.data;
         setListCriterias(result);

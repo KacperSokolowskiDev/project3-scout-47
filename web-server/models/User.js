@@ -21,6 +21,20 @@ class User extends Model {
       }
     );
   }
+
+  static findAllScouts = async (role) => {
+    console.log("FIndAllScout", role);
+    try {
+      console.log("try");
+      const result = await this.findAll({
+        include: { all: true },
+        where: { role },
+      });
+      return result;
+    } catch (error) {
+      throw new Error(error.toString());
+    }
+  };
 }
 
 module.exports = User;

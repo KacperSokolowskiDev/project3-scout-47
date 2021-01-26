@@ -70,7 +70,7 @@ export default function FormAddCriteria({ fetchCriterias }) {
     try {
       console.log(name, groupe, "dans le try");
       await axios
-        .post("http://localhost:5000/api/criterias", state)
+        .post("http://localhost:5000/api/criteria", state)
         .then((res) => {
           console.log("criteria posted", res.data);
           fetchCriterias();
