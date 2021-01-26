@@ -1,22 +1,31 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity,StyleSheet} from 'react-native';
 import {Agenda} from 'react-native-calendars';
 import {Card, Avatar} from 'react-native-paper';
 import {LocaleConfig} from 'react-native-calendars';
 
 
+import ButtonModal from "../components/ButtonModal";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import Screen from "../components/Screen";
+import AppText from "../components/AppText";
 
+
+//local import
+
+import AddButton from "../components/addButton/index";
 
 LocaleConfig.locales['fr'] = {
     monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
     monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
     dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
     dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
-    today: 'Aujourd\'hui'
+    today: "Aujourd\'hui"
   };
   LocaleConfig.defaultLocale = 'fr';
 
-const timeToString = (time) => {
+const timeToString = (time: string) => {
     const date = new Date(time);
     return date.toISOString().split('T')[0];
 };
@@ -70,7 +79,7 @@ const Schedule: React.FC = () => {
             color="white"
             backgroundColor="#D2F6BD"
         }
-        if(item.type === "Staff"){
+        if(item.type === "staff"){
             label="S"
             color="white"
             backgroundColor="#F6F7D4"
@@ -96,15 +105,21 @@ const Schedule: React.FC = () => {
         );
       };
     return (
-    <View style={{flex: 1}} > 
+    <Screen style={{flex: 1}} > 
         <Agenda 
         items={items}
         loadItemsForMonth={loadItems}
         selected={'2021-01-25'}
         renderItem={renderItem}
         />
-    </View>
+        <AddButton >
+          <AppText 
+          style={{color: "#37DE9B"}}>Nouvel événement
+          </AppText>
+        </AddButton>
+    </Screen>
     );
 };
+
 
 export default Schedule;

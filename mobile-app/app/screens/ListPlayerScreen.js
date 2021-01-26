@@ -20,7 +20,7 @@ function ListPlayerScreen({ navigation }) {
 
   const fetchListPlayer = async () => {
     const value = { offset: offset };
-    url = `http://192.168.0.103:5000/api/players/infinite?offset=${offset}`;
+    url = `http://192.168.50.242:5000/api/players/infinite?offset=${offset}`;
     try {
       const response = await axios.get(url, { params: { value } });
       const listPlayersUpdated = response.data;
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   },
   filtreCategory: {
     backgroundColor: defaultStyles.colors.primary,
-    color: "white",
+    color: "blue",
     fontSize: 25,
     height: 35,
     margin: 5,
