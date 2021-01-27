@@ -15,7 +15,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
-
 const useStyles = makeStyles((theme) => ({
   buttons: {
     marginLeft: theme.spacing(2),
@@ -35,10 +34,8 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 200,
   },
 }));
-
 export default function FormAddCriteria({ fetchCriterias }) {
   const classes = useStyles();
-
   const initialState = {
     name: "",
     groupe: "",
@@ -47,7 +44,6 @@ export default function FormAddCriteria({ fetchCriterias }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { name, groupe } = state;
   const [open, setOpen] = useState(false);
-
   function reducer(state, action) {
     switch (action.type) {
       case "fill_input":
@@ -56,15 +52,12 @@ export default function FormAddCriteria({ fetchCriterias }) {
         return state;
     }
   }
-
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
   const submitCriteria = async (e) => {
     e.preventDefault();
     try {
@@ -83,7 +76,6 @@ export default function FormAddCriteria({ fetchCriterias }) {
       console.log("dans le error", error);
     }
   };
-
   return (
     <div>
       <Tooltip title="Add" aria-label="add" onClick={() => handleClickOpen()}>
@@ -126,10 +118,9 @@ export default function FormAddCriteria({ fetchCriterias }) {
                 dispatch({
                   type: "fill_input",
                   fieldName: "groupe",
-                  payload: e.currentTarget.value,
+                  payload: e.target.value,
                 })
               }
-              value={""}
             >
               <MenuItem value={"Physique"}>Physique</MenuItem>
               <MenuItem value={"Technique"}>Technique</MenuItem>
@@ -138,7 +129,6 @@ export default function FormAddCriteria({ fetchCriterias }) {
             </Select>
           </FormControl>
         </DialogContent>
-
         <DialogActions>
           <Button onClick={handleClose} color="white">
             Annuler

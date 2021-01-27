@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 function Index() {
   const classes = useStyles();
 
-  const [listPlayer, setListPlayer] = useState([]);
+  const [listPlayers, setlistPlayers] = useState([]);
   const [download, setDownload] = useState(false);
 
   const fetchPlayers = async () => {
@@ -46,9 +46,9 @@ function Index() {
       .get("http://localhost:5000/api/players")
       .then((res) => {
         let result = res.data;
-        setListPlayer(result);
+        setlistPlayers(result);
         setDownload(true);
-        console.log(listPlayer, download);
+        console.log(listPlayers, download);
       })
       .catch((error) => {
         console.log(error);
@@ -82,17 +82,15 @@ function Index() {
               </Fab>
             </Tooltip>
           </div>
-          <Link className="link-profile" to="/players/profile">
-            <div className="player-page-list">
-              {download ? (
-                listPlayer.map((data) => {
-                  return <PlayerCard playerInfo={data} />;
-                })
-              ) : (
-                <div>No player in database</div>
-              )}
-            </div>
-          </Link>
+          <div className="player-page-list">
+            {download ? (
+              listPlayers.map((data) => {
+                return <PlayerCard playerInfo={data} />;
+              })
+            ) : (
+              <div>No player in database</div>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -75,17 +75,15 @@ const Index = () => {
               </Fab>
             </Tooltip>
           </div>
-          <Link className="link-profile" to="/staffs/profile">
-            <div className="staff-page-list">
-              {download ? (
-                listStaff.map((data) => {
-                  return <StaffCard staffInfo={data} />;
-                })
-              ) : (
-                <div>No staff in database</div>
-              )}
-            </div>
-          </Link>
+          <div className="staff-page-list">
+            {download ? (
+              listStaff.map((data) => {
+                return <StaffCard staffInfo={data} />;
+              })
+            ) : (
+              <div>No staff in database</div>
+            )}
+          </div>
         </div>
       </div>
     </div>

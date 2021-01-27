@@ -20,8 +20,8 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
-          <Route path="/" exact component={Dashboard} />
-          <Route path="/login" exact component={LoginPage} />
+          <Route path="/" exact component={LoginPage} />
+          <Route path="/dashboard" exact component={Dashboard} />
           <Route path="/staff" exact component={Staff} />
           <Route path="/criteria" exact component={Criteria} />
           <Route path="/player" exact component={Player} />

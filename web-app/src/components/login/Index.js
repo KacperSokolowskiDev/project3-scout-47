@@ -25,13 +25,14 @@ const login = () => {
         <TextField
           color="secondary"
           id="standard-basic"
+          type="password"
           label="Password"
           autoComplete="off"
           required
         />
       </div>
       <div className="buttons">
-        <Link className="btnLogin" to="/">
+        <Link className="btnLogin" to="/dashboard">
           <Button variant="contained" color="secondary">
             Log In
           </Button>

@@ -1,7 +1,7 @@
 import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
-import StaffProfileCard from "../../components/StaffProfileCard/Index";
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import noPic from "../../assets/user.png";
 import "./styles.css";
@@ -10,6 +10,10 @@ const StaffProfilePage = () => {
   const [followedPlayers, setFollowedPlayers] = useState([]);
   const [download, setDownload] = useState(false);
 
+  const location = useLocation();
+  console.log(location);
+  console.log(location.state);
+
   const fetchPlayers = async () => {
     await axios
       .get("http://localhost:5000/api/players")
@@ -17,7 +21,6 @@ const StaffProfilePage = () => {
         let result = res.data;
         setFollowedPlayers(result);
         setDownload(true);
-        console.log(followedPlayers, download);
       })
       .catch((error) => {
         console.log(error);
@@ -38,11 +41,19 @@ const StaffProfilePage = () => {
             <div>
               <img
                 className="staff-profil-pic"
-                src={noPic}
+                src={location.state.picture}
                 alt="staffProfilPic"
               />
             </div>
-            <StaffProfileCard />
+            <div className="staff-profil-info">
+              <h1 className="staff-profil-name">
+                {location.state.firstname} {location.state.lastname}
+              </h1>
+              <h3 className="staff-profil-sub-title">{location.state.email}</h3>
+              <h3 className="staff-profil-sub-title">
+                {location.state.telephone}
+              </h3>
+            </div>
           </div>
           <div className="staff-player-list">
             {download ? (
