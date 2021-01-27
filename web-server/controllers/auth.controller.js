@@ -35,6 +35,7 @@ const authenticate = async (req, res, next) => {
   // login
   // recupérer le email + password
   console.log("dans login");
+  console.log("req", req.body);
   const { email, password } = req.body;
   try {
     const user = await User.findOne({
@@ -43,15 +44,18 @@ const authenticate = async (req, res, next) => {
     });
     console.log(user);
     if (!user) {
+      console.log("pas de user");
       throw new Error("User not found");
     }
     const isPasswordCorrect = await argon2.verify(user.password, password);
     if (!isPasswordCorrect) {
+      console.log("pas le mdp");
       throw new Error("Password incorrect");
     }
-
+    console.log("mdp + user OK");
     const payload = { user };
     const token = jwt.sign(payload, secret, { expiresIn: "6h" });
+    console.log("token", token);
     req.headers.authorization = token;
     console.log("req heard dans login", req.headers);
     res.status(200).json({ token, user });
