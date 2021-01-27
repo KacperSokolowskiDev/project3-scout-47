@@ -7,7 +7,7 @@ const authController = require("../controllers/auth.controller");
 router.post("/signup", authController.register);
 
 // Update a new users
-router.put("/signup", authController.register);
+//router.put("/signup", authController.register);
 
 // Log in as a users
 router.post("/login", authController.authenticate);

@@ -39,7 +39,8 @@ const Index = () => {
   };
 
   const changeRender = () => {
-    history.push("/");
+    // GO dashboard
+    history.push("/dashboard");
   };
 
   return (
