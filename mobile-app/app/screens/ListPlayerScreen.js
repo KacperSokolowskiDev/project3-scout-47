@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  AsyncStorage,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Constant from "expo-constants";
 import { AntDesign } from "@expo/vector-icons";
+//import { AsyncStorage } from "@react-native-community/async-storage";
 const axios = require("axios");
 
 import AppText from "../components/AppText";
@@ -14,19 +21,31 @@ function ListPlayerScreen({ navigation }) {
   const [download, setDownload] = useState(false);
   const [shouldFetch, setShouldFetch] = useState(true);
   const [listPlayers, setListPlayers] = useState([]);
-  const [offset, SetOffset] = useState(0);
+  //const [offset, SetOffset] = useState(0);
 
   const [onEndListReached, setOnEndListReached] = useState(true);
 
   const fetchListPlayer = async () => {
-    const value = { offset: offset };
-    url = `http://192.168.50.74:5000/api/players/infinite?offset=${offset}`;
+    // const value = { offset: offset };
+    let url = `http://192.168.50.74:5000/api/players/`;
     try {
-      const response = await axios.get(url, { params: { value } });
+      const token = await AsyncStorage.getItem("token");
+      console.log("token in appmobil", token);
+      if (token === null) {
+        console.log("no token");
+        throw new Error("Not logged in");
+      }
+
+      const response = await axios.get(url, {
+        headers: { Authorization: `Bearer ${JSON.parse(token)}` },
+      });
+      console.log("response", response);
       const listPlayersUpdated = response.data;
-      setShouldFetch(false);
-      setListPlayers((listPlayers) => [...listPlayers, ...listPlayersUpdated]);
-      SetOffset(offset + 5);
+      console.log("data", listPlayersUpdated);
+      //setShouldFetch(false);
+      setListPlayers(listPlayersUpdated);
+      //setListPlayers((listPlayers) => [...listPlayers, ...listPlayersUpdated]);
+      //SetOffset(offset + 5);
       setDownload(true);
     } catch (error) {
       console.log(error);
@@ -34,9 +53,9 @@ function ListPlayerScreen({ navigation }) {
   };
 
   useEffect(() => {
-    if (!shouldFetch) {
-      return;
-    }
+    // if (!shouldFetch) {
+    //   return;
+    // }
     fetchListPlayer();
   }, []);
 
