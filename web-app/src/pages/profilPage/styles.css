@@ -6,53 +6,45 @@
   font-size: 3em;
   margin: 3% 0 0 3%;
 }
-
 .profil-page-container {
   display: flex;
   flex-direction: row;
 }
-
 .profil-page-content {
   display: flex;
   flex-direction: column;
   width: 94%;
 }
-
 .profil-header {
   display: flex;
   flex-direction: row;
   margin: 3% 0 0 3%;
 }
-
 .profil-player-info {
   display: flex;
   flex-direction: column;
   margin-left: 5%;
 }
-
 .profil-pic {
-  height: 100px;
-  width: 100px;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
 }
-
 .profil-sub-title {
   color: white;
   font-size: 2em;
   margin: 3% 0 0 3%;
 }
-
 .stats-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 5rem 5rem 0 5rem;
 }
-
 .player-stats {
   display: flex;
   flex-direction: column;
 }
-
 .info-player {
   height: 150px;
   width: 200px;
@@ -61,7 +53,6 @@
   margin-bottom: 5rem;
   border: 5px solid white;
 }
-
 .MVP-stats {
   height: 150px;
   width: 200px;
@@ -69,7 +60,6 @@
   text-align: center;
   border: 5px solid white;
 }
-
 .stats-criteria {
   height: 300px;
   width: 200px;
@@ -77,7 +67,6 @@
   text-align: center;
   border: 5px solid white;
 }
-
 .stats-text {
   color: white;
 }

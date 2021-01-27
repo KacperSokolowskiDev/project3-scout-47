@@ -4,7 +4,6 @@ import axios from "axios";
 import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
 import FormAddCritetia from "../../components/Form-dialogs/FormAddCriteria";
-import CriteriaBar from "../../components/criteriaBar/Index";
 import CriteriasGroupeCard from "../../components/CriteriasGroupeCard/Index";
 //Material UI
 import { makeStyles } from "@material-ui/core/styles";

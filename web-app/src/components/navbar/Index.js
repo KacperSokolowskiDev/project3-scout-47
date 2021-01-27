@@ -17,7 +17,7 @@ function Index() {
     <div className="container-corner">
       <div className={isToggle ? "circle-menu circle-anim" : "circle-menu"}>
         <Tooltip title="Dashboard" placement="left">
-          <Link className="links-circle" to="/">
+          <Link className="links-circle" to="/dashboard">
             <img
               src="https://www.flaticon.com/svg/static/icons/svg/2285/2285559.svg"
               alt="Icon Dashboard"
@@ -41,7 +41,7 @@ function Index() {
           </Link>
         </Tooltip>
         <Tooltip title="Players" placement="bottom-start">
-          <Link className="links-circle" to="/players">
+          <Link className="links-circle" to="/player">
             <img
               src="https://www.flaticon.com/svg/static/icons/svg/1654/1654387.svg"
               alt="Icon Player"
