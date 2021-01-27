@@ -8,18 +8,21 @@ module.exports = {
         lastname: "Manu",
         email: "MM@gmail.com",
         password: "password",
+        telephone: 12345,
       },
       {
         firstname: "Jin",
         lastname: "Kazama",
         email: "J_K@gmail.com",
         password: "password",
+        telephone: 123,
       },
       {
         firstname: "Naruto",
         lastname: "Uzumaki",
         email: "N_U@gmail.com",
         password: "password",
+        telephone: 1256,
       },
     ]);
     await queryInterface.bulkInsert(
