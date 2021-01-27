@@ -9,7 +9,6 @@ const register = async (req, res, next) => {
   console.log("body", req.body);
   const { password, ...rest } = req.body;
   const salt = randomBytes(32);
-
   try {
     console.log("p", password);
     const hashedPassword = await argon2.hash(password, { salt });
@@ -36,7 +35,6 @@ const authenticate = async (req, res, next) => {
   // login
   // recupérer le email + password
   console.log("dans login");
-
   const { email, password } = req.body;
   try {
     const user = await User.findOne({
@@ -72,19 +70,14 @@ const isAuthenticated = async (req, res, next) => {
   // verifié le token
   // si correcte, on va décoder les infos user + privileges
   // append user+privilege a la req en cours
-  console.log("req header ", req.headers);
   const authHeader = req.headers["authorization"];
-  console.log("authHeader", authHeader);
   const token = authHeader && authHeader.split(" ")[1];
-  console.log("dans middleware isauthticate");
   try {
-    console.log("token dans midle", token);
     if (!token) {
       throw new Error("Missing Token!!!!");
     }
     let { user } = await jwt.verify(token, secret);
     req.user = { ...user };
-    console.log("req.user dans middlewate", req.user);
     return next();
   } catch (error) {
     res.status(401).json(error.toString());
