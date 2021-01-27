@@ -20,6 +20,9 @@ module.exports = {
       password: {
         type: Sequelize.STRING,
       },
+      telephone: {
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         defaultValue: new Date(),

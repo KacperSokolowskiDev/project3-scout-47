@@ -13,6 +13,7 @@ class User extends Model {
         lastname: DataTypes.STRING,
         email: DataTypes.STRING,
         password: DataTypes.STRING,
+        telephone: DataTypes.INTEGER,
       },
       {
         modelName: "User",
