@@ -11,8 +11,8 @@
 }
 
 .player-picture {
-  height: 110px;
-  width: 110px;
+  height: 120px;
+  width: 120px;
   border: solid 5px #28df99;
   border-radius: 100px;
   position: relative;
@@ -26,8 +26,8 @@
   flex-direction: column;
   height: 120px;
   position: relative;
-  top: 20%;
-  left: -45px;
+  top: 10%;
+  left: -55px;
   border-radius: 35px;
   width: 250px;
   z-index: 8;

@@ -8,6 +8,9 @@ const AdminBro = require("admin-bro");
 const AdminBroExpress = require("@admin-bro/express");
 const AdminBroSequelize = require("@admin-bro/sequelize");
 
+//PDF Management
+const fileUpload = require("express-fileupload");
+
 //const logo_scout47 = require("./logo_scout47");
 //import logo from "./assets/logo_scout47.png";
 
