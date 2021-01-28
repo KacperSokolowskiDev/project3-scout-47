@@ -13,7 +13,10 @@ class Criterion extends Model {
       {
         name: DataTypes.STRING,
         groupe: DataTypes.STRING,
-        maxScore: DataTypes.INTEGER,
+        score: DataTypes.INTEGER,
+        description: DataTypes.STRING,
+        audio: DataTypes.STRING,
+        video: DataTypes.STRING,
       },
       {
         modelName: "Criterion",

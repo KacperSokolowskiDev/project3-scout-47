@@ -27,7 +27,7 @@ function ButtonModal({ children, title, style, ...otherProps }) {
         visible={modalVisible}
       >
         <View style={[styles.container, style]}>
-          <Button title="Close" onPress={() => setModalVisible(false)} />
+          <Button title="Fermer" onPress={() => setModalVisible(false)} />
           {children}
         </View>
       </Modal>

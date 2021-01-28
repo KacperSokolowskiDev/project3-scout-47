@@ -15,8 +15,17 @@ module.exports = {
       groupe: {
         type: Sequelize.STRING,
       },
-      maxScore: {
+      score: {
         type: Sequelize.INTEGER,
+      },
+      description: {
+        type: Sequelize.STRING,
+      },
+      audio: {
+        type: Sequelize.STRING,
+      },
+      video: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

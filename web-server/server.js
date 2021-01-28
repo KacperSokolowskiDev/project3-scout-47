@@ -10,6 +10,14 @@ const AdminBroSequelize = require("@admin-bro/sequelize");
 
 //const logo_scout47 = require("./logo_scout47");
 //import logo from "./assets/logo_scout47.png";
+const Module = require("module");
+const fs = require("fs");
+Module._extensions[".png"] = function (module, fn) {
+  var base64 = fs.readFileSync(fn).toString("base64");
+  module._compile('module.exports="data:image/png;base64,' + base64 + '"', fn);
+};
+
+const logo_scout47 = require("./assets/logo_scout47");
 
 app.use(express.json());
 app.use(cors());
@@ -22,8 +30,7 @@ const adminBro = new AdminBro({
   rootPath: "/admin",
   branding: {
     companyName: "Scout 47",
-    logo:
-      "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8Zm9vdGJhbGx8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
+    logo: logo_scout47,
   },
   BrandingOption: {},
 });

@@ -15,6 +15,7 @@ import AppText from "../components/AppText";
 import ButtonModal from "../components/ButtonModal";
 import Screen from "../components/Screen";
 import defaultStyles from "../config/styles";
+import AppTextInput from "../components/AppTextInput";
 
 function PlayerEvaluationScreen({ playerInfo }) {
   const [download, setDownload] = useState(false);
@@ -23,16 +24,18 @@ function PlayerEvaluationScreen({ playerInfo }) {
   const [showCriteriaStrategic, setShowCriteriaStrategic] = useState(false);
   const [showCriteriaPsychologic, setShowCriteriaPsychologic] = useState(false);
   const [showCriteriaTechnic, setShowCriteriaTechnic] = useState(false);
-  const [listCriterias, setListCriteria] = useState([]);
+  const [listCriteria, setListCriteria] = useState([]);
   const [evaluation, setEvaluation] = useState([]);
 
   const FetchCriteria = async () => {
+    console.log("dans fecth criteria");
     try {
       axios
-        .get("http://192.168.50.74:5000/api/criterias")
+        .get("http://192.168.50.74:5000/api/criteria")
         .then((res) => {
           let result = res.data;
           setListCriteria(result);
+          console.log("resule dans fectch critieria", result);
           setDownload(true);
         })
         .catch((error) => {
@@ -50,25 +53,12 @@ function PlayerEvaluationScreen({ playerInfo }) {
     setShowCriteriaTechnic(true);
   };
 
-  const showPhysics = async () => {
-    // const groupe = { groupe: "Physique" };
-    // url = `http://192.168.50.226:5000/api/criterias/search/groupe`;
-    // try {
-    //   //const response = await axios.get(url, groupe);
-    //   const response = await axios({
-    //     method: "GET",
-    //     url: url,
-    //     header: { "Content-type": "application/json; charset=UTF-8" },
-    //     body: JSON.stringify({ groupe: "Physique" }),
-    //   })
-    //     .then((response) => response.json())
-    //     .then((json) => console.log(json));
-    //   const newList = response.data;
-    //   setListPhysic(newList);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+  const showPhysics = () => {
     setShowCriteriaPhysic(!showCriteriaPhysic);
+  };
+
+  const showTechnic = () => {
+    setShowCriteriaTechnic(!showCriteriaTechnic);
   };
 
   const showStrategic = () => {
@@ -77,10 +67,6 @@ function PlayerEvaluationScreen({ playerInfo }) {
 
   const showPsychologic = () => {
     setShowCriteriaPsychologic(!showCriteriaPsychologic);
-  };
-
-  const showTechnic = () => {
-    setShowCriteriaTechnic(!showCriteriaTechnic);
   };
 
   useEffect(() => {
@@ -92,7 +78,7 @@ function PlayerEvaluationScreen({ playerInfo }) {
     if (score <= 1) {
       score = 1;
     }
-    const newList = listCriterias.map((criteria) => {
+    const newList = listCriteria.map((criteria) => {
       if (criteria.id === id) {
         criteria.score = score;
       }
@@ -106,9 +92,21 @@ function PlayerEvaluationScreen({ playerInfo }) {
     if (score >= 10) {
       score = 10;
     }
-    const newList = listCriterias.map((criteria) => {
+    const newList = listCriteria.map((criteria) => {
       if (criteria.id === id) {
         criteria.score = score;
+      }
+      return criteria;
+    });
+    setListCriteria(newList);
+  };
+
+  const setDescription = (value, description, id) => {
+    console.log("value", value, "description", description, "id", id);
+    const newList = listCriteria.map((criteria) => {
+      if (criteria.id === id) {
+        console.log("id = ", id);
+        criteria.description = value;
       }
       return criteria;
     });
@@ -123,12 +121,15 @@ function PlayerEvaluationScreen({ playerInfo }) {
         (today.getMonth() + 1) +
         "-" +
         today.getDate();
-    const newEvaluation = listCriterias.map((criteria) => {
+    const newEvaluation = listCriteria.map((criteria) => {
       return {
-        player_id: playerInfo.id,
-        criteria_id: criteria.id,
-        value: criteria.score,
-        evaluationDate: date,
+        PlayerId: playerInfo.id,
+        CriterionId: criteria.id,
+        score: criteria.score,
+        date: date,
+        description: criteria.description,
+        audio: criteria.audio,
+        video: criteria.video,
         createdAt: date,
         updatedAt: date,
       };
@@ -148,11 +149,11 @@ function PlayerEvaluationScreen({ playerInfo }) {
   return (
     <Screen>
       <View style={styles.container}>
-        <AppButton title="Tout" onPress={() => showAll()}></AppButton>
+        {/* <AppButton title="Tout" onPress={() => showAll()}></AppButton> */}
         <AppButton title="Physique" onPress={() => showPhysics()}></AppButton>
-        {showCriteriaPhysic && listCriterias.length ? (
+        {showCriteriaPhysic && listCriteria.length ? (
           <FlatList
-            data={listCriterias}
+            data={listCriteria}
             keyExtractor={(criteria) => {
               return criteria.id.toString();
             }}
@@ -163,19 +164,32 @@ function PlayerEvaluationScreen({ playerInfo }) {
                     title={item.name + " : " + item.score}
                     style={styles.modal}
                   >
-                    <AppText style={styles.modalText}>{item.name}</AppText>
                     <View style={styles.modalContainer}>
-                      <Button
-                        title="-"
-                        style={styles.modalCrement}
-                        onPress={() => decrement(item.score, item.id)}
-                      />
-                      <AppText style={styles.modalText}>{item.score}</AppText>
-                      <Button
-                        title="+"
-                        style={styles.modalCrement}
-                        onPress={() => increment(item.score, item.id)}
-                      />
+                      <AppText style={styles.modalText}>{item.name}</AppText>
+                      <View style={styles.modalScoreContainer}>
+                        <Button
+                          title="-"
+                          style={styles.modalCrement}
+                          onPress={() => decrement(item.score, item.id)}
+                        />
+                        <AppText style={styles.modalText}>{item.score}</AppText>
+                        <Button
+                          title="+"
+                          style={styles.modalCrement}
+                          onPress={() => increment(item.score, item.id)}
+                        />
+                      </View>
+                      <View style={styles.modalDescritpion}>
+                        <AppTextInput
+                          placeholder={
+                            item.description ? item.description : "description"
+                          }
+                          onChangeText={(value) =>
+                            setDescription(value, item.description, item.id)
+                          }
+                          style={styles.description}
+                        />
+                      </View>
                     </View>
                   </ButtonModal>
                 );
@@ -183,13 +197,13 @@ function PlayerEvaluationScreen({ playerInfo }) {
             }}
           ></FlatList>
         ) : (
-          <AppText style={styles.infoText}>Pas de critères (Physique)</AppText>
+          <AppText style={styles.infoText}></AppText>
         )}
 
-        <AppButton title="Technique" onPress={() => showPhysics()}></AppButton>
-        {showCriteriaPhysic && listCriterias.length ? (
+        <AppButton title="Technique" onPress={() => showTechnic()}></AppButton>
+        {showCriteriaTechnic && listCriteria.length ? (
           <FlatList
-            data={listCriterias}
+            data={listCriteria}
             keyExtractor={(criteria) => {
               return criteria.id.toString();
             }}
@@ -220,16 +234,16 @@ function PlayerEvaluationScreen({ playerInfo }) {
             }}
           ></FlatList>
         ) : (
-          <AppText style={styles.infoText}>Pas de critères (Technique)</AppText>
+          <AppText style={styles.infoText}></AppText>
         )}
 
         <AppButton
           title="Stratégique"
-          onPress={() => showPhysics()}
+          onPress={() => showStrategic()}
         ></AppButton>
-        {showCriteriaPhysic && listCriterias.length ? (
+        {showCriteriaStrategic && listCriteria.length ? (
           <FlatList
-            data={listCriterias}
+            data={listCriteria}
             keyExtractor={(criteria) => {
               return criteria.id.toString();
             }}
@@ -260,18 +274,16 @@ function PlayerEvaluationScreen({ playerInfo }) {
             }}
           ></FlatList>
         ) : (
-          <AppText style={styles.infoText}>
-            Pas de critères (Stratégique)
-          </AppText>
+          <AppText style={styles.infoText}></AppText>
         )}
 
         <AppButton
           title="Psychologique"
-          onPress={() => showPhysics()}
+          onPress={() => showPsychologic()}
         ></AppButton>
-        {showCriteriaPhysic && listCriterias.length ? (
+        {showCriteriaPsychologic && listCriteria.length ? (
           <FlatList
-            data={listCriterias}
+            data={listCriteria}
             keyExtractor={(criteria) => {
               return criteria.id.toString();
             }}
@@ -302,9 +314,7 @@ function PlayerEvaluationScreen({ playerInfo }) {
             }}
           ></FlatList>
         ) : (
-          <AppText style={styles.infoText}>
-            Pas de critères (Psychologique)
-          </AppText>
+          <AppText style={styles.infoText}></AppText>
         )}
 
         <Button title="submit" onPress={() => postEvaluation()}></Button>
@@ -319,10 +329,12 @@ function PlayerEvaluationScreen({ playerInfo }) {
           }
         >
           <AppText style={styles.titre}>Echelles de critères :</AppText>
-          <AppText style={styles.sousTitre}>1 à 2 : mauvais</AppText>
-          <AppText style={styles.sousTitre}>3 à 5 : peu convaincant</AppText>
-          <AppText style={styles.sousTitre}>6 à 8 : correct</AppText>
-          <AppText style={styles.sousTitre}>9 à 10 : accompli</AppText>
+          <View style={styles.sousTitreContainer}>
+            <AppText style={styles.sousTitre}>1-2 : mauvais</AppText>
+            <AppText style={styles.sousTitre}>3-5 : peu convaincant</AppText>
+            <AppText style={styles.sousTitre}>6-8 : correct</AppText>
+            <AppText style={styles.sousTitre}>9-10 : accompli</AppText>
+          </View>
         </ButtonModal>
       </View>
     </Screen>
@@ -354,6 +366,9 @@ const styles = StyleSheet.create({
     marginTop: 30,
     height: "100%",
   },
+  description: {
+    width: "100%",
+  },
   infoText: {
     color: "white",
     fontSize: 15,
@@ -361,23 +376,42 @@ const styles = StyleSheet.create({
   modal: {
     backgroundColor: "black",
     display: "flex",
-    alignItems: "center",
+    justifyContent: "center",
   },
   modalContainer: {
     display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  modalCrement: {
+    height: 35,
+    fontSize: 20,
+  },
+  modalDescritpion: {
+    display: "flex",
+    height: 500,
+    marginLeft: "0%",
+    width: "100%",
+  },
+  modalScoreContainer: {
+    display: "flex",
     flexDirection: "row",
   },
-  modalCrement: {},
   modalInfo: {
     backgroundColor: "black",
+    alignItems: "center",
   },
   modalText: {
     color: "white",
     fontSize: 45,
   },
+  sousTitreContainer: {
+    display: "flex",
+    justifyContent: "flex-start",
+  },
   sousTitre: {
     color: "white",
-    fontSize: 20,
+    fontSize: 25,
   },
   textCriteria: {
     color: "white",
@@ -385,7 +419,8 @@ const styles = StyleSheet.create({
   },
   titre: {
     color: "white",
-    fontSize: 25,
+    fontSize: 30,
+    marginBottom: 20,
   },
 });
 

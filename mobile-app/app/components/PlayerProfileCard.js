@@ -33,6 +33,7 @@ function PlayerProfileCard({ playerInfo }) {
 
 const styles = StyleSheet.create({
   container: {
+    display: "flex",
     alignItems: "center",
     backgroundColor: defaultStyles.colors.medium,
     height: "85%",
