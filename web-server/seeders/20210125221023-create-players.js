@@ -38,6 +38,17 @@ module.exports = {
           picture:
             "https://cdn.pixabay.com/photo/2014/02/10/22/24/soccer-263716_960_720.jpg",
         },
+        {
+          firstname: "Mike",
+          lastname: "Tyson",
+          birthdate: "2007-03-03",
+          position: "attaquant",
+          height: 175,
+          weight: 65,
+          strongFoot: "gauche",
+          picture:
+            "https://cdn.pixabay.com/photo/2014/02/10/22/24/soccer-263716_960_720.jpg",
+        },
       ],
       {}
     );

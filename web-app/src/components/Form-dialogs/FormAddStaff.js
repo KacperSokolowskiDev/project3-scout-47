@@ -105,7 +105,7 @@ export default function FormAddStaff({ fetchStaff }) {
       };
       console.log(data);
       await axios
-        .post("http://localhost:5000/api/users", data)
+        .post("http://localhost:5000/api/users/signup", data)
         .then((res) => {
           console.log("player added", res.data);
           fetchStaff();

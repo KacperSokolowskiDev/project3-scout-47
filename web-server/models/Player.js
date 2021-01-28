@@ -17,7 +17,7 @@ class Player extends Model {
       {
         firstname: DataTypes.STRING,
         lastname: DataTypes.STRING,
-        birthdate: DataTypes.DATE,
+        birthdate: DataTypes.DATEONLY,
         position: DataTypes.STRING,
         height: DataTypes.INTEGER,
         weight: DataTypes.INTEGER,
