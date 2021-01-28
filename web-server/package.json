@@ -4,6 +4,7 @@
   "description": "Project 3",
   "main": "server.js",
   "scripts": {
+    "seed": "sequelize db:drop && sequelize db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && npm start",
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,7 +18,7 @@
   "dependencies": {
     "@admin-bro/express": "^3.1.0",
     "@admin-bro/sequelize": "^1.1.2",
-    "admin-bro": "^3.3.1",
+    "admin-bro": "^0.7.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

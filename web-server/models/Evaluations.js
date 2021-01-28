@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Evaluation.init(
     {
-      evaluationDate: DataTypes.DATE,
+      evaluationDate: DataTypes.DATEONLY,
       value: DataTypes.INTEGER,
     },
     {
