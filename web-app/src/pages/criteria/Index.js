@@ -4,7 +4,6 @@ import axios from "axios";
 import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
 import FormAddCritetia from "../../components/Form-dialogs/FormAddCriteria";
-import CriteriaBar from "../../components/criteriaBar/Index";
 import CriteriasGroupeCard from "../../components/CriteriasGroupeCard/Index";
 //Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -42,7 +41,7 @@ function Index() {
 
   const fetchCriterias = async () => {
     await axios
-      .get("http://localhost:5000/api/criterias")
+      .get("http://localhost:5000/api/criteria")
       .then((res) => {
         let result = res.data;
         setListCriterias(result);
@@ -79,7 +78,7 @@ function Index() {
               autoComplete="off"
               className={classes.elementMT}
             />
-            <FormAddCritetia />
+            <FormAddCritetia fetchCriterias={fetchCriterias} />
             <Tooltip title="Filter" aria-label="filter">
               <Fab color="secondary" className={classes.buttons}>
                 <FilterListIcon />

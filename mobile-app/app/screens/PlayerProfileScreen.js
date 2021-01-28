@@ -27,8 +27,6 @@ function PlayerProfileScreen({ playerInfo, navigation }) {
         }
       >
         <Button title={"Telecharger bulletin"} />
-        <AppText style={styles.text}>Import et export</AppText>
-        <AppText style={styles.text}>Photo et scan</AppText>
       </ButtonModal>
     </Screen>
   );

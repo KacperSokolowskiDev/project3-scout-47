@@ -1,20 +1,18 @@
 const express = require("express");
+const { isAuthenticated } = require("../controllers/auth.controller");
 const router = express.Router();
 
-const clientsRoutes = require("./clients.routes");
-const playersRoutes = require("./players.routes");
-const clubsRoutes = require("./clubs.routes");
-const scoutsRoutes = require("./scouts.routes");
-const criteriasRoutes = require("./criterias.routes");
+const criteriasRoutes = require("./criteria.routes");
 const evaluationsRoutes = require("./evaluations.routes");
-const AgendaEventsRoutes = require("./agendaevent.routes");
+const playersRoutes = require("./players.routes");
+const PrivilegesRoutes = require("./privileges.routes");
+const usersRoutes = require("./users.routes");
 
-router.use("/clients", clientsRoutes);
-router.use("/scouts", scoutsRoutes);
-router.use("/clubs", clubsRoutes);
-router.use("/criterias", criteriasRoutes); //need to adapt it to show it for specific players
-router.use("/players", playersRoutes);
-router.use("/evaluations", evaluationsRoutes); //need to adapt it to show it for specific players
-router.use("/agenda/events", AgendaEventsRoutes);
+router.use("/criteria", criteriasRoutes);
+router.use("/evaluations", evaluationsRoutes);
+router.use("/players", isAuthenticated, playersRoutes);
+//router.use("/players", playersRoutes);
+router.use("/privileges", PrivilegesRoutes);
+router.use("/users", usersRoutes);
 
 module.exports = router;
