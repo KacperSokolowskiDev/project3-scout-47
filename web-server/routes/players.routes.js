@@ -1,6 +1,8 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 const playersController = require("../controllers/players.controller");
+const evaluationsRoutes = require("./evaluations.routes");
+router.use("/:PlayerId/evaluations", evaluationsRoutes);
 
 // Get all players
 router.get("/", playersController.index);

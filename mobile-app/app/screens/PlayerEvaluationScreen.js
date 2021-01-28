@@ -29,7 +29,7 @@ function PlayerEvaluationScreen({ playerInfo }) {
   const FetchCriteria = async () => {
     try {
       axios
-        .get("http://192.168.0.103:5000/api/criterias")
+        .get("http://192.168.50.74:5000/api/criterias")
         .then((res) => {
           let result = res.data;
           setListCriteria(result);
@@ -156,74 +156,157 @@ function PlayerEvaluationScreen({ playerInfo }) {
             keyExtractor={(criteria) => {
               return criteria.id.toString();
             }}
-            renderItem={({ item }) => (
-              <ButtonModal
-                title={item.name + " : " + item.score}
-                style={styles.modal}
-              >
-                <AppText style={styles.modalText}>{item.name}</AppText>
-                <View style={styles.modalContainer}>
-                  <Button
-                    title="-"
-                    style={styles.modalCrement}
-                    onPress={() => decrement(item.score, item.id)}
-                  />
-                  <AppText style={styles.modalText}>{item.score}</AppText>
-                  <Button
-                    title="+"
-                    style={styles.modalCrement}
-                    onPress={() => increment(item.score, item.id)}
-                  />
-                </View>
-              </ButtonModal>
-            )}
+            renderItem={({ item }) => {
+              if (item.groupe == "Physique") {
+                return (
+                  <ButtonModal
+                    title={item.name + " : " + item.score}
+                    style={styles.modal}
+                  >
+                    <AppText style={styles.modalText}>{item.name}</AppText>
+                    <View style={styles.modalContainer}>
+                      <Button
+                        title="-"
+                        style={styles.modalCrement}
+                        onPress={() => decrement(item.score, item.id)}
+                      />
+                      <AppText style={styles.modalText}>{item.score}</AppText>
+                      <Button
+                        title="+"
+                        style={styles.modalCrement}
+                        onPress={() => increment(item.score, item.id)}
+                      />
+                    </View>
+                  </ButtonModal>
+                );
+              }
+            }}
           ></FlatList>
         ) : (
           <AppText style={styles.infoText}>Pas de critères (Physique)</AppText>
         )}
 
-        {/* <AppButton
-          title="Stratégique"
-          onPress={() => showStrategic()}
-        ></AppButton>
-        {showCriteriaStrategic ? (
+        <AppButton title="Technique" onPress={() => showPhysics()}></AppButton>
+        {showCriteriaPhysic && listCriterias.length ? (
           <FlatList
             data={listCriterias}
-            keyExtractor={(criteria) => criteria.id.toString()}
-            renderItem={({ item }) => <AppButton title={item.name}></AppButton>}
+            keyExtractor={(criteria) => {
+              return criteria.id.toString();
+            }}
+            renderItem={({ item }) => {
+              if (item.groupe == "Technique") {
+                return (
+                  <ButtonModal
+                    title={item.name + " : " + item.score}
+                    style={styles.modal}
+                  >
+                    <AppText style={styles.modalText}>{item.name}</AppText>
+                    <View style={styles.modalContainer}>
+                      <Button
+                        title="-"
+                        style={styles.modalCrement}
+                        onPress={() => decrement(item.score, item.id)}
+                      />
+                      <AppText style={styles.modalText}>{item.score}</AppText>
+                      <Button
+                        title="+"
+                        style={styles.modalCrement}
+                        onPress={() => increment(item.score, item.id)}
+                      />
+                    </View>
+                  </ButtonModal>
+                );
+              }
+            }}
+          ></FlatList>
+        ) : (
+          <AppText style={styles.infoText}>Pas de critères (Technique)</AppText>
+        )}
+
+        <AppButton
+          title="Stratégique"
+          onPress={() => showPhysics()}
+        ></AppButton>
+        {showCriteriaPhysic && listCriterias.length ? (
+          <FlatList
+            data={listCriterias}
+            keyExtractor={(criteria) => {
+              return criteria.id.toString();
+            }}
+            renderItem={({ item }) => {
+              if (item.groupe == "Stratégique") {
+                return (
+                  <ButtonModal
+                    title={item.name + " : " + item.score}
+                    style={styles.modal}
+                  >
+                    <AppText style={styles.modalText}>{item.name}</AppText>
+                    <View style={styles.modalContainer}>
+                      <Button
+                        title="-"
+                        style={styles.modalCrement}
+                        onPress={() => decrement(item.score, item.id)}
+                      />
+                      <AppText style={styles.modalText}>{item.score}</AppText>
+                      <Button
+                        title="+"
+                        style={styles.modalCrement}
+                        onPress={() => increment(item.score, item.id)}
+                      />
+                    </View>
+                  </ButtonModal>
+                );
+              }
+            }}
           ></FlatList>
         ) : (
           <AppText style={styles.infoText}>
             Pas de critères (Stratégique)
           </AppText>
         )}
+
         <AppButton
           title="Psychologique"
-          onPress={() => showPsychologic()}
+          onPress={() => showPhysics()}
         ></AppButton>
-        {showCriteriaPsychologic ? (
+        {showCriteriaPhysic && listCriterias.length ? (
           <FlatList
             data={listCriterias}
-            keyExtractor={(criteria) => criteria.id.toString()}
-            renderItem={({ item }) => <AppButton title={item.name}></AppButton>}
+            keyExtractor={(criteria) => {
+              return criteria.id.toString();
+            }}
+            renderItem={({ item }) => {
+              if (item.groupe == "Psychologique") {
+                return (
+                  <ButtonModal
+                    title={item.name + " : " + item.score}
+                    style={styles.modal}
+                  >
+                    <AppText style={styles.modalText}>{item.name}</AppText>
+                    <View style={styles.modalContainer}>
+                      <Button
+                        title="-"
+                        style={styles.modalCrement}
+                        onPress={() => decrement(item.score, item.id)}
+                      />
+                      <AppText style={styles.modalText}>{item.score}</AppText>
+                      <Button
+                        title="+"
+                        style={styles.modalCrement}
+                        onPress={() => increment(item.score, item.id)}
+                      />
+                    </View>
+                  </ButtonModal>
+                );
+              }
+            }}
           ></FlatList>
         ) : (
           <AppText style={styles.infoText}>
             Pas de critères (Psychologique)
           </AppText>
         )}
-        <AppButton title="Technique" onPress={() => showTechnic()}></AppButton>
-        {showCriteriaTechnic ? (
-          <FlatList
-            data={listCriterias}
-            keyExtractor={(criteria) => criteria.id.toString()}
-            renderItem={({ item }) => <AppButton title={item.name}></AppButton>}
-          ></FlatList>
-        ) : (
-          <AppText style={styles.infoText}>
-            Pas de critères (Techniques)
-          </AppText>
-        )} */}
+
         <Button title="submit" onPress={() => postEvaluation()}></Button>
         <ButtonModal
           style={styles.modalInfo}
@@ -236,10 +319,10 @@ function PlayerEvaluationScreen({ playerInfo }) {
           }
         >
           <AppText style={styles.titre}>Echelles de critères :</AppText>
-          <AppText style={styles.sousTitre}>0 à 2 : médiocres</AppText>
-          <AppText style={styles.sousTitre}>3 à 5 : mauvais</AppText>
-          <AppText style={styles.sousTitre}>6 à 8 : bon</AppText>
-          <AppText style={styles.sousTitre}>9 à 10 : excellent</AppText>
+          <AppText style={styles.sousTitre}>1 à 2 : mauvais</AppText>
+          <AppText style={styles.sousTitre}>3 à 5 : peu convaincant</AppText>
+          <AppText style={styles.sousTitre}>6 à 8 : correct</AppText>
+          <AppText style={styles.sousTitre}>9 à 10 : accompli</AppText>
         </ButtonModal>
       </View>
     </Screen>

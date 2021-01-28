@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 import { Fab, TextField, Tooltip } from "@material-ui/core";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import { makeStyles } from "@material-ui/core/styles";
-
 import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
 import StaffCard from "../../components/StaffCard/Index";
 import FormAddStaff from "../../components/Form-dialogs/FormAddStaff";
-
 import "./styles.css";
 require("dotenv").config();
-
 const useStyles = makeStyles((theme) => ({
   buttons: {
     marginLeft: theme.spacing(2),
@@ -29,15 +25,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(0),
   },
 }));
-
 const Index = () => {
   const classes = useStyles();
   const [listStaff, setListStaff] = useState([]);
   const [download, setDownload] = useState(false);
-
   const fetchStaff = async () => {
     await axios
-      .get("http://localhost:5000/api/scouts")
+      .get("http://localhost:5000/api/users")
       .then((res) => {
         let result = res.data;
         setListStaff(result);
@@ -47,16 +41,9 @@ const Index = () => {
         console.log(error);
       });
   };
-
   useEffect(() => {
     fetchStaff();
   }, []);
-
-  // useEffect(() => {
-  //   console.log("useEffect --- Bool");
-  //   fetchStaff();
-  // }, [])
-
   return (
     <div className="staff-page">
       <Navbar />
@@ -73,28 +60,25 @@ const Index = () => {
               variant="filled"
               className={classes.elementMT}
             />
-            <FormAddStaff />
+            <FormAddStaff fetchStaff={fetchStaff} />
             <Tooltip title="Filter" aria-label="filter">
               <Fab color="secondary" className={classes.buttons}>
                 <FilterListIcon />
               </Fab>
             </Tooltip>
           </div>
-          <Link className="link-profile" to="/staffs/profile">
-            <div className="staff-page-list">
-              {download ? (
-                listStaff.map((data) => {
-                  return <StaffCard staffInfo={data} />;
-                })
-              ) : (
-                <div>No staff in database</div>
-              )}
-            </div>
-          </Link>
+          <div className="staff-page-list">
+            {download ? (
+              listStaff.map((data) => {
+                return <StaffCard staffInfo={data} />;
+              })
+            ) : (
+              <div>No staff in database</div>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
 };
-
 export default Index;
