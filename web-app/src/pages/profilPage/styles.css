@@ -35,6 +35,13 @@
   font-size: 2em;
   margin: 3% 0 0 3%;
 }
+
+.add-button {
+  color: white;
+  background-color: red;
+  font-size: 1rem;
+}
+
 .stats-container {
   display: flex;
   flex-direction: row;

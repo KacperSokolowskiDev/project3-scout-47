@@ -65,6 +65,7 @@ const Index = () => {
               color="secondary"
               id="standard-basic"
               label="Password"
+              type="password"
               autoComplete="off"
               required
               onChange={(e) => setPassword(e.currentTarget.value)}
