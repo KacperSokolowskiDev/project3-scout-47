@@ -38,28 +38,6 @@ module.exports = {
           picture:
             "https://cdn.pixabay.com/photo/2014/02/10/22/24/soccer-263716_960_720.jpg",
         },
-        {
-          firstname: "AAA",
-          lastname: "VVVV",
-          birthdate: "2006-03-03",
-          position: "attaquant",
-          height: 175,
-          weight: 65,
-          strongFoot: "gauche",
-          picture:
-            "https://cdn.pixabay.com/photo/2014/02/10/22/24/soccer-263716_960_720.jpg",
-        },
-        {
-          firstname: "KylDSFSFSian",
-          lastname: "MbapSFQSFQSFSpé",
-          birthdate: "2001-03-03",
-          position: "attaquant",
-          height: 175,
-          weight: 65,
-          strongFoot: "gauche",
-          picture:
-            "https://cdn.pixabay.com/photo/2014/02/10/22/24/soccer-263716_960_720.jpg",
-        },
       ],
       {}
     );
