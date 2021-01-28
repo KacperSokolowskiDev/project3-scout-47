@@ -2,37 +2,31 @@
   margin: 0px;
   padding: 0px;
 }
-
 .staff-page {
   background-color: black;
-  max-height: 100vh;
   overflow: hidden;
+  max-height: 100vh;
 }
-
 .staff-page-container {
   display: flex;
   flex-direction: row;
 }
-
 .staff-page-content {
   display: flex;
   flex-direction: column;
   width: 94%;
 }
-
 .staff-title {
   color: white;
   font-size: 3em;
   margin: 3%;
 }
-
 .staff-page-search-info {
   display: flex;
   flex-direction: row;
   margin-left: 3%;
   max-width: 40%;
 }
-
 .staff-page-list {
   display: flex;
   flex-direction: row;
@@ -40,11 +34,10 @@
   margin-left: 10%;
   margin-top: 3%;
   color: white;
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 500px;
   overflow: auto;
 }
-
 .link-profile {
   text-decoration: none;
 }

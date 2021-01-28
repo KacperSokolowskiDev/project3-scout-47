@@ -2,28 +2,29 @@
   margin: 0px;
   padding: 0px;
 }
-
 .dashboard-page {
   background-color: black;
 }
-
 .dashboard-page-container {
   display: flex;
   flex-direction: row;
 }
-
 .dashboard-page-content {
   display: flex;
   flex-direction: column;
   width: 94%;
 }
-
 .dashboard-title {
   color: white;
   font-size: 3em;
   margin: 3%;
 }
-
 .dashboard-test {
   color: white;
+}
+.charts {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+  margin-left: 50px;
 }

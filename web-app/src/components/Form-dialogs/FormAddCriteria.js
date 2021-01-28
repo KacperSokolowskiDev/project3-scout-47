@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FormAddCriteria() {
+export default function FormAddCriteria({ fetchCriterias }) {
   const classes = useStyles();
 
   const initialState = {
@@ -70,9 +70,10 @@ export default function FormAddCriteria() {
     try {
       console.log(name, groupe, "dans le try");
       await axios
-        .post("http://localhost:5000/api/criterias", state)
+        .post("http://localhost:5000/api/criteria", state)
         .then((res) => {
           console.log("criteria posted", res.data);
+          fetchCriterias();
           handleClose();
         })
         .catch((error) => {
@@ -125,10 +126,9 @@ export default function FormAddCriteria() {
                 dispatch({
                   type: "fill_input",
                   fieldName: "groupe",
-                  payload: e.currentTarget.value,
+                  payload: e.target.value,
                 })
               }
-              value={""}
             >
               <MenuItem value={"Physique"}>Physique</MenuItem>
               <MenuItem value={"Technique"}>Technique</MenuItem>

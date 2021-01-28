@@ -27,8 +27,10 @@ const show = async (req, res, next) => {
 
 // Get all players from Database
 const index = async (req, res, next) => {
+  console.log("Dans index Players");
+  console.log(req.user);
   try {
-    const listPlayer = await Player.findAll();
+    const listPlayer = await Player.findAllWithRestriction(req.user.Privilege);
     res.status(200).json(listPlayer);
   } catch (error) {
     let message = "Players can't be shown";
@@ -73,7 +75,7 @@ const searchSpecificPlayer = async (req, res, next) => {
 
 const searchOneSpecificPlayer = async (req, res, next) => {
   try {
-    const player = await Player.findOne({
+    const player = await Players.findOne({
       where: Sequelize.or({ firstname: req.body.firstname }),
     });
     console.log("Firstname", player.firstname);
@@ -89,7 +91,7 @@ const update = async (req, res, next) => {
   const { id } = req.params;
   const data = { ...req.body };
   try {
-    let player = await Player.update(data, { where: { id } });
+    let player = await Players.update(data, { where: { id } });
     res.status(200).json(player);
   } catch (error) {
     let message = "Player can't be updated";
@@ -101,7 +103,7 @@ const update = async (req, res, next) => {
 const destroy = async (req, res, next) => {
   const { id } = req.params;
   try {
-    let player = await Player.destroy({ where: { id } });
+    let player = await Players.destroy({ where: { id } });
     res.status(200).json(`Player with id : ${id} was deleted !`);
   } catch (error) {
     let message = "Player can't DIE";

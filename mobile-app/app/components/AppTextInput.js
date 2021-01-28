@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import defaultStyles from "../config/styles";
 
-function AppTextInput({ icon, ...otherProps }) {
+function AppTextInput({ icon, handleChange, ...otherProps }) {
   return (
     <View style={styles.container}>
       {icon && (
@@ -29,8 +29,9 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     flexDirection: "row",
     marginVertical: 10,
+    marginLeft: "7.5%",
     padding: 15,
-    width: "100%",
+    width: "85%",
   },
   textInput: {
     marginLeft: 0,
