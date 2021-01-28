@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useContext, useState, useReducer } from "react";
 import AddIcon from "@material-ui/icons/Add";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -11,6 +11,8 @@ import Fab from "@material-ui/core/Fab";
 import Tooltip from "@material-ui/core/Tooltip";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
+
+import UserContext from "../../context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   buttons: {
@@ -28,8 +30,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FormAddPlayer() {
+export default function FormAddPlayer({ fetchPlayers }) {
   const classes = useStyles();
+  const userContext = useContext(UserContext);
+
   const initialState = {
     firstname: "",
     lastname: "",
@@ -58,9 +62,12 @@ export default function FormAddPlayer() {
     try {
       console.log(firstname, lastname);
       await axios
-        .post("http://localhost:5000/api/players", state)
+        .post("http://localhost:5000/api/players", state, {
+          headers: { Authorization: `Bearer ${userContext.token}` },
+        })
         .then((res) => {
           console.log("player added", res.data);
+          fetchPlayers();
           handleClose();
         })
         .catch((error) => {

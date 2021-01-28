@@ -17,10 +17,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     borderRadius: 10,
     justifyContent: "center",
-    marginLeft: "5%",
+    marginLeft: "7.5%",
     marginVertical: 5,
     padding: 15,
-    width: "90%",
+    width: "85%",
   },
   text: {
     color: colors.white,

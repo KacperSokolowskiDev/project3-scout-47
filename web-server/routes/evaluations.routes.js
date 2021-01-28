@@ -1,9 +1,13 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 const evaluationsController = require("../controllers/evaluations.controller");
 
 // Get all evaluations
-router.get("/", evaluationsController.index);
+router.get(
+  "/",
+  evaluationsController.index,
+  evaluationsController.indexByPlayer
+);
 
 // Get evaluation by id
 router.get("/:id", evaluationsController.show);
