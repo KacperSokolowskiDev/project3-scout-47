@@ -36,6 +36,7 @@ const router = AdminBroExpress.buildRouter(adminBro);
 app.use(adminBro.options.rootPath, router);
 
 app.use("/api", routes);
+app.use('/uploads', express.static('uploads'));
 
 //Error handling middleware
 app.use((error, req, res, next) => {

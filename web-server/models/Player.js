@@ -23,6 +23,7 @@ class Player extends Model {
         weight: DataTypes.INTEGER,
         strongFoot: DataTypes.STRING,
         picture: DataTypes.STRING,
+        schoolReport: DataTypes.STRING
       },
       {
         modelName: "Player",
