@@ -67,6 +67,9 @@ const indexByPlayer = async (req, res, next) => {
 
 // Update an evaluation
 const update = async (req, res, next) => {
+  console.log("here in update Evalu");
+  return next()
+
   const { id } = req.params;
   const data = { ...req.body };
   try {
