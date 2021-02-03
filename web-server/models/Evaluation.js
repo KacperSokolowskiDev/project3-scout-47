@@ -7,6 +7,11 @@ class Evaluation extends Model {
   static init(sequelize, DataTypes) {
     return super.init(
       {
+        id: {
+          type: DataTypes.INTEGER,
+          primaryKey: true,
+          autoIncrement: true
+        },
         date: DataTypes.DATE,
         score: DataTypes.INTEGER,
         description: DataTypes.STRING,
