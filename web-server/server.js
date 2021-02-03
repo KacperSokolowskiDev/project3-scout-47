@@ -14,8 +14,29 @@ const fileUpload = require("express-fileupload");
 //const logo_scout47 = require("./logo_scout47");
 //import logo from "./assets/logo_scout47.png";
 
+app.use(express.static("public")); //to access the files in public folder
+app.use(fileUpload());
 app.use(express.json());
 app.use(cors());
+
+//file upload api
+app.post("/upload", (req, res) => {
+  if (!req.files) {
+    return res.status(500).send({ msg: "file not found" });
+  }
+  //access the file
+  const myFile = req.files.file;
+
+  //mv() method places the file inside public directory
+  myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
+    if (err) {
+      console.log(err);
+      return res.status(500).send({ msg: "Error occured" });
+    }
+    //returning the response with file path and name
+    return res.send({ name: myFile.name, path: `/${myFile.name}` });
+  });
+});
 
 //AdminBro
 AdminBro.registerAdapter(AdminBroSequelize);

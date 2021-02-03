@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
 import { useLocation } from "react-router-dom";
@@ -11,41 +11,64 @@ const ProfilPage = () => {
   console.log(location);
   console.log(location.state);
 
-  const [open, setOpen] = useState();
+  const [file, setFile] = useState(""); //storing the uploaded file
+  //storing the received file from backend
+  const [data, getFile] = useState({ name: "", path: "" });
+  const [progress, setProgress] = useState(0); //progress bar
+  const el = useRef(); //accessing input element
+
+  const handleChange = (e) => {
+    setProgress(0);
+    const file = e.target.files[0]; //accessing file
+    console.log(file);
+    setFile(file); //storing file
+  };
+
+  const uploadFile = () => {
+    const formData = new FormData();
+    formData.append("file", file); //appnding file
+    axios
+      .post("http://localhost:5000/upload", formData, {
+        onUploadProgress: (ProgressEvent) => {
+          let progress =
+            Math.round((ProgressEvent.loaded / ProgressEvent.total) * 100) +
+            "%";
+          setProgress(progress);
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        getFile({
+          name: "res.data.name",
+          path: "http://localhost:5000" + res.data.path,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
   //useParams -> l'ID de l'URL de react router
   //Component mount -> API call /api/players/1/evaluation
 
-  const handleOpen = () => {
-    setOpen(true);
-    console.log("I'm Open");
-  };
+  // const handleSave = async (files) => {
+  //   const playerCertificate = new FormData();
+  //   playerCertificate.append("file", files[0]);
 
-  const handleClose = () => {
-    setOpen(false);
-    console.log("I'm Close");
-  };
+  //   try {
+  //     await axios({
+  //       method: "POST",
+  //       url: "http://localhost:5000/api/upload",
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //         Authorization: "Bearer lol",
+  //       },
+  //       data: playerCertificate,
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
 
-  const handleSave = async (files) => {
-    const playerCertificate = new FormData();
-    playerCertificate.append("file", files[0]);
-
-    try {
-      await axios({
-        method: "POST",
-        url: "http://localhost:5000/api/upload",
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: "Bearer lol",
-        },
-        data: playerCertificate,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-
-    console.log(files);
-    console.log("I'm Saved");
-  };
+  //   console.log(files);
+  //   console.log("I'm Saved");
+  // };
 
   return (
     <div className="profil-page">
@@ -67,19 +90,6 @@ const ProfilPage = () => {
               </h1>
               <h2 className="profil-sub-title">{location.state.position}</h2>
               <h2 className="profil-sub-title">{location.state.birthdate}</h2>
-              <button className="add-button" onClick={handleOpen}>
-                Add File
-              </button>
-              <DropzoneDialog
-                open={open}
-                acceptedFiles={[
-                  "application/pdf",
-                  "application/pdf",
-                  "application/pdf",
-                ]}
-                onSave={handleSave}
-                onClose={handleClose}
-              />
             </div>
           </div>
           <div className="stats-container">
@@ -87,8 +97,19 @@ const ProfilPage = () => {
               <div className="info-player">
                 <p className="stats-text">test</p>
               </div>
-              <div className="MVP-stats">
-                <p className="stats-text">test</p>
+              <div className="file-upload">
+                <input
+                  className="fileInput"
+                  type="file"
+                  ref={el}
+                  onChange={handleChange}
+                />
+                <div className="progressBar" style={{ width: progress }}>
+                  {progress}
+                </div>
+                <button onClick={uploadFile} className="upButton">
+                  Upload
+                </button>
               </div>
             </div>
             <div className="stats-criteria">

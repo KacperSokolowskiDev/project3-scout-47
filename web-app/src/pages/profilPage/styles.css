@@ -36,12 +36,6 @@
   margin: 3% 0 0 3%;
 }
 
-.add-button {
-  color: white;
-  background-color: red;
-  font-size: 1rem;
-}
-
 .stats-container {
   display: flex;
   flex-direction: row;
@@ -60,13 +54,6 @@
   margin-bottom: 5rem;
   border: 5px solid white;
 }
-.MVP-stats {
-  height: 150px;
-  width: 200px;
-  background-color: #28df99;
-  text-align: center;
-  border: 5px solid white;
-}
 .stats-criteria {
   height: 300px;
   width: 200px;
@@ -76,4 +63,39 @@
 }
 .stats-text {
   color: white;
+}
+
+.progessBar {
+  height: 1rem;
+  width: 0%;
+  background-color: rgb(68, 212, 231);
+  color: #000;
+  padding: 2px;
+  z-index: 20;
+}
+
+.file-upload {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1rem;
+  width: 400px;
+  background-color: #28df99;
+  border: 5px solid white;
+  z-index: 1;
+}
+
+.upButton {
+  width: 5rem;
+  padding: 5px;
+  background-color: #fff;
+  color: #000;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 10px 0 0 0;
+}
+
+.fileInput {
+  margin: 0 0 10px 0;
 }
