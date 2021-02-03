@@ -28,8 +28,10 @@ const createMore = async (req, res, next) => {
 // Get an evaluation by its id
 const show = async (req, res, next) => {
   const { id } = req.params;
+  console.log(id)
   try {
-    const evaluation = await Evaluation.findOne({ where: { id } });
+    const evaluation = await Evaluation.findOne({ where: { id: Number(id) } });
+    console.log(evaluation)
     res.status(200).json(evaluation);
   } catch (error) {
     let message = "Evaluation can't be created";
