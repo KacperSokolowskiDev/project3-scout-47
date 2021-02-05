@@ -38,7 +38,7 @@ function Index() {
   const userContext = useContext(UserContext);
 
   const fetchPlayers = async () => {
-    await axios
+    axios
       .get("http://localhost:5000/api/players", {
         headers: { Authorization: `Bearer ${userContext.token}` },
       })

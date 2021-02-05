@@ -46,6 +46,7 @@ function LoginScreen({ navigation }) {
         <AppTextInput
           icon="lock"
           placeholder="Password"
+          secureTextEntry={true}
           onChangeText={(value) => setPassword(value)}
         />
       </View>

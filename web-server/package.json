@@ -4,7 +4,7 @@
   "description": "Project 3",
   "main": "server.js",
   "scripts": {
-    "seed": "sequelize db:drop && sequelize db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && npm start",
+    "seed": "sequelize db:drop && sequelize db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && rm -rf uploads && mkdir uploads && npm start",
     "unseed": "npx sequelize-cli db:migrate:undo:all",
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,6 +27,8 @@
     "express-formidable": "^1.2.0",
     "express-session": "^1.17.1",
     "jsonwebtoken": "^8.5.1",
+    "material-ui-dropzone": "^3.5.0",
+    "multer": "^1.4.2",
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.6",

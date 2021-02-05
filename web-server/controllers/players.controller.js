@@ -88,6 +88,9 @@ const searchOneSpecificPlayer = async (req, res, next) => {
 
 //Update player from database
 const update = async (req, res, next) => {
+  // if(req.formData){
+  return next();
+  // }
   const { id } = req.params;
   const data = { ...req.body };
   try {
