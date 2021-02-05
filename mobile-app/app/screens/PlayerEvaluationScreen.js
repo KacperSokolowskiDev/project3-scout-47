@@ -214,19 +214,32 @@ function PlayerEvaluationScreen({ playerInfo }) {
                     title={item.name + " : " + item.score}
                     style={styles.modal}
                   >
-                    <AppText style={styles.modalText}>{item.name}</AppText>
                     <View style={styles.modalContainer}>
-                      <Button
-                        title="-"
-                        style={styles.modalCrement}
-                        onPress={() => decrement(item.score, item.id)}
-                      />
-                      <AppText style={styles.modalText}>{item.score}</AppText>
-                      <Button
-                        title="+"
-                        style={styles.modalCrement}
-                        onPress={() => increment(item.score, item.id)}
-                      />
+                      <AppText style={styles.modalText}>{item.name}</AppText>
+                      <View style={styles.modalScoreContainer}>
+                        <Button
+                          title="-"
+                          style={styles.modalCrement}
+                          onPress={() => decrement(item.score, item.id)}
+                        />
+                        <AppText style={styles.modalText}>{item.score}</AppText>
+                        <Button
+                          title="+"
+                          style={styles.modalCrement}
+                          onPress={() => increment(item.score, item.id)}
+                        />
+                      </View>
+                      <View style={styles.modalDescritpion}>
+                        <AppTextInput
+                          placeholder={
+                            item.description ? item.description : "description"
+                          }
+                          onChangeText={(value) =>
+                            setDescription(value, item.description, item.id)
+                          }
+                          style={styles.description}
+                        />
+                      </View>
                     </View>
                   </ButtonModal>
                 );
@@ -254,19 +267,32 @@ function PlayerEvaluationScreen({ playerInfo }) {
                     title={item.name + " : " + item.score}
                     style={styles.modal}
                   >
-                    <AppText style={styles.modalText}>{item.name}</AppText>
                     <View style={styles.modalContainer}>
-                      <Button
-                        title="-"
-                        style={styles.modalCrement}
-                        onPress={() => decrement(item.score, item.id)}
-                      />
-                      <AppText style={styles.modalText}>{item.score}</AppText>
-                      <Button
-                        title="+"
-                        style={styles.modalCrement}
-                        onPress={() => increment(item.score, item.id)}
-                      />
+                      <AppText style={styles.modalText}>{item.name}</AppText>
+                      <View style={styles.modalScoreContainer}>
+                        <Button
+                          title="-"
+                          style={styles.modalCrement}
+                          onPress={() => decrement(item.score, item.id)}
+                        />
+                        <AppText style={styles.modalText}>{item.score}</AppText>
+                        <Button
+                          title="+"
+                          style={styles.modalCrement}
+                          onPress={() => increment(item.score, item.id)}
+                        />
+                      </View>
+                      <View style={styles.modalDescritpion}>
+                        <AppTextInput
+                          placeholder={
+                            item.description ? item.description : "description"
+                          }
+                          onChangeText={(value) =>
+                            setDescription(value, item.description, item.id)
+                          }
+                          style={styles.description}
+                        />
+                      </View>
                     </View>
                   </ButtonModal>
                 );
@@ -294,19 +320,32 @@ function PlayerEvaluationScreen({ playerInfo }) {
                     title={item.name + " : " + item.score}
                     style={styles.modal}
                   >
-                    <AppText style={styles.modalText}>{item.name}</AppText>
                     <View style={styles.modalContainer}>
-                      <Button
-                        title="-"
-                        style={styles.modalCrement}
-                        onPress={() => decrement(item.score, item.id)}
-                      />
-                      <AppText style={styles.modalText}>{item.score}</AppText>
-                      <Button
-                        title="+"
-                        style={styles.modalCrement}
-                        onPress={() => increment(item.score, item.id)}
-                      />
+                      <AppText style={styles.modalText}>{item.name}</AppText>
+                      <View style={styles.modalScoreContainer}>
+                        <Button
+                          title="-"
+                          style={styles.modalCrement}
+                          onPress={() => decrement(item.score, item.id)}
+                        />
+                        <AppText style={styles.modalText}>{item.score}</AppText>
+                        <Button
+                          title="+"
+                          style={styles.modalCrement}
+                          onPress={() => increment(item.score, item.id)}
+                        />
+                      </View>
+                      <View style={styles.modalDescritpion}>
+                        <AppTextInput
+                          placeholder={
+                            item.description ? item.description : "description"
+                          }
+                          onChangeText={(value) =>
+                            setDescription(value, item.description, item.id)
+                          }
+                          style={styles.description}
+                        />
+                      </View>
                     </View>
                   </ButtonModal>
                 );

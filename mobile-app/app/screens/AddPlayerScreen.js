@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, StyleSheet, View } from "react-native";
+import { AsyncStorage, Button, StyleSheet, View } from "react-native";
 const axios = require("axios");
 import * as Yup from "yup";
 
@@ -23,20 +23,37 @@ function AddPlayerScreen({ navigation }) {
   const [isPosted, setIsPosted] = useState(false);
 
   const postPlayer = async (values) => {
+    let url = "http://192.168.50.74:5000/api/players";
     if (isPosted == false) {
-      axios
-        .post("http://192.168.50.74:5000/api/players", values)
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((error) => {
-          console.log(error);
+      try {
+        const token = await AsyncStorage.getItem("token");
+        if (token == null) {
+          throw new Error("Not logged in");
+        }
+        const response = await axios.post(url, {
+          headers: { Authorization: `Bearer ${JSON.parse(token)}` },
         });
-      setIsPosted(true);
-      navigation.navigate(routes.PLAYERSLISTSCREEN);
-    } else {
-      console.log("already uploaded");
+        setIsPosted(true);
+        navigation.navigate(routes.PLAYERSLISTSCREEN);
+      } catch (error) {
+        console.log("error ", error);
+      }
     }
+
+    // if (isPosted == false) {
+    //   axios
+    //     .post("http://192.168.50.74:5000/api/players", values)
+    //     .then((res) => {
+    //       console.log(res.data);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    //   setIsPosted(true);
+    //   navigation.navigate(routes.PLAYERSLISTSCREEN);
+    // } else {
+    //   console.log("already uploaded");
+    // }
   };
 
   return (
