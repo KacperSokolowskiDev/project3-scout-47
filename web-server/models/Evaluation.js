@@ -10,7 +10,7 @@ class Evaluation extends Model {
         id: {
           type: DataTypes.INTEGER,
           primaryKey: true,
-          autoIncrement: true,
+          autoIncrement: true
         },
         date: DataTypes.DATE,
         score: DataTypes.INTEGER,
