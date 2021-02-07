@@ -9,7 +9,7 @@ function Header({ api }) {
   const [{ user }, dispatch] = useDataLayerValue();
   const history = useHistory();
 
-  console.log("here", user);
+  // console.log("here", user);
   return (
     <div className="header">
       <div className="header__left">

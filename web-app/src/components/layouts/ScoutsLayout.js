@@ -4,13 +4,18 @@ import Sidebar from "../Sidebar/Sidebar";
 import Footer from "../Footer/Footer";
 import VideoPlayer from "./../../components/modules/video/VideoPlayer";
 import Navbar from "./../../components/navbar/Index";
+import "./Layout.css";
 
 const ScoutsLayout = ({ children, api, mediaPlayer }) => {
+  // useEffect()
+
+  
   return (
-    <div className="app">
+    // <div className="app">
+    <>
       <Navbar />
-      <div className="player">
-        <div className="player__body">
+      <div className="view">
+        <div className="view__body">
           <Sidebar />
           {children}
         </div>
@@ -19,7 +24,7 @@ const ScoutsLayout = ({ children, api, mediaPlayer }) => {
         </div>
         <Footer api={api} mediaPlayer={mediaPlayer} />
       </div>
-    </div>
+    </>
   );
 };
 

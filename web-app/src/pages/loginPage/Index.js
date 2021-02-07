@@ -1,10 +1,10 @@
 import Login from "../../components/login/Index";
 import "./styles.css";
 
-const LoginPage = () => {
+const LoginPage = ({ api }) => {
   return (
     <div className="loginPage-container">
-      <Login />
+      <Login api={api} />
     </div>
   );
 };

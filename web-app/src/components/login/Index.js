@@ -8,35 +8,48 @@ import UserContext from "../../context/UserContext";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box"; //To use margin on buttons
+import {useDataLayerValue} from "./../DataLayer"
 
 import "./styles.css";
 
-const Index = () => {
+
+const Index = ({api} ) => {
   const [email, setMail] = useState("");
   const [password, setPassword] = useState("");
   const userContext = useContext(UserContext);
   const history = useHistory();
 
+  const [{ token }, dispatch] = useDataLayerValue();
+
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    const value = {
-      email: email,
-      password: password,
-    };
+    // const value = {
+    //   email: email,
+    //   password: password,
+    // };
     try {
-      console.log("hey");
-      const resultat = await axios.post(
-        "http://localhost:5000/api/users/login",
-        value
-      );
-      // token + user
-      console.log(resultat);
-      console.log("token dans login", resultat.data.token);
-      userContext.login(resultat.data.user, resultat.data.token);
+      const { data } = await api.login(email, password)
+   // api.setAccessToken(_token);
+      console.log("oo", data)
+
+      dispatch({
+        type: "SET_TOKEN",
+        token: data.token,
+      });
+
+      dispatch({
+        type: "SET_USER",
+        user: data.user
+      })
+      
+      history.push("/dashboard");
+
+
     } catch (error) {
-      console.log(error.toString());
+      console.log(error)
     }
-  };
+  };  
 
   const changeRender = () => {
     // GO dashboard

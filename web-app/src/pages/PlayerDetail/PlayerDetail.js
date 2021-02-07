@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SongRow from "./SongRow";
 import Header from "../../components/layouts/Header";
 import { useDataLayerValue } from "../../components/DataLayer";
-import "./Player.css";
-
+import { useParams } from "react-router-dom"
 import "./PlayerDetailBody.css";
 
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
@@ -17,8 +16,20 @@ import PdfViewer from "../../components/modules/pdf/PdfViewer";
 // import "./PlayerDetailBody.css";
 
 function PlayerDetail({ api, mediaPlayer }) {
-  const [{ my_players }, dispatch] = useDataLayerValue();
-  console.log("re", my_players && my_players);
+  const [{ player }, dispatch] = useDataLayerValue();
+  console.log("re", player, player);
+  let { id }  = useParams();
+
+  useEffect(async () => {
+    let playerFocused = await api.getPlayer(id)
+    dispatch({
+      type: "SET_PLAYER",
+      player: playerFocused
+    });
+    return () => {
+      // cleanup
+    }
+  }, [id])
 
   const playPlayer = (id) => {
     mediaPlayer
@@ -65,14 +76,14 @@ function PlayerDetail({ api, mediaPlayer }) {
   return (
     <div className="body">
       <Header api={api} />
-      {my_players && (
+      {player && (
         <>
           <div className="body__info">
-            <img src={my_players[0].picture} alt="" />
+            <img src={player.picture} alt="" />
             <div className="body__infoText">
               <strong>PLAYER</strong>
-              <h2>{`${my_players[0].firstname} ${my_players[0].lastname}`}</h2>
-              <p>{`#${my_players[0].strongFoot} #${my_players[0].height} #${my_players[0].position}`}</p>
+              <h2>{`${player.firstname} ${player.lastname}`}</h2>
+              <p>{`#${player.strongFoot} #${player.height} #${player.position}`}</p>
             </div>
           </div>
 
@@ -88,14 +99,14 @@ function PlayerDetail({ api, mediaPlayer }) {
 
             <h2 className="body_player_title">Records</h2>
             <hr />
-            {my_players[0].Criteria?.map((criterion) => {
+            {player.Criteria?.map((criterion) => {
               console.log("euuu vite", criterion);
 
               return (
                 <SongRow
                   playSong={() => playSong(criterion.Evaluation.id)}
                   criterion={criterion}
-                  picture={my_players[0].picture}
+                  picture={player.picture}
                 />
               );
             })}
@@ -116,10 +127,10 @@ function PlayerDetail({ api, mediaPlayer }) {
             <h2 className="body_player_title">School Report</h2>
             <hr />
             <div>
-              {!my_players[0].schoolReport ? (
+              {!player.schoolReport ? (
                 <PdfUploader api={api} />
               ) : (
-                <PdfViewer api={api} path={my_players[0].schoolReport} />
+                <PdfViewer api={api} path={player.schoolReport} />
               )}
             </div>
           </div>

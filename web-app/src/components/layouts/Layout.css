@@ -1,9 +1,9 @@
-.player {
+.view {
   display: flex;
   flex-direction: column;
 }
 
-.player__body {
+.view__body {
   display: flex;
   flex-grow: 1;
 }

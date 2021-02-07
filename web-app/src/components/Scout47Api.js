@@ -6,14 +6,22 @@ class Scout47Api {
     this.port = 5000;
     this.apiPath = "api";
     this.remote = "localhost";
+    this.token = null;
     this.url = `http://${this.remote}:${this.port}/${this.apiPath}`;
+    
+  }
+
+  setAccessToken = (token) => {
+    console.log("in acces tooken", token)
     this.headers = { Authorization: `Bearer ${token}` };
+    // return this.token = token
+   
   }
 
   getUserPlayers = async () => {
-    console.log("in get user players");
+    // console.log("in get user players");
     try {
-      const { data } = await axios.get(`${this.url}/players`, {
+      const { data }  = await axios.get(`${this.url}/players`, {
         headers: this.headers,
       });
       console.log("ro", data);
@@ -34,6 +42,24 @@ class Scout47Api {
     }
   };
 
+  login = async (email, password) => {
+    console.log("login")
+    try {
+      const data  = await axios({
+        method: 'post',
+        url: `${this.url}/users/login`,
+        data: {
+          email, password
+        }
+      });
+      console.log(data)
+      return data
+      //set local storage
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   getMe = async () => {
     try {
       const { data } = await axios.get(`${this.url}/users/1`, {
@@ -51,11 +77,12 @@ class Scout47Api {
         `${this.url}/players/${id}/evaluations`,
         { headers: this.headers }
       );
-      return data;
+      return data[0];
     } catch (error) {
       console.log(error);
     }
   };
+
 
   uploadSchoolReport = async (file, playerId) => {
     console.log("in call");
@@ -68,10 +95,8 @@ class Scout47Api {
     try {
       const result = await axios({
         method: "put",
-        url: `${this.url}/players/${playerId}/`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        url: `${this.url}/players/${playerId}`,
+        headers: this.headers,
         data,
       });
 
