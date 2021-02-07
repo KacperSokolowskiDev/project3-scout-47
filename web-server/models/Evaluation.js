@@ -2,7 +2,15 @@
 const { Model } = require("sequelize");
 
 class Evaluation extends Model {
-  static associate({ Player, Criterion }) {}
+  static associate({ Player, Criterion, User }) {
+    this.hasOnePlayer = this.belongsTo(Player)
+    this.hasOnePlayer = this.belongsTo(Criterion)
+    // this.hasOnePlayer = this.belongsTo(User)
+
+
+
+  
+  }
 
   static init(sequelize, DataTypes) {
     return super.init(
@@ -12,6 +20,7 @@ class Evaluation extends Model {
           primaryKey: true,
           autoIncrement: true
         },
+        PlayerId: DataTypes.INTEGER,
         date: DataTypes.DATE,
         score: DataTypes.INTEGER,
         description: DataTypes.STRING,

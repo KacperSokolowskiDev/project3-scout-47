@@ -48,7 +48,7 @@ const index = async (req, res, next) => {
   }
   console.log("here in index Evalu");
   try {
-    const listEvaluation = await Evaluation.findAll();
+    const listEvaluation = await Evaluation.findAll({ include: { all : true}});
     res.status(200).json(listEvaluation);
   } catch (error) {
     let message = "Evaluation can't be shown";
