@@ -28,10 +28,10 @@ const createMore = async (req, res, next) => {
 // Get an evaluation by its id
 const show = async (req, res, next) => {
   const { id } = req.params;
-  console.log(id);
+  console.log(id)
   try {
     const evaluation = await Evaluation.findOne({ where: { id: Number(id) } });
-    console.log(evaluation);
+    console.log(evaluation)
     res.status(200).json(evaluation);
   } catch (error) {
     let message = "Evaluation can't be created";
@@ -70,7 +70,7 @@ const indexByPlayer = async (req, res, next) => {
 // Update an evaluation
 const update = async (req, res, next) => {
   console.log("here in update Evalu");
-  return next();
+  return next()
 
   const { id } = req.params;
   const data = { ...req.body };

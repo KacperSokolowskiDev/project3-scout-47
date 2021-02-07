@@ -1,7 +1,25 @@
 const express = require("express");
+const multer = require("multer")
 const router = express.Router({ mergeParams: true });
-const playersController = require("../controllers/players.controller");
 const evaluationsRoutes = require("./evaluations.routes");
+
+const playersController = require("../controllers/players.controller");
+const uploadsController = require("../controllers/uploads.controller");
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    console.log("yo")
+    cb(null, "uploads/")
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname)
+  },
+})
+
+const uploadStorage = multer({ storage: storage })
+
+
 router.use("/:PlayerId/evaluations", evaluationsRoutes);
 
 // Get all players
@@ -25,7 +43,7 @@ router.get(
 router.post("/", playersController.create);
 
 // Update player by id
-router.put("/:id", playersController.update);
+router.put("/:id", playersController.update, uploadStorage.single("file"), uploadsController.saveSchoolReport);
 
 // Delete player by id
 router.delete("/:id", playersController.destroy);

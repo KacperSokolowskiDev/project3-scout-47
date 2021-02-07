@@ -1,12 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
-import axios from "axios";
-
+import React, { useState } from "react";
 import Navbar from "../../components/navbar/Index";
 import LateralBar from "../../components/LateralBar/Index";
 import { useLocation } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import "./styles.css";
 import { DropzoneDialog } from "material-ui-dropzone";
+import axios from "axios";
 
 const ProfilPage = () => {
   const [open, setOpen] = useState();
@@ -16,27 +15,10 @@ const ProfilPage = () => {
   const playerId = location.state.id;
   console.log(location);
   console.log(location.state);
-  console.log(location.state.id);
+
+  const [open, setOpen] = useState();
   //useParams -> l'ID de l'URL de react router
   //Component mount -> API call /api/players/1/evaluation
-
-  // Get all evaluation of the player
-  const fetchEvaluations = async () => {
-    const url = `http://localhost:5000/api/players/${playerId}/evaluations`;
-
-    axios
-      .get(url, {
-        headers: { Authorization: `Bearer ${userContext.token}` },
-      })
-      .then((res) => {
-        let result = res.data;
-        console.log("eval ?", result);
-      });
-  };
-
-  useEffect(() => {
-    fetchEvaluations();
-  }, []);
 
   const handleOpen = () => {
     setOpen(true);
