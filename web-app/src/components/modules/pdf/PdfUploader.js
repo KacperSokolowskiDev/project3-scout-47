@@ -114,8 +114,8 @@ const PdfUploader = ({ api, user }) => {
         setFiles([]);
         await api.getPlayer("1").then((response) =>
           dispatch({
-            type: "SET_MY_PLAYERS",
-            my_players: response,
+            type: "SET_PLAYER",
+            player: response,
           })
         );
         // setUpdate(!update)

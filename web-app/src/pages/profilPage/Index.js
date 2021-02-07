@@ -10,13 +10,13 @@ import axios from "axios";
 const ProfilPage = () => {
   const [open, setOpen] = useState();
   const location = useLocation();
-  const userContext = useContext(UserContext);
+  // const userContext = useContext(UserContext);
   const [listEvaluations, setListEvaluations] = useState([]);
   const playerId = location.state.id;
   console.log(location);
   console.log(location.state);
 
-  const [open, setOpen] = useState();
+  // const [open, setOpen] = useState();
   //useParams -> l'ID de l'URL de react router
   //Component mount -> API call /api/players/1/evaluation
 
