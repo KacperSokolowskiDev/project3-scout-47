@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SidebarOption from "./SidebarOption";
 import "./Sidebar.css";
 import HomeIcon from "@material-ui/icons/Home";
@@ -12,6 +12,10 @@ function Sidebar() {
   const [{ players }, dispatch] = useDataLayerValue();
   console.log("in sidebar", players);
   let history = useHistory();
+
+  useEffect(() => {
+
+  })
 
   return (
     <div className="sidebar">
@@ -28,10 +32,9 @@ function Sidebar() {
         YOUR PLAYERS
       </strong>
       <hr />
-
-      {players?.map((player) => {
+      {players && players.map((player) => {
         console.log("go  go", player);
-        return <SidebarOption {...player} />;
+        return <SidebarOption onClick={() => history.push(`/player/${player.id}`)} {...player} />;
       })}
     </div>
   );

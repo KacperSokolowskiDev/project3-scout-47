@@ -2,8 +2,8 @@ import axios from 'axios';
 
 class MediaPlayer {
     constructor(path){
-        console.log("construction")
-        console.log(path)
+        // console.log("construction")
+        // console.log(path)
         this.path = 'api'
         this.port = 5000
         this.url = `http://localhost:${this.port}/${this.path}`
@@ -39,7 +39,7 @@ class MediaPlayer {
 
     skipToNext = async () => {
         try {
-            console.log("skipping to next")
+            // console.log("skipping to next")
 
             // const players = axios.get(`${this.url}/players`, { ...params })
             // return players
@@ -52,7 +52,7 @@ class MediaPlayer {
 
     getMyCurrentPlayingTrack = async (id) => {
         try {
-            console.log("getMyCurrentTrackPlaying")
+            // console.log("getMyCurrentTrackPlaying")
 
             const res = await axios.get(`${this.url}/evaluations/${id}`)
             console.log('yaaa', res.data)
@@ -69,7 +69,7 @@ class MediaPlayer {
 
     play = async () => {
         try {
-            console.log("playing")
+            // console.log("playing")
 
             // const players = axios.get(`${this.url}/players`, { ...params })
             // return players
@@ -97,7 +97,7 @@ class MediaPlayer {
 
     getPlayer = async (id) => {
         try {
-            console.log("getting Ppllayer ?")
+            // console.log("getting Ppllayer ?")
             // const player = await axios.get(`${this.url}/players/${id}`)
             // return player
             

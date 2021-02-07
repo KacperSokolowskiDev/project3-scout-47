@@ -1,21 +1,25 @@
 export const initialState = {
+  isAuth: false,
   user: null,
   playing: false,
   item: null,
-  my_players: null,
+  players: [],
   top_players: null,
   token: null,
   api: null,
-  player: [],
+  player: {},
 };
 
 const reducer = (state, action) => {
-  console.log(action);
+  // console.log(action);
 
   switch (action.type) {
     case "SET_USER":
+      localStorage.setItem("user", JSON.stringify(action.user));
+      localStorage.setItem("token", JSON.stringify(action.token));
       return {
         ...state,
+        isAuth: true,
         user: action.user,
       };
 
@@ -34,7 +38,7 @@ const reducer = (state, action) => {
     case "SET_MY_PLAYERS":
       return {
         ...state,
-        my_players: action.my_players,
+        players: action.players,
       };
 
     case "SET_TOP_PLAYERS":
@@ -55,10 +59,10 @@ const reducer = (state, action) => {
         api: action.api,
       };
 
-    case "SET_PLAYERS":
+    case "SET_PLAYER":
       return {
         ...state,
-        players: action.players,
+        player: action.player,
       };
     default:
       return state;
