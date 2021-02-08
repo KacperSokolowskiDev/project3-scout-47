@@ -413,7 +413,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   modal: {
-    backgroundColor: "black",
+    backgroundColor: defaultStyles.colors.medium,
     display: "flex",
     justifyContent: "center",
   },
@@ -437,7 +437,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   modalInfo: {
-    backgroundColor: "black",
+    backgroundColor: defaultStyles.colors.medium,
     alignItems: "center",
   },
   modalText: {

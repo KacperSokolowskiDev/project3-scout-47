@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   AsyncStorage,
+  TextInput,
   FlatList,
   StyleSheet,
   TouchableOpacity,
@@ -8,8 +9,10 @@ import {
 } from "react-native";
 import Constant from "expo-constants";
 import { AntDesign } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 //import { AsyncStorage } from "@react-native-community/async-storage";
 const axios = require("axios");
+import { Footer, FooterTab, Button, Text, Input, Textarea } from "native-base";
 
 import AppText from "../components/AppText";
 import Card from "../components/Card";
@@ -21,6 +24,7 @@ function ListPlayerScreen({ navigation }) {
   const [download, setDownload] = useState(false);
   const [shouldFetch, setShouldFetch] = useState(true);
   const [listPlayers, setListPlayers] = useState([]);
+  const [search, setSearch] = useState("");
   //const [offset, SetOffset] = useState(0);
 
   const [onEndListReached, setOnEndListReached] = useState(true);
@@ -59,12 +63,20 @@ function ListPlayerScreen({ navigation }) {
     fetchListPlayer();
   }, []);
 
+  const handleSearch = (e) => {
+    console.log("in the search", e);
+  };
+
   return (
     <Screen>
       <View style={styles.titleContainer}>
-        <AppText style={{ color: "white", fontSize: 30, fontWeight: "bold" }}>
-          Vos joueurs suivis :
-        </AppText>
+        <TextInput
+          style={styles.searchBar}
+          placeholder={"search"}
+          onChangeText={(value) => {
+            handleSearch(value);
+          }}
+        />
       </View>
 
       {download ? (
@@ -97,40 +109,40 @@ function ListPlayerScreen({ navigation }) {
       ) : (
         <AppText style={styles.text}>No player Loaded</AppText>
       )}
-      <View style={styles.bottomBar}>
-        <TouchableOpacity
-          style={styles.bottomBtn}
-          onPress={() => navigation.navigate(routes.ADDPLAYERSCREEN)}
-        >
-          <AntDesign
-            name="adduser"
-            color={defaultStyles.colors.black}
-            size={50}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.bottomBtn}
-          onPress={() => {
-            console.log("GO search");
-          }}
-        >
-          <AntDesign
-            name="search1"
-            color={defaultStyles.colors.black}
-            size={50}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.bottomBtn}
-          onPress={() => navigation.navigate(routes.AGENDAPAGE)}
-        >
-          <AntDesign
-            name="calendar"
-            color={defaultStyles.colors.black}
-            size={50}
-          />
-        </TouchableOpacity>
-      </View>
+      <Footer>
+        <FooterTab>
+          <Button
+            vertical
+            onPress={() => navigation.navigate(routes.AGENDAPAGE)}
+          >
+            <MaterialCommunityIcons
+              name="account"
+              color={defaultStyles.colors.black}
+              size={25}
+            />
+            <Text>Agenda</Text>
+          </Button>
+          <Button
+            vertical
+            onPress={() => navigation.navigate(routes.ADDPLAYERSCREEN)}
+          >
+            <MaterialCommunityIcons
+              name="account"
+              color={defaultStyles.colors.black}
+              size={25}
+            />
+            <Text>Ajout</Text>
+          </Button>
+          <Button vertical>
+            <MaterialCommunityIcons
+              name="account"
+              color={defaultStyles.colors.black}
+              size={25}
+            />
+            <Text>Log out</Text>
+          </Button>
+        </FooterTab>
+      </Footer>
     </Screen>
   );
 }
@@ -176,9 +188,7 @@ const styles = StyleSheet.create({
     color: "red",
     fontSize: 50,
   },
-  titleContainer: {
-    height: "5%",
-  },
+
   modal: {
     backgroundColor: defaultStyles.colors.black,
     height: "100%",
@@ -190,6 +200,16 @@ const styles = StyleSheet.create({
   },
   pickerSelect: {
     fontSize: 50,
+  },
+  searchBar: {
+    backgroundColor: defaultStyles.colors.white,
+    borderRadius: 35,
+    height: "65%",
+    margin: 10,
+    paddingLeft: 10,
+  },
+  titleContainer: {
+    height: "10%",
   },
   title: {
     color: defaultStyles.colors.white,

@@ -8,15 +8,17 @@ function Card({ firstname, lastname, picture, club, logo, onPress }) {
   return (
     <>
       <TouchableOpacity style={styles.container} onPress={onPress}>
-        <Image style={styles.image} source={picture} />
+        <View>
+          <Image style={styles.image} source={picture} />
+        </View>
         <View style={styles.player}>
           <View style={styles.infoNames}>
             <AppText style={styles.text}>{lastname}</AppText>
             <AppText style={styles.text}>{firstname}</AppText>
           </View>
           <View style={styles.infoClub}>
-            <Image style={styles.logo} source={logo} />
-            <AppText style={styles.text}>{club}</AppText>
+            {/* <AppText style={styles.text}>{club}</AppText> */}
+            <AppText style={styles.text}>FC BXL</AppText>
           </View>
         </View>
       </TouchableOpacity>
@@ -26,21 +28,19 @@ function Card({ firstname, lastname, picture, club, logo, onPress }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: defaultStyles.colors.secondary,
-    borderRadius: 25,
     flex: 1,
     flexDirection: "row",
-    height: 150,
-    margin: 10,
+    marginBottom: 50,
+    height: 50,
+    margin: 20,
   },
   image: {
     alignSelf: "center",
-    borderTopLeftRadius: 25,
-    borderBottomLeftRadius: 25,
-    height: "100%",
-    marginTop: 50,
-    marginBottom: 50,
-    width: 120,
+    borderRadius: 35,
+    // borderTopLeftRadius: 5,
+    // borderBottomLeftRadius: 5,
+    height: 75,
+    width: 75,
   },
 
   infoClub: {
@@ -53,18 +53,24 @@ const styles = StyleSheet.create({
   infoNames: {
     alignItems: "center",
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-evenly",
+    flexDirection: "row",
+    height: 50,
+    justifyContent: "space-around",
     width: "100%",
   },
   logo: { height: 50, width: 50 },
   player: {
+    backgroundColor: defaultStyles.colors.secondary,
+    borderBottomLeftRadius: 0,
+    borderTopLeftRadius: 0,
+    borderRadius: 25,
+    height: 70,
     alignItems: "center",
     flexDirection: "column",
     flex: 1,
   },
   text: {
-    fontSize: 30,
+    fontSize: 15,
     fontWeight: "bold",
   },
 });

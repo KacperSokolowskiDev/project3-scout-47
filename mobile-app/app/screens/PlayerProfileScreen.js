@@ -8,6 +8,7 @@ import defaultColor from "../config/color";
 import PlayerProfileCard from "../components/PlayerProfileCard";
 import Screen from "../components/Screen";
 import AppText from "../components/AppText";
+import defaultStyles from "../config/styles";
 
 function PlayerProfileScreen({ playerInfo, navigation }) {
   return (
@@ -17,7 +18,7 @@ function PlayerProfileScreen({ playerInfo, navigation }) {
       </View>
 
       <ButtonModal
-        style={{ backgroundColor: "black" }}
+        style={styles.modalSchool}
         title={
           <MaterialCommunityIcons
             name="school"
@@ -39,6 +40,9 @@ const styles = StyleSheet.create({
     backgroundColor: defaultColor.primary,
     borderRadius: 25,
     width: 50,
+  },
+  modalSchool: {
+    backgroundColor: defaultStyles.colors.medium,
   },
   text: {
     color: "white",
