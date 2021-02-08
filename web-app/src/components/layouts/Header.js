@@ -12,7 +12,7 @@ function Header({ api }) {
   // console.log("here", user);
   return (
     <div className="header">
-      <div className="header__left">
+      {/* <div className="header__left">
         <SearchIcon />
         <input
           onChange={() => {
@@ -21,7 +21,7 @@ function Header({ api }) {
           placeholder="Search for Players, Evalutations, Criterions..."
           type="text"
         />
-      </div>
+      </div> */}
       <div className="header__right">
         <Avatar alt={user?.firstname} src={user?.picture} />
         <h4>{user?.display_name}</h4>

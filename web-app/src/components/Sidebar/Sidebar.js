@@ -7,19 +7,19 @@ import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 import { useDataLayerValue } from "../DataLayer";
 import logo from "../../assets/logo_scout47.png";
 import { useHistory } from "react-router-dom";
+import Searchbar from "../searchbar/Index";
 
 function Sidebar() {
   const [{ players }, dispatch] = useDataLayerValue();
   console.log("in sidebar", players);
   let history = useHistory();
 
-  useEffect(() => {
-
-  })
+  useEffect(() => {});
 
   return (
     <div className="sidebar">
       <img className="sidebar__logo" src={logo} alt="" />
+      <Searchbar />
       {/* <SidebarOption Icon={HomeIcon} title="Home" /> */}
       {/* <SidebarOption Icon={SearchIcon} title="Search" />
       <SidebarOption Icon={LibraryMusicIcon} title="Your Library" /> */}
@@ -32,10 +32,16 @@ function Sidebar() {
         YOUR PLAYERS
       </strong>
       <hr />
-      {players && players.map((player) => {
-        console.log("go  go", player);
-        return <SidebarOption onClick={() => history.push(`/player/${player.id}`)} {...player} />;
-      })}
+      {players &&
+        players.map((player) => {
+          console.log("go  go", player);
+          return (
+            <SidebarOption
+              onClick={() => history.push(`/player/${player.id}`)}
+              {...player}
+            />
+          );
+        })}
     </div>
   );
 }

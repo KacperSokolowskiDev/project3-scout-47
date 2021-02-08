@@ -1,5 +1,3 @@
-import Navbar from "../../components/navbar/Index";
-import LateralBar from "../../components/LateralBar/Index";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
@@ -27,45 +25,37 @@ const StaffProfilePage = () => {
     fetchPlayers();
   }, []);
   return (
-    <div className="staff-profil-page">
-      <Navbar />
-      <div className="staff-profil-page-container">
-        <LateralBar />
-        <div className="staff-profil-page-content">
-          <div className="staff-profil-header">
-            <div>
-              <img
-                className="staff-profil-pic"
-                src={location.state.picture}
-                alt="staffProfilPic"
-              />
-            </div>
-            <div className="staff-profil-info">
-              <h1 className="staff-profil-name">
-                {location.state.firstname} {location.state.lastname}
-              </h1>
-              <h3 className="staff-profil-sub-title">{location.state.email}</h3>
-              <h3 className="staff-profil-sub-title">
-                {location.state.telephone}
-              </h3>
-            </div>
-          </div>
-          <div className="staff-player-list">
-            {download ? (
-              followedPlayers.map((data) => {
-                return (
-                  <img
-                    className="staff-player-img"
-                    src={data.picture}
-                    alt="player"
-                  />
-                );
-              })
-            ) : (
-              <div>No player in database</div>
-            )}
-          </div>
+    <div className="staff-profil-page-content">
+      <div className="staff-profil-header">
+        <div>
+          <img
+            className="staff-profil-pic"
+            src={location.state.picture}
+            alt="staffProfilPic"
+          />
         </div>
+        <div className="staff-profil-info">
+          <h1 className="staff-profil-name">
+            {location.state.firstname} {location.state.lastname}
+          </h1>
+          <h3 className="staff-profil-sub-title">{location.state.email}</h3>
+          <h3 className="staff-profil-sub-title">{location.state.telephone}</h3>
+        </div>
+      </div>
+      <div className="staff-player-list">
+        {download ? (
+          followedPlayers.map((data) => {
+            return (
+              <img
+                className="staff-player-img"
+                src={data.picture}
+                alt="player"
+              />
+            );
+          })
+        ) : (
+          <div>No player in database</div>
+        )}
       </div>
     </div>
   );

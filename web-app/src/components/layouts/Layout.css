@@ -4,6 +4,7 @@
 }
 
 .view__body {
+  background-color: black;
   display: flex;
   flex-grow: 1;
 }

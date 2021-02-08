@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import Navbar from "../../components/navbar/Index";
-import LateralBar from "../../components/LateralBar/Index";
 import FormAddCritetia from "../../components/Form-dialogs/FormAddCriteria";
 import CriteriasGroupeCard from "../../components/CriteriasGroupeCard/Index";
 //Material UI
@@ -63,51 +61,45 @@ function Index() {
   };
 
   return (
-    <div className="criteria-page">
-      <Navbar />
-      <div className="criteria-page-container">
-        <LateralBar />
-        <div className="criteria-page-content">
-          <h1 className="criteria-title">CRITERES</h1>
-          <div className="criteria-page-search-info">
-            <TextField
-              id="filled-basic"
-              label="Search"
-              variant="filled"
-              color="secondary"
-              autoComplete="off"
-              className={classes.elementMT}
-            />
-            <FormAddCritetia fetchCriterias={fetchCriterias} />
-            <Tooltip title="Filter" aria-label="filter">
-              <Fab color="secondary" className={classes.buttons}>
-                <FilterListIcon />
-              </Fab>
-            </Tooltip>
-          </div>
-          <div className="criteria-page-list">
-            <CriteriasGroupeCard
-              listCriterias={listCriterias}
-              groupe={"Physique"}
-              download={download}
-            />
-            <CriteriasGroupeCard
-              listCriterias={listCriterias}
-              groupe={"Technique"}
-              download={download}
-            />
-            <CriteriasGroupeCard
-              listCriterias={listCriterias}
-              groupe={"Stratégique"}
-              download={download}
-            />
-            <CriteriasGroupeCard
-              listCriterias={listCriterias}
-              groupe={"Psychologique"}
-              download={download}
-            />
-          </div>
-        </div>
+    <div className="criteria-page-content">
+      <h1 className="criteria-title">CRITERES</h1>
+      <div className="criteria-page-search-info">
+        <TextField
+          id="filled-basic"
+          label="Search"
+          variant="filled"
+          color="secondary"
+          autoComplete="off"
+          className={classes.elementMT}
+        />
+        <FormAddCritetia fetchCriterias={fetchCriterias} />
+        <Tooltip title="Filter" aria-label="filter">
+          <Fab color="secondary" className={classes.buttons}>
+            <FilterListIcon />
+          </Fab>
+        </Tooltip>
+      </div>
+      <div className="criteria-page-list">
+        <CriteriasGroupeCard
+          listCriterias={listCriterias}
+          groupe={"Physique"}
+          download={download}
+        />
+        <CriteriasGroupeCard
+          listCriterias={listCriterias}
+          groupe={"Technique"}
+          download={download}
+        />
+        <CriteriasGroupeCard
+          listCriterias={listCriterias}
+          groupe={"Stratégique"}
+          download={download}
+        />
+        <CriteriasGroupeCard
+          listCriterias={listCriterias}
+          groupe={"Psychologique"}
+          download={download}
+        />
       </div>
     </div>
   );

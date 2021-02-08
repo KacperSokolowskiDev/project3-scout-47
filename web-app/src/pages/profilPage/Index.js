@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../../components/navbar/Index";
-import LateralBar from "../../components/LateralBar/Index";
+import LateralBar from "../../components/logout-button/Index";
 import { useLocation } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import "./styles.css";
@@ -53,53 +53,47 @@ const ProfilPage = () => {
   };
 
   return (
-    <div className="profil-page">
-      <Navbar />
-      <div className="profil-page-container">
-        <LateralBar />
-        <div className="profil-page-content">
-          <div className="profil-header">
-            <div>
-              <img
-                className="profil-pic"
-                src={location.state.picture}
-                alt="profilPic"
-              />
-            </div>
-            <div className="profil-player-info">
-              <h1 className="profil-name">
-                {location.state.firstname} {location.state.lastname}
-              </h1>
-              <h2 className="profil-sub-title">{location.state.position}</h2>
-              <h2 className="profil-sub-title">{location.state.birthdate}</h2>
-              <button className="add-button" onClick={handleOpen}>
-                Add File
-              </button>
-              <DropzoneDialog
-                open={open}
-                acceptedFiles={[
-                  "application/pdf",
-                  "application/pdf",
-                  "application/pdf",
-                ]}
-                onSave={handleSave}
-                onClose={handleClose}
-              />
-            </div>
+    <div className="profil-page-content">
+      <div className="profil-header">
+        <div>
+          <img
+            className="profil-pic"
+            src={location.state.picture}
+            alt="profilPic"
+          />
+        </div>
+        <div className="profil-player-info">
+          <h1 className="profil-name">
+            {location.state.firstname} {location.state.lastname}
+          </h1>
+          <h2 className="profil-sub-title">{location.state.position}</h2>
+          <h2 className="profil-sub-title">{location.state.birthdate}</h2>
+          <button className="add-button" onClick={handleOpen}>
+            Add File
+          </button>
+          <DropzoneDialog
+            open={open}
+            acceptedFiles={[
+              "application/pdf",
+              "application/pdf",
+              "application/pdf",
+            ]}
+            onSave={handleSave}
+            onClose={handleClose}
+          />
+        </div>
+      </div>
+      <div className="stats-container">
+        <div className="player-stats">
+          <div className="info-player">
+            <p className="stats-text">test</p>
           </div>
-          <div className="stats-container">
-            <div className="player-stats">
-              <div className="info-player">
-                <p className="stats-text">test</p>
-              </div>
-              <div className="MVP-stats">
-                <p className="stats-text">test</p>
-              </div>
-            </div>
-            <div className="stats-criteria">
-              <p className="stats-text">test</p>
-            </div>
+          <div className="MVP-stats">
+            <p className="stats-text">test</p>
           </div>
+        </div>
+        <div className="stats-criteria">
+          <p className="stats-text">test</p>
         </div>
       </div>
     </div>

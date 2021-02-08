@@ -9,7 +9,6 @@ import "./Layout.css";
 const ScoutsLayout = ({ children, api, mediaPlayer }) => {
   // useEffect()
 
-  
   return (
     // <div className="app">
     <>
@@ -20,7 +19,7 @@ const ScoutsLayout = ({ children, api, mediaPlayer }) => {
           {children}
         </div>
         <div className="videoPlayer__container">
-          <VideoPlayer api={api} mediaPlayer={mediaPlayer} />
+          {/* <VideoPlayer api={api} mediaPlayer={mediaPlayer} /> */}
         </div>
         <Footer api={api} mediaPlayer={mediaPlayer} />
       </div>

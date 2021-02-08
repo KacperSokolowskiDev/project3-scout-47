@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { Fab, TextField, Tooltip } from "@material-ui/core";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import { makeStyles } from "@material-ui/core/styles";
-import Navbar from "../../components/navbar/Index";
-import LateralBar from "../../components/LateralBar/Index";
 import StaffCard from "../../components/StaffCard/Index";
 import FormAddStaff from "../../components/Form-dialogs/FormAddStaff";
 import "./styles.css";
@@ -45,40 +43,40 @@ const Index = () => {
     fetchStaff();
   }, []);
   return (
-    <div className="staff-page">
-      <Navbar />
-      <div className="staff-page-container">
-        <LateralBar />
-        <div className="staff-page-content">
-          <h1 className="staff-title">PERSONNELS</h1>
-          <div className="staff-page-search-info">
-            <TextField
-              autoComplete="off"
-              color="secondary"
-              id="filled-basic"
-              label="Recherche"
-              variant="filled"
-              className={classes.elementMT}
-            />
-            <FormAddStaff fetchStaff={fetchStaff} />
-            <Tooltip title="Filter" aria-label="filter">
-              <Fab color="secondary" className={classes.buttons}>
-                <FilterListIcon />
-              </Fab>
-            </Tooltip>
-          </div>
-          <div className="staff-page-list">
-            {download ? (
-              listStaff.map((data) => {
-                return <StaffCard staffInfo={data} />;
-              })
-            ) : (
-              <div>No staff in database</div>
-            )}
-          </div>
-        </div>
+    // <div className="staff-page">
+    //   <Navbar />
+    //   <div className="staff-page-container">
+    //     <LateralBar />
+    <div className="staff-page-content">
+      <h1 className="staff-title">PERSONNELS</h1>
+      <div className="staff-page-search-info">
+        <TextField
+          autoComplete="off"
+          color="secondary"
+          id="filled-basic"
+          label="Recherche"
+          variant="filled"
+          className={classes.elementMT}
+        />
+        <FormAddStaff fetchStaff={fetchStaff} />
+        <Tooltip title="Filter" aria-label="filter">
+          <Fab color="secondary" className={classes.buttons}>
+            <FilterListIcon />
+          </Fab>
+        </Tooltip>
+      </div>
+      <div className="staff-page-list">
+        {download ? (
+          listStaff.map((data) => {
+            return <StaffCard staffInfo={data} />;
+          })
+        ) : (
+          <div>No staff in database</div>
+        )}
       </div>
     </div>
+    //   </div>
+    // </div>
   );
 };
 export default Index;

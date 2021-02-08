@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SongRow from "./SongRow";
 import Header from "../../components/layouts/Header";
 import { useDataLayerValue } from "../../components/DataLayer";
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
 import "./PlayerDetailBody.css";
 
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
@@ -18,18 +18,18 @@ import PdfViewer from "../../components/modules/pdf/PdfViewer";
 function PlayerDetail({ api, mediaPlayer }) {
   const [{ player }, dispatch] = useDataLayerValue();
   console.log("re", player, player);
-  let { id }  = useParams();
+  let { id } = useParams();
 
   useEffect(async () => {
-    let playerFocused = await api.getPlayer(id)
+    let playerFocused = await api.getPlayer(id);
     dispatch({
       type: "SET_PLAYER",
-      player: playerFocused
+      player: playerFocused,
     });
     return () => {
       // cleanup
-    }
-  }, [id])
+    };
+  }, [id]);
 
   const playPlayer = (id) => {
     mediaPlayer
@@ -75,7 +75,7 @@ function PlayerDetail({ api, mediaPlayer }) {
 
   return (
     <div className="body">
-      <Header api={api} />
+      {/* <Header api={api} /> */}
       {player && (
         <>
           <div className="body__info">

@@ -1,8 +1,7 @@
-import Navbar from "../../components/navbar/Index";
-import LateralBar from "../../components/LateralBar/Index";
 import PlayerCard from "../../components/PlayerCard/Index";
 import FormAddPlayer from "../../components/Form-dialogs/FormAddPlayer";
 import UserContext from "../../context/UserContext";
+import { useDataLayerValue } from "../../components/DataLayer";
 
 import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
@@ -32,8 +31,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function Index() {
+  const [{ players }, dispatch] = useDataLayerValue();
+
   const classes = useStyles();
-  const [listPlayers, setListPlayers] = useState([]);
+  //const [listPlayers, setListPlayers] = useState([]);
   const [download, setDownload] = useState(false);
   const userContext = useContext(UserContext);
 
@@ -44,9 +45,9 @@ function Index() {
       })
       .then((res) => {
         let result = res.data;
-        setListPlayers(result);
+        //setListPlayers(result);
         setDownload(true);
-        console.log(listPlayers, download);
+        //console.log(listPlayers, download);
       })
       .catch((error) => {
         console.log(error);
@@ -57,38 +58,32 @@ function Index() {
     fetchPlayers();
   }, []);
   return (
-    <div className="player-page">
-      <Navbar />
-      <div className="player-page-container">
-        <LateralBar />
-        <div className="player-page-content">
-          <h1 className="player-title">JOUEURS</h1>
-          <div className="player-page-search-info">
-            <TextField
-              id="filled-basic"
-              label="Search"
-              variant="filled"
-              color="secondary"
-              autoComplete="off"
-              className={classes.elementMT}
-            />
-            <FormAddPlayer fetchPlayers={fetchPlayers} />
-            <Tooltip title="Filter" aria-label="filter">
-              <Fab color="secondary" className={classes.buttons}>
-                <FilterListIcon />
-              </Fab>
-            </Tooltip>
-          </div>
-          <div className="player-page-list">
-            {download ? (
-              listPlayers.map((data) => {
-                return <PlayerCard playerInfo={data} />;
-              })
-            ) : (
-              <div>No player in database</div>
-            )}
-          </div>
-        </div>
+    <div className="player-page-content">
+      <h1 className="player-title">JOUEURS</h1>
+      <div className="player-page-search-info">
+        <TextField
+          id="filled-basic"
+          label="Search"
+          variant="filled"
+          color="secondary"
+          autoComplete="off"
+          className={classes.elementMT}
+        />
+        <FormAddPlayer fetchPlayers={fetchPlayers} />
+        <Tooltip title="Filter" aria-label="filter">
+          <Fab color="secondary" className={classes.buttons}>
+            <FilterListIcon />
+          </Fab>
+        </Tooltip>
+      </div>
+      <div className="player-page-list">
+        {players.length ? (
+          players.map((data) => {
+            return <PlayerCard playerInfo={data} />;
+          })
+        ) : (
+          <div>No player in database</div>
+        )}
       </div>
     </div>
   );

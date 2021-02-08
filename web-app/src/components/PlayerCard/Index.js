@@ -5,7 +5,7 @@ const Index = ({ playerInfo }) => {
   let history = useHistory();
   const handleClick = () => {
     history.push({
-      pathname: "/players/profile",
+      pathname: `/players/${playerInfo.id}`,
       state: {
         ...playerInfo,
       },

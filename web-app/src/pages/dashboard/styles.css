@@ -10,6 +10,7 @@
   flex-direction: row;
 }
 .dashboard-page-content {
+  background-color: black;
   display: flex;
   flex-direction: column;
   width: 94%;
