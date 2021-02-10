@@ -16,7 +16,7 @@ module.exports = {
         lastname: "Hilton",
         email: "J_K@gmail.com",
         password: "password",
-        telephone: 123,
+        telephone: 23456,
         picture: "https://i.pravatar.cc/300",
       },
       {
@@ -24,7 +24,7 @@ module.exports = {
         lastname: "Uzumaki",
         email: "N_U@gmail.com",
         password: "password",
-        telephone: 1256,
+        telephone: 78965,
         picture: "https://i.pravatar.cc/300",
       },
     ]);

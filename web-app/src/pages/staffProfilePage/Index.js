@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import noPic from "../../assets/user.png";
+import UserContext from "../../context/UserContext";
+
 import "./styles.css";
 const StaffProfilePage = () => {
   const [followedPlayers, setFollowedPlayers] = useState([]);
   const [download, setDownload] = useState(false);
   const location = useLocation();
+
   console.log(location);
   console.log(location.state);
   const fetchPlayers = async () => {

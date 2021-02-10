@@ -42,6 +42,7 @@ export default function FormAddStaff({ fetchStaff }) {
     lastname: "",
     email: "",
     password: "password",
+    picture: "https://i.pravatar.cc/300",
     telephone: "",
     Privilege: {},
   };

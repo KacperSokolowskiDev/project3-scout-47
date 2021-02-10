@@ -130,6 +130,57 @@ export default function FormAddPlayer({ fetchPlayers }) {
               })
             }
           />
+          <TextField
+            color="secondary"
+            margin="dense"
+            id="standard-basic"
+            label="Date de naissance"
+            type="text"
+            fullWidth
+            autoComplete="no"
+            required
+            onChange={(e) =>
+              dispatch({
+                type: "fill_input",
+                fieldName: "birthdate",
+                payload: e.currentTarget.value,
+              })
+            }
+          />
+          <TextField
+            color="secondary"
+            margin="dense"
+            id="standard-basic"
+            label="Taille"
+            type="text"
+            fullWidth
+            autoComplete="no"
+            required
+            onChange={(e) =>
+              dispatch({
+                type: "fill_input",
+                fieldName: "height",
+                payload: e.currentTarget.value,
+              })
+            }
+          />
+          <TextField
+            color="secondary"
+            margin="dense"
+            id="standard-basic"
+            label="Poids"
+            type="text"
+            fullWidth
+            autoComplete="no"
+            required
+            onChange={(e) =>
+              dispatch({
+                type: "fill_input",
+                fieldName: "weight",
+                payload: e.currentTarget.value,
+              })
+            }
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Annuler</Button>

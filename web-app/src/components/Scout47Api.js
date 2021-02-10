@@ -1,5 +1,5 @@
 import axios from "axios";
-const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJmaXJzdG5hbWUiOiJQaWVycmUiLCJsYXN0bmFtZSI6IkdpZGRpbyIsImVtYWlsIjoicGdAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkYXJnb24yaSR2PTE5JG09NDA5Nix0PTMscD0xJEJRZndldHVqM2J0YS81ZzNKUmJTSHFSelN5dXFPVFpYdXRQYTB3Vk80MVUkcjQwS0UycXVCck5hcWYydUZycVJTRjVVK1NYRzRyYUxmdXN1MGVFekZSZyIsInRlbGVwaG9uZSI6MTIzNDUsImNyZWF0ZWRBdCI6IjIwMjEtMDItMDQiLCJ1cGRhdGVkQXQiOiIyMDIxLTAyLTA0IiwiUHJpdmlsZWdlIjp7ImlkIjo0LCJyb2xlIjoibWFuYWdlciIsImFnZUdyYWRlIjpbIioiXSwiY3JlYXRlZEF0IjoiMjAyMS0wMi0wNCIsInVwZGF0ZWRBdCI6IjIwMjEtMDItMDQiLCJVc2VySWQiOjR9fSwiaWF0IjoxNjEyNDUwNzk4LCJleHAiOjE2MTI0NzIzOTh9.xXcBvP66lgTOzPYXDdZoqgAQRMKxkQLGyM76AEU4rHA`;
+const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0LCJmaXJzdG5hbWUiOiJLYWNwZXIiLCJsYXN0bmFtZSI6IlNva29sb3dza2kiLCJlbWFpbCI6ImtzQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJGFyZ29uMmkkdj0xOSRtPTQwOTYsdD0zLHA9MSRUUkYyVlF4LzYxaFpac1RreERqVU0xL2pyTGdHb3IrS1JuVGI5V0RITWs4JDhKZ2lPbTJOQld3RzJhUFpCUWMxaTZUNWNFeVdESXpibkVPWnRBQmlseTQiLCJ0ZWxlcGhvbmUiOjEyMzUsInBpY3R1cmUiOiJodHRwczovL2kucHJhdmF0YXIuY2MvMzAwIiwiY3JlYXRlZEF0IjoiMjAyMS0wMi0xMCIsInVwZGF0ZWRBdCI6IjIwMjEtMDItMTAiLCJQcml2aWxlZ2UiOnsiaWQiOjQsInJvbGUiOiJzY291dCIsImFnZUdyYWRlIjpbMjAwNSwyMDA0LDIwMDZdLCJjcmVhdGVkQXQiOiIyMDIxLTAyLTEwIiwidXBkYXRlZEF0IjoiMjAyMS0wMi0xMCIsIlVzZXJJZCI6NH19LCJpYXQiOjE2MTI5ODA2OTgsImV4cCI6MTYxMzAwMjI5OH0.E9E2zofBwW0yJ4dBVh3s616lyhGQguYWhz2f2Dpc-2U`;
 
 class Scout47Api {
   constructor() {
@@ -8,20 +8,18 @@ class Scout47Api {
     this.remote = "localhost";
     this.token = null;
     this.url = `http://${this.remote}:${this.port}/${this.apiPath}`;
-    
   }
 
   setAccessToken = (token) => {
-    console.log("in acces tooken", token)
+    console.log("in acces tooken", token);
     this.headers = { Authorization: `Bearer ${token}` };
     // return this.token = token
-   
-  }
+  };
 
   getUserPlayers = async () => {
     // console.log("in get user players");
     try {
-      const { data }  = await axios.get(`${this.url}/players`, {
+      const { data } = await axios.get(`${this.url}/players`, {
         headers: this.headers,
       });
       console.log("ro", data);
@@ -43,22 +41,23 @@ class Scout47Api {
   };
 
   login = async (email, password) => {
-    console.log("login")
+    console.log("login");
     try {
-      const data  = await axios({
-        method: 'post',
+      const data = await axios({
+        method: "post",
         url: `${this.url}/users/login`,
         data: {
-          email, password
-        }
+          email,
+          password,
+        },
       });
-      console.log(data)
-      return data
+      console.log(data);
+      return data;
       //set local storage
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   getMe = async () => {
     try {
@@ -82,7 +81,6 @@ class Scout47Api {
       console.log(error);
     }
   };
-
 
   uploadSchoolReport = async (file, playerId) => {
     console.log("in call");
