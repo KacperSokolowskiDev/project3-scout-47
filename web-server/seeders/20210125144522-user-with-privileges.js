@@ -5,14 +5,14 @@ module.exports = {
     await queryInterface.bulkInsert("users", [
       {
         firstname: "Manu",
-        lastname: "Manu",
-        email: "MM@gmail.com",
+        lastname: "Smith",
+        email: "ms@gmail.com",
         password: "password",
         telephone: 12345,
       },
       {
-        firstname: "Jin",
-        lastname: "Kazama",
+        firstname: "Jaques",
+        lastname: "Hilton",
         email: "J_K@gmail.com",
         password: "password",
         telephone: 123,

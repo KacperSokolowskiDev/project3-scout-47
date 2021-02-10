@@ -3,16 +3,9 @@
   padding: 0px;
 }
 
-.criteria-page {
-  background-color: black;
-}
-
-.criteria-page-container {
-  display: flex;
-  flex-direction: row;
-}
-
 .criteria-page-content {
+  background: linear-gradient(transparent, rgba(0, 0, 0, 1));
+  background-color: rgb(91, 87, 115);
   display: flex;
   flex-direction: column;
   width: 94%;

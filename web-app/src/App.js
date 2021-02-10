@@ -25,7 +25,7 @@ import theme from "./colors/Index";
 import { play } from "video-react/lib/actions/player";
 
 //Material UI
-//import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 const api = new Scout47Api();
 const mediaPlayer = new MediaPlayer();
@@ -66,33 +66,43 @@ function App() {
   }, [token, dispatch]);
 
   return (
-    <div className="App">
-      <Router>
-        <Switch>
-          <Route
-            path="/"
-            exact
-            render={(props) => <LoginPage {...props} api={api} />}
-          />
-          <ScoutsLayout api={api} mediaPlayer={mediaPlayer}>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Router>
+          <Switch>
             <Route
-              path="/players/:id"
+              path="/"
               exact
-              render={(props) => (
-                <PlayerDetail {...props} api={api} mediaPlayer={mediaPlayer} />
-              )}
+              render={(props) => <LoginPage {...props} api={api} />}
             />
-            <Route path="/dashboard" exact component={Dashboard} />
-            <Route path="/staff" exact component={Staff} />
-            <Route path="/criteria" exact component={Criteria} />
-            <Route path="/player" exact component={Player} />
-            <Route path="/agenda" exact component={Agenda} />
-            <Route path="/players/profile" exact component={ProfilPage} />
-            <Route path="/staffs/profile" exact component={StaffProfilePage} />
-          </ScoutsLayout>
-        </Switch>
-      </Router>
-    </div>
+            <ScoutsLayout api={api} mediaPlayer={mediaPlayer}>
+              <Route
+                path="/players/:id"
+                exact
+                render={(props) => (
+                  <PlayerDetail
+                    {...props}
+                    api={api}
+                    mediaPlayer={mediaPlayer}
+                  />
+                )}
+              />
+              <Route path="/dashboard" exact component={Dashboard} />
+              <Route path="/staff" exact component={Staff} />
+              <Route path="/criteria" exact component={Criteria} />
+              <Route path="/player" exact component={Player} />
+              <Route path="/agenda" exact component={Agenda} />
+              <Route path="/players/profile" exact component={ProfilPage} />
+              <Route
+                path="/staffs/profile"
+                exact
+                component={StaffProfilePage}
+              />
+            </ScoutsLayout>
+          </Switch>
+        </Router>
+      </div>
+    </ThemeProvider>
   );
 }
 

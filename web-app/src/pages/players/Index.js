@@ -61,14 +61,6 @@ function Index() {
     <div className="player-page-content">
       <h1 className="player-title">JOUEURS</h1>
       <div className="player-page-search-info">
-        <TextField
-          id="filled-basic"
-          label="Search"
-          variant="filled"
-          color="secondary"
-          autoComplete="off"
-          className={classes.elementMT}
-        />
         <FormAddPlayer fetchPlayers={fetchPlayers} />
         <Tooltip title="Filter" aria-label="filter">
           <Fab color="secondary" className={classes.buttons}>

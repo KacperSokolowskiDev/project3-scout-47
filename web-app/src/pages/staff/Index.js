@@ -50,14 +50,6 @@ const Index = () => {
     <div className="staff-page-content">
       <h1 className="staff-title">PERSONNELS</h1>
       <div className="staff-page-search-info">
-        <TextField
-          autoComplete="off"
-          color="secondary"
-          id="filled-basic"
-          label="Recherche"
-          variant="filled"
-          className={classes.elementMT}
-        />
         <FormAddStaff fetchStaff={fetchStaff} />
         <Tooltip title="Filter" aria-label="filter">
           <Fab color="secondary" className={classes.buttons}>

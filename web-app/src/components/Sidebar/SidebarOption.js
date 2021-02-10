@@ -9,7 +9,9 @@ function SidebarOption({ Icon, firstname, lastname, id, title }) {
     <div className="sidebarOption">
       {Icon && <Icon className="sidebarOption__icon" />}
       {firstname ? (
-        <p onClick={() => history.push(`/players/${id}`)}> {`Q19 – ${firstname} ${lastname}`} </p>
+        <p onClick={() => history.push(`/players/${id}`)}>
+          {`${firstname} ${lastname}`}{" "}
+        </p>
       ) : (
         <h4>{title} </h4>
       )}

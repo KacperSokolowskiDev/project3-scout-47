@@ -1,16 +1,22 @@
-import React from "react"
-import { VictoryAnimation, VictoryPie, VictoryLabel, VictoryChart, VictoryStack, VictoryBar, VictoryAxis}from 'victory';
-import './index.css'
+import React from "react";
+import {
+  VictoryAnimation,
+  VictoryPie,
+  VictoryLabel,
+  VictoryChart,
+  VictoryStack,
+  VictoryBar,
+  VictoryAxis,
+} from "victory";
+import "./index.css";
 const dataA = [
-  { x: "Personal Drones", y: 57 },
-  { x: "Smart Thermostat", y: 40 },
-  { x: "Television", y: 38 },
-  { x: "Smartwatch", y: 37 },
-  { x: "Fitness Monitor", y: 25 },
-  { x: "Tablet", y: 19 },
-  { x: "Camera", y: 15 },
-  { x: "Laptop", y: 13 },
-  { x: "Phone", y: 12 }
+  { x: "Tir décisif", y: 57 },
+  { x: "Passes", y: 40 },
+  { x: "Coup franc", y: 38 },
+  { x: "Penaltis", y: 37 },
+  { x: "Corner", y: 25 },
+  { x: "Goals", y: 19 },
+  { x: "Tir", y: 15 },
 ];
 
 const dataB = dataA.map((point) => {
@@ -22,27 +28,20 @@ const width = 400;
 const height = 400;
 
 class CriterionDetailChart extends React.Component {
-
   render() {
     return (
-      <VictoryChart horizontal
-        height={height}
-        width={width}
-        padding={40}
-      >
-        <VictoryStack
-          style={{ data: { width: 25 }, labels: { fontSize: 15 } }}
-        >
+      <VictoryChart horizontal height={height} width={width} padding={40}>
+        <VictoryStack style={{ data: { width: 25 }, labels: { fontSize: 15 } }}>
           <VictoryBar
-            style={{ data: { fill: "tomato" } }}
+            style={{ data: { fill: "green" } }}
             data={dataA}
-            y={(data) => (-Math.abs(data.y))}
-            labels={({ datum }) => (`${Math.abs(datum.y)}%`)}
+            y={(data) => -Math.abs(data.y)}
+            labels={({ datum }) => `${Math.abs(datum.y)}%`}
           />
           <VictoryBar
-            style={{ data: { fill: "orange" } }}
+            style={{ data: { fill: "tomato" } }}
             data={dataB}
-            labels={({ datum }) => (`${Math.abs(datum.y)}%`)}
+            labels={({ datum }) => `${Math.abs(datum.y)}%`}
           />
         </VictoryStack>
 
@@ -50,7 +49,7 @@ class CriterionDetailChart extends React.Component {
           style={{
             axis: { stroke: "transparent" },
             ticks: { stroke: "transparent" },
-            tickLabels: { fontSize: 15, fill: "black" }
+            tickLabels: { fontSize: 15, fill: "black" },
           }}
           /*
             Use a custom tickLabelComponent with
@@ -59,10 +58,7 @@ class CriterionDetailChart extends React.Component {
             y values are still provided by VictoryAxis for each tick
           */
           tickLabelComponent={
-            <VictoryLabel
-              x={width / 2}
-              textAnchor="middle"
-            />
+            <VictoryLabel x={width / 2} textAnchor="middle" />
           }
           tickValues={dataA.map((point) => point.x).reverse()}
         />
@@ -71,4 +67,4 @@ class CriterionDetailChart extends React.Component {
   }
 }
 
-export default CriterionDetailChart
+export default CriterionDetailChart;

@@ -79,25 +79,25 @@ function PlayerDetail({ api, mediaPlayer }) {
       {player && (
         <>
           <div className="body__info">
-            <img src={player.picture} alt="" />
-            <div className="body__infoText">
-              <strong>PLAYER</strong>
-              <h2>{`${player.firstname} ${player.lastname}`}</h2>
-              <p>{`#${player.strongFoot} #${player.height} #${player.position}`}</p>
+            <div className="body__picture">
+              <img className="body__picture" src={player.picture} alt="" />
+            </div>
+            <div className="body__infoContainer">
+              <div className="body_player_names">
+                <h2>{`${player.firstname} ${player.lastname}`}</h2>
+              </div>
+              <div className="body_player_info">
+                <p>Date de naissance : {player.birthdate} </p>
+                <p>Hauteur : {player.height} cm </p>
+                <p>Poids : {player.weight} kg</p>
+                <p>Position : {player.position}</p>
+                <p>Pied fort : {player.strongFoot}</p>
+              </div>
             </div>
           </div>
 
           <div className="body__songs">
-            <div className="body__icons">
-              <PlayCircleFilledIcon
-                className="body__shuffle"
-                onClick={playPlayer}
-              />
-              <FavoriteIcon fontSize="large" />
-              <MoreHorizIcon />
-            </div>
-
-            <h2 className="body_player_title">Records</h2>
+            <h2 className="body_player_title">Evaluations</h2>
             <hr />
             {player.Criteria?.map((criterion) => {
               console.log("euuu vite", criterion);
@@ -111,20 +111,22 @@ function PlayerDetail({ api, mediaPlayer }) {
               );
             })}
 
-            <h2 className="body_player_title">Synthesis</h2>
+            <h2 className="body_player_title">Synthèse</h2>
             <hr />
-            <CriterionChart />
-            <CriterionChart />
-            <CriterionChart />
-            <CriterionChart />
+            <div className="body_charts">
+              <CriterionChart />
+              <CriterionChart />
+              <CriterionChart />
+              <CriterionChart />
+            </div>
+            <h2 className="body_player_title">Statistiques</h2>
+            <hr />
 
-            <h2 className="body_player_title">Metrics</h2>
-            <hr />
             <div className="body__songs__CriterionDetailsChart">
               <CriterionDetailChart />
             </div>
 
-            <h2 className="body_player_title">School Report</h2>
+            <h2 className="body_player_title">Rapport scolaire</h2>
             <hr />
             <div>
               {!player.schoolReport ? (

@@ -64,14 +64,6 @@ function Index() {
     <div className="criteria-page-content">
       <h1 className="criteria-title">CRITERES</h1>
       <div className="criteria-page-search-info">
-        <TextField
-          id="filled-basic"
-          label="Search"
-          variant="filled"
-          color="secondary"
-          autoComplete="off"
-          className={classes.elementMT}
-        />
         <FormAddCritetia fetchCriterias={fetchCriterias} />
         <Tooltip title="Filter" aria-label="filter">
           <Fab color="secondary" className={classes.buttons}>

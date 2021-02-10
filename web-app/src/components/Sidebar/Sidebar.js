@@ -29,7 +29,7 @@ function Sidebar() {
         className="sidebar__title"
         onClick={() => history.push("/player")}
       >
-        YOUR PLAYERS
+        Vos joueurs
       </strong>
       <hr />
       {players &&

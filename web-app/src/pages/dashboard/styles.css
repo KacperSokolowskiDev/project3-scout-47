@@ -2,15 +2,11 @@
   margin: 0px;
   padding: 0px;
 }
-.dashboard-page {
-  background-color: black;
-}
-.dashboard-page-container {
-  display: flex;
-  flex-direction: row;
-}
+
 .dashboard-page-content {
-  background-color: black;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 1));
+  background-color: rgb(91, 87, 115);
+
   display: flex;
   flex-direction: column;
   width: 94%;

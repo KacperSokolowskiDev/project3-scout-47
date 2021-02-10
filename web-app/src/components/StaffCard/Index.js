@@ -20,6 +20,7 @@ const Index = ({ staffInfo }) => {
         <p className="staff-card-text">{lastname}</p>
         <p className="staff-card-text">{email}</p>
         <p className="staff-card-text">{telephone}</p>
+        <p className="staff-card-text"> [2005-2006-2007]</p>
       </div>
     </div>
   );

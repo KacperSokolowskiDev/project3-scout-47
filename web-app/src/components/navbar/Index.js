@@ -16,7 +16,7 @@ function Index() {
   return (
     <div className="container-corner">
       <div className={isToggle ? "circle-menu circle-anim" : "circle-menu"}>
-        <Tooltip title="Dashboard" placement="left">
+        <Tooltip title="Dashboard" placement="left" onClick={handleToggle}>
           <Link className="links-circle" to="/dashboard">
             <img
               src="https://www.flaticon.com/svg/static/icons/svg/2285/2285559.svg"
@@ -24,7 +24,7 @@ function Index() {
             ></img>
           </Link>
         </Tooltip>
-        <Tooltip title="Staff" placement="left">
+        <Tooltip title="Staff" placement="left" onClick={handleToggle}>
           <Link className="links-circle" to="/staff">
             <img
               src="https://www.flaticon.com/svg/static/icons/svg/33/33308.svg"
@@ -32,7 +32,7 @@ function Index() {
             ></img>
           </Link>
         </Tooltip>
-        <Tooltip title="Criteria" placement="left-end ">
+        <Tooltip title="Criteria" placement="left-end " onClick={handleToggle}>
           <Link className="links-circle" to="/criteria">
             <img
               src="https://www.flaticon.com/svg/static/icons/svg/726/726568.svg"
@@ -40,7 +40,11 @@ function Index() {
             ></img>
           </Link>
         </Tooltip>
-        <Tooltip title="Players" placement="bottom-start">
+        <Tooltip
+          title="Players"
+          placement="bottom-start"
+          onClick={handleToggle}
+        >
           <Link className="links-circle" to="/player">
             <img
               src="https://www.flaticon.com/svg/static/icons/svg/1654/1654387.svg"
@@ -48,7 +52,7 @@ function Index() {
             ></img>
           </Link>
         </Tooltip>
-        <Tooltip title="Agenda" placement="bottom">
+        <Tooltip title="Agenda" placement="bottom" onClick={handleToggle}>
           <Link className="links-circle" to="/agenda">
             <img
               src="https://www.flaticon.com/svg/static/icons/svg/860/860743.svg"
