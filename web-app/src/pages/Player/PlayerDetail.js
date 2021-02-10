@@ -100,8 +100,6 @@ function PlayerDetail({ api, mediaPlayer }) {
             <h2 className="body_player_title">Evaluations</h2>
             <hr />
             {player.Criteria?.map((criterion) => {
-              console.log("euuu vite", criterion);
-
               return (
                 <SongRow
                   playSong={() => playSong(criterion.Evaluation.id)}

@@ -6,15 +6,12 @@ function SidebarOption({ Icon, firstname, lastname, id, title }) {
   const history = useHistory();
 
   return (
-    <div className="sidebarOption">
+    <div
+      className="sidebarOption"
+      onClick={() => history.push(`/players/${id}`)}
+    >
       {Icon && <Icon className="sidebarOption__icon" />}
-      {firstname ? (
-        <p onClick={() => history.push(`/players/${id}`)}>
-          {`${firstname} ${lastname}`}{" "}
-        </p>
-      ) : (
-        <h4>{title} </h4>
-      )}
+      {firstname ? <p>{`${firstname} ${lastname}`} </p> : <h4>{title} </h4>}
     </div>
   );
 }

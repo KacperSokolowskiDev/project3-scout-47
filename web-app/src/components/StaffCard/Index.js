@@ -2,6 +2,8 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
 const Index = ({ staffInfo }) => {
+  console.log("stafinfo", staffInfo);
+
   let history = useHistory();
   const handleClick = () => {
     history.push({

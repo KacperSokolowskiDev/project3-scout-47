@@ -1,8 +1,7 @@
-import React from 'react'
+import React from "react";
 import "./SongRow.css";
 
-function SongRow({ criterion, playSong, picture }) {
- 
+function SongRow({ criterion, playSong, picture, description }) {
   return (
     <div className="songRow" onClick={() => playSong(criterion.id)}>
       <img className="songRow__album" src={picture} alt="" />
@@ -10,12 +9,11 @@ function SongRow({ criterion, playSong, picture }) {
         <h1>{criterion.name}</h1>
         <p>
           {/* {criterion.Evaluation.map((artist) => artist.name).join(", ")} -{" "} */}
-          {criterion.Evaluation.name}
-          {criterion.Evaluation.score}
+          {criterion.Evaluation.score}, {criterion.Evaluation.description}
         </p>
       </div>
     </div>
   );
 }
 
-export default SongRow
+export default SongRow;

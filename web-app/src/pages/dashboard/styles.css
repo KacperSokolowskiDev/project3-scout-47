@@ -4,13 +4,12 @@
 }
 
 .dashboard-page-content {
-  background: linear-gradient(transparent, rgba(0, 0, 0, 1));
-  background-color: rgb(91, 87, 115);
-
+  background: linear-gradient(to left, rgb(40, 223, 153), rgb(0, 0, 0));
   display: flex;
   flex-direction: column;
-  width: 94%;
+  width: 100%;
 }
+
 .dashboard-title {
   color: white;
   font-size: 3em;
@@ -23,5 +22,4 @@
   display: flex;
   justify-content: space-around;
   margin-top: 50px;
-  margin-left: 50px;
 }

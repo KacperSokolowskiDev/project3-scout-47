@@ -7,10 +7,11 @@
   flex: 0.5;
   display: flex;
   background-color: white;
-  padding: 10px;
+  margin-left: 10px;
   border-radius: 30px;
   color: gray;
   align-items: center;
+  width: 250px;
 }
 
 .header__left > input {

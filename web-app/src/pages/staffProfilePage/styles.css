@@ -3,7 +3,7 @@
   padding: 0;
 }
 .staff-profil-page {
-  background-color: black;
+  background: linear-gradient(to left, rgb(40, 223, 153), rgb(0, 0, 0));
   max-height: 100vh;
   overflow: hidden;
 }
@@ -12,6 +12,7 @@
   flex-direction: row;
 }
 .staff-profil-page-content {
+  background: linear-gradient(to left, rgb(40, 223, 153), rgb(0, 0, 0));
   display: flex;
   flex-direction: column;
   width: 94%;

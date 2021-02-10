@@ -5,8 +5,7 @@
   overflow-y: overlay;
   flex: 0.8;
   color: white;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 1));
-  background-color: rgb(91, 87, 115);
+  background: linear-gradient(to left, rgb(40, 223, 153), rgb(0, 0, 0));
 }
 
 .body::-webkit-scrollbar {
@@ -22,6 +21,7 @@
   height: 200px;
   width: 200px;
   margin-right: 30px;
+  border-radius: 20px;
 }
 
 .body__infoContainer {

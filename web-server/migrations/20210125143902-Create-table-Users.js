@@ -23,6 +23,9 @@ module.exports = {
       telephone: {
         type: Sequelize.INTEGER,
       },
+      picture: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         defaultValue: new Date(),

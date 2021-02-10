@@ -9,6 +9,7 @@ module.exports = {
         email: "ms@gmail.com",
         password: "password",
         telephone: 12345,
+        picture: "https://i.pravatar.cc/300",
       },
       {
         firstname: "Jaques",
@@ -16,6 +17,7 @@ module.exports = {
         email: "J_K@gmail.com",
         password: "password",
         telephone: 123,
+        picture: "https://i.pravatar.cc/300",
       },
       {
         firstname: "Naruto",
@@ -23,6 +25,7 @@ module.exports = {
         email: "N_U@gmail.com",
         password: "password",
         telephone: 1256,
+        picture: "https://i.pravatar.cc/300",
       },
     ]);
     await queryInterface.bulkInsert(

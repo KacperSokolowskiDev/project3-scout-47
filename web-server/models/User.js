@@ -14,6 +14,7 @@ class User extends Model {
         email: DataTypes.STRING,
         password: DataTypes.STRING,
         telephone: DataTypes.INTEGER,
+        picture: DataTypes.STRING,
       },
       {
         modelName: "User",
