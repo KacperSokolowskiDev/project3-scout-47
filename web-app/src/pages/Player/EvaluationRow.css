@@ -1,0 +1,33 @@
+.evaluationRow {
+  margin-left: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  color: white;
+}
+
+.evaluationRow:hover {
+  cursor: pointer;
+  background-color: black;
+  opacity: 0.8;
+}
+
+.evaluationRow__info {
+  margin-left: 20px;
+}
+
+.evaluationRow__info > h1 {
+  font-size: 16px;
+}
+
+.evaluationRow__info > p {
+  font-size: 14px;
+  margin-top: 3px;
+  color: gray;
+}
+
+.evaluationRow__album {
+  height: 40px;
+  width: 40px;
+}

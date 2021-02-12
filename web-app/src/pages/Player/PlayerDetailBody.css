@@ -75,12 +75,12 @@
   background-color: black;
 }
 
-.body__songs {
+.body__records {
   z-index: 1;
   margin: 20px -30px;
 }
 
-.body__songs__CriterionDetailsChart {
+.body__records__CriterionDetailsChart {
   height: 500px;
 }
 
@@ -112,4 +112,18 @@
 hr {
   margin-left: 30px;
   width: 30%;
+}
+
+.videoPlayer__container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.video-react-video {
+  width: 230px;
+}
+
+.video-react-control-bar {
+  display: none;
 }

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import SongRow from "./SongRow";
+import EvaluationRow from "./EvaluationRow";
 import Header from "../../components/layouts/Header";
 import { useDataLayerValue } from "../../components/DataLayer";
 import { useParams } from "react-router-dom";
 import "./PlayerDetailBody.css";
+import VideoPlayer from "./../../components/modules/video/VideoPlayer";
 
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -51,7 +52,7 @@ function PlayerDetail({ api, mediaPlayer }) {
       });
   };
 
-  const playSong = (id) => {
+  const playVideo = (id) => {
     console.log("in play son, pas id ", id);
     mediaPlayer
       .play({
@@ -96,13 +97,13 @@ function PlayerDetail({ api, mediaPlayer }) {
             </div>
           </div>
 
-          <div className="body__songs">
+          <div className="body__records">
             <h2 className="body_player_title">Evaluations</h2>
             <hr />
             {player.Criteria?.map((criterion) => {
               return (
-                <SongRow
-                  playSong={() => playSong(criterion.Evaluation.id)}
+                <EvaluationRow
+                  playVideo={() => playVideo(criterion.Evaluation.id)}
                   criterion={criterion}
                   picture={player.picture}
                 />
@@ -120,7 +121,7 @@ function PlayerDetail({ api, mediaPlayer }) {
             <h2 className="body_player_title">Statistiques</h2>
             <hr />
 
-            <div className="body__songs__CriterionDetailsChart">
+            <div className="body__records__CriterionDetailsChart">
               <CriterionDetailChart />
             </div>
 
@@ -132,6 +133,9 @@ function PlayerDetail({ api, mediaPlayer }) {
               ) : (
                 <PdfViewer api={api} path={player.schoolReport} />
               )}
+            </div>
+            <div className="videoPlayer__container">
+              <VideoPlayer api={api} mediaPlayer={mediaPlayer} />
             </div>
           </div>
         </>
